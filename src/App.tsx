@@ -1,8 +1,8 @@
-import {RouterProvider} from 'react-router-dom'
-import root from './router/root'
+import MainRouter from './router/MainRouter'
+import './App.css'
 
 function App() {
-  return <RouterProvider router={root}></RouterProvider>
+  return <MainRouter />
 }
 
 export default App
