@@ -1,7 +1,39 @@
+import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import useCustomLogin, {TCusotmLogin} from '../../hooks/useCustomLogin'
+
+interface LoginCredentials {
+  username: string
+  password: string
+}
 
 const LoginForm = () => {
   const navigate = useNavigate()
+  const [loginParams, setLoginParams] = useState<LoginCredentials>({
+    username: '',
+    password: ''
+  })
+  const {doLogin, moveToPath}: TCusotmLogin = useCustomLogin()
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.name in loginParams) {
+      loginParams[e.target.name as keyof LoginCredentials] = e.target.value
+    }
+    setLoginParams({...loginParams})
+  }
+
+  const handleClickLogin = () => {
+    doLogin(loginParams).then(data => {
+      console.log(data)
+
+      if (data.error) {
+        alert('이메일과 패스워드를 다시 확인하세요')
+      } else {
+        alert('로그인 성공')
+        moveToPath('/')
+      }
+    })
+  }
 
   return (
     <div className="login-container">
