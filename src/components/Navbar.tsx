@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 
-const Navbar = (): JSX.Element => {
+const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="px-1 py-1 container-nav">
