@@ -2,10 +2,7 @@ import {RecoilState, atom} from 'recoil'
 import {Member} from '../interfaces/Member'
 import {getCookie} from '../util/cookieUtil'
 
-const initState: Member = {
-  accessToken: '',
-  refreshToken: ''
-}
+const initState: Member = {}
 
 //쿠키에서 체크
 const loadMemberCookie = (): Member => {

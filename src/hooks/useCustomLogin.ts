@@ -34,7 +34,7 @@ const useCustomLogin = (): TCusotmLogin => {
   const doLogout = () => {
     removeCookie('member')
     resetState()
-    console.log(loginState)
+    setLoginState({})
   }
 
   return {loginState, doLogin, doLogout, saveAsCookie}
