@@ -1,6 +1,16 @@
 import {Link} from 'react-router-dom'
+import useCustomLogin, {TCusotmLogin} from '../hooks/useCustomLogin'
+import useCustomMove, {TCustomMove} from '../hooks/useCustomMove'
 
 const Navbar = () => {
+  const {doLogout, loginState}: TCusotmLogin = useCustomLogin()
+  const {moveToPath}: TCustomMove = useCustomMove()
+
+  const handleClickLogout = () => {
+    doLogout()
+    moveToPath('/')
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="px-1 py-1 container-nav">
@@ -26,16 +36,34 @@ const Navbar = () => {
                 이용안내
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link fs-5 a_tag" to="/accounts/login">
-                로그인
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link fs-5 a_tag" to="/accounts/agree">
-                회원가입
-              </Link>
-            </li>
+
+            {loginState.accessToken && loginState.refreshToken ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link fs-5 a_tag" to="/mypage">
+                    마이페이지
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link fs-5 a_tag" onClick={handleClickLogout}>
+                    로그아웃
+                  </a>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link fs-5 a_tag" to="/accounts/login">
+                    로그인
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link fs-5 a_tag" to="/accounts/agree">
+                    회원가입
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

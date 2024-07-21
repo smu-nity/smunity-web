@@ -3,18 +3,13 @@ import {Member} from '../interfaces/Member'
 import {getCookie} from '../util/cookieUtil'
 
 const initState: Member = {
-  email: ''
+  accessToken: '',
+  refreshToken: ''
 }
 
 //쿠키에서 체크
 const loadMemberCookie = (): Member => {
-  const memberInfo = getCookie('member')
-
-  //닉네임 처리
-  if (memberInfo && memberInfo.nickname) {
-    memberInfo.nickname = decodeURIComponent(memberInfo.nickname)
-  }
-  return memberInfo
+  return getCookie('member')
 }
 
 const signinState: RecoilState<Member> = atom({

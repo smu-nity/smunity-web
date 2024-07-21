@@ -20,7 +20,7 @@ const useCustomLogin = (): TCusotmLogin => {
     const response = await login(loginParam)
     const success = response.status < 400
     if (success) {
-      saveAsCookie(response.data)
+      saveAsCookie(response.data.result)
     }
     return success
   }
@@ -34,6 +34,7 @@ const useCustomLogin = (): TCusotmLogin => {
   const doLogout = () => {
     removeCookie('member')
     resetState()
+    console.log(loginState)
   }
 
   return {loginState, doLogin, doLogout, saveAsCookie}
