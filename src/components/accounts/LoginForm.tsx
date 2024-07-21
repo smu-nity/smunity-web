@@ -1,6 +1,6 @@
 import {useState} from 'react'
-import {useNavigate} from 'react-router-dom'
 import useCustomLogin, {TCusotmLogin} from '../../hooks/useCustomLogin'
+import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 
 interface LoginCredentials {
   username: string
@@ -8,12 +8,12 @@ interface LoginCredentials {
 }
 
 const LoginForm = () => {
-  const navigate = useNavigate()
   const [loginParams, setLoginParams] = useState<LoginCredentials>({
     username: '',
     password: ''
   })
-  const {doLogin, moveToPath}: TCusotmLogin = useCustomLogin()
+  const {doLogin}: TCusotmLogin = useCustomLogin()
+  const {moveToPath}: TCustomMove = useCustomMove()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name in loginParams) {
@@ -23,14 +23,11 @@ const LoginForm = () => {
   }
 
   const handleClickLogin = () => {
-    doLogin(loginParams).then(data => {
-      console.log(data)
-
-      if (data.error) {
-        alert('이메일과 패스워드를 다시 확인하세요')
+    doLogin(loginParams).then(success => {
+      if (success) {
+        moveToPath('/mypage')
       } else {
-        alert('로그인 성공')
-        moveToPath('/')
+        alert('이메일과 패스워드를 다시 확인하세요')
       }
     })
   }
@@ -41,43 +38,40 @@ const LoginForm = () => {
         <div className="login_logo">
           <img id="login_logo" src="/images/logo.png" />
         </div>
-        <form method="post">
-          <div className="content">
-            <div className="input-group flex-nowrap">
-              <input
-                type="text"
-                className="form-control"
-                name="username"
-                id="id"
-                placeholder="학번"
-              />
-            </div>
-            <div className="input-group flex-nowrap" style={{marginTop: '1rem'}}>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                id="pw"
-                placeholder="비밀번호"
-              />
-            </div>
-            <a id="b2" className="link">
-              비밀번호를 잊어버리셨나요?
-            </a>
+        <div className="content">
+          <div className="input-group flex-nowrap">
+            <input
+              type="text"
+              className="form-control"
+              name="username"
+              placeholder="학번"
+              value={loginParams.username}
+              onChange={handleChange}
+            />
           </div>
-          <div className="action">
-            <button className="button-text" id="login_button" type="submit">
-              로그인
-            </button>
-            <button
-              className="button-text"
-              id="register_button"
-              type="button"
-              onClick={() => navigate('/accounts/agree')}>
-              회원가입
-            </button>
+          <div className="input-group flex-nowrap" style={{marginTop: '1rem'}}>
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              placeholder="비밀번호"
+              value={loginParams.password}
+              onChange={handleChange}
+            />
           </div>
-        </form>
+          <a className="link">비밀번호를 잊어버리셨나요?</a>
+        </div>
+        <div className="action">
+          <button className="button-text" type="submit" onClick={handleClickLogin}>
+            로그인
+          </button>
+          <button
+            className="button-text"
+            type="button"
+            onClick={() => moveToPath('/accounts/agree')}>
+            회원가입
+          </button>
+        </div>
       </div>
     </div>
   )
