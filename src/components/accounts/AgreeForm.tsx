@@ -1,4 +1,8 @@
+import useCustomAgree, {TCusotmAgree} from '../../hooks/useCustomAgree'
+
 const AgreeForm = () => {
+  const {agreeState}: TCusotmAgree = useCustomAgree()
+
   return (
     <>
       <div className="info_title">
@@ -49,9 +53,18 @@ const AgreeForm = () => {
                   />
                 </div>
                 <div id="login_btn">
-                  <div className="login_btn_default" style={{color: 'rgb(1, 42, 127)'}}>
-                    이용약관에 동의해주세요.
-                  </div>
+                  {agreeState ? (
+                    <input
+                      type="submit"
+                      className="btn btn-primary button-sm"
+                      value="인증하기"
+                      style={{marginTop: '1rem'}}
+                    />
+                  ) : (
+                    <div className="login_btn_default" style={{color: 'rgb(1, 42, 127)'}}>
+                      이용약관에 동의해주세요.
+                    </div>
+                  )}
                 </div>
               </div>
             </form>

@@ -1,12 +1,8 @@
-import {useState} from 'react'
 import TermsComponent from './TermsComponent'
+import useCustomAgree, {TCusotmAgree} from '../../hooks/useCustomAgree'
 
 const TermsBox = () => {
-  const [isAgreed, setIsAgreed] = useState(false)
-
-  const agreeFunc = () => {
-    setIsAgreed(!isAgreed)
-  }
+  const {clickCheckBox}: TCusotmAgree = useCustomAgree()
 
   return (
     <div className="container" style={{width: 'auto'}}>
@@ -19,7 +15,7 @@ const TermsBox = () => {
         </div>
         <div className="info_agree">
           <label style={{cursor: 'pointer'}}>
-            <input type="checkbox" onClick={agreeFunc} id="agree" />
+            <input type="checkbox" onClick={clickCheckBox} id="agree" />
             <label htmlFor="agree"></label>
             다음 이용약관에 동의합니다.
           </label>
