@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import useCustomAgree, {TCusotmAgree} from '../../hooks/useCustomAgree'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 
@@ -12,7 +12,7 @@ const AgreeForm = () => {
     username: '',
     password: ''
   })
-  const {doAuth, agreeState}: TCusotmAgree = useCustomAgree()
+  const {authState, agreeState, doAuth}: TCusotmAgree = useCustomAgree()
   const {moveToPath}: TCustomMove = useCustomMove()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,12 +25,19 @@ const AgreeForm = () => {
   const handleClickAuth = () => {
     doAuth(authParams).then(success => {
       if (success) {
-        moveToPath('/accounts/auth')
+        moveToPath('/accounts/register')
       } else {
         alert('이메일과 패스워드를 다시 확인하세요')
       }
     })
   }
+
+  useEffect(() => {
+    if (authState?.name) {
+      console.log(authState)
+      moveToPath('/accounts/register')
+    }
+  }, [authState, moveToPath])
 
   return (
     <>
