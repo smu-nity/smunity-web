@@ -5,14 +5,14 @@ import {setCookie} from '../util/cookieUtil'
 import {Auth} from '../interfaces/Auth'
 import autheState from '../atoms/authState'
 
-export interface TCusotmAgree {
+export interface TCustomAgree {
   agreeState: boolean
   authState: Auth
   clickCheckBox: () => void
   doAuth: (loginParam: TLoginParam) => Promise<any>
 }
 
-const useCustomAgree = (): TCusotmAgree => {
+const useCustomAgree = (): TCustomAgree => {
   const [agreeState, setAgreeState] = useRecoilState(checkState)
   const [authState, setAuthState] = useRecoilState(autheState)
 

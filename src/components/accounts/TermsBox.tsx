@@ -1,8 +1,8 @@
 import TermsComponent from './TermsComponent'
-import useCustomAgree, {TCusotmAgree} from '../../hooks/useCustomAgree'
+import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
 
 const TermsBox = () => {
-  const {clickCheckBox}: TCusotmAgree = useCustomAgree()
+  const {clickCheckBox}: TCustomAgree = useCustomAgree()
 
   return (
     <div className="container" style={{width: 'auto'}}>

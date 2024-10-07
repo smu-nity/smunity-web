@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import useCustomAgree, {TCusotmAgree} from '../../hooks/useCustomAgree'
+import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 
 interface AuthCredentials {
@@ -12,7 +12,7 @@ const AgreeForm = () => {
     username: '',
     password: ''
   })
-  const {authState, agreeState, doAuth}: TCusotmAgree = useCustomAgree()
+  const {authState, agreeState, doAuth}: TCustomAgree = useCustomAgree()
   const {moveToPath}: TCustomMove = useCustomMove()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

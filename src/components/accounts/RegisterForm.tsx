@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import useCustomAgree, {TCusotmAgree} from '../../hooks/useCustomAgree'
+import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import useCustomLogin, {TCusotmLogin} from '../../hooks/useCustomLogin'
+import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
 
 interface RegisterCredentials {
   name: string
@@ -13,8 +13,8 @@ interface RegisterCredentials {
 }
 
 const RegisterForm = () => {
-  const {doRegister}: TCusotmLogin = useCustomLogin()
-  const {authState}: TCusotmAgree = useCustomAgree()
+  const {doRegister}: TCustomAccount = useCustomAccount()
+  const {authState}: TCustomAgree = useCustomAgree()
   const {moveToPath}: TCustomMove = useCustomMove()
   const [registerParams, setRegisterParams] = useState<RegisterCredentials>({
     name: authState.name ?? '',

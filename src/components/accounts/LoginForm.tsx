@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import useCustomLogin, {TCusotmLogin} from '../../hooks/useCustomLogin'
+import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 
 interface LoginCredentials {
@@ -12,7 +12,7 @@ const LoginForm = () => {
     username: '',
     password: ''
   })
-  const {doLogin}: TCusotmLogin = useCustomLogin()
+  const {doLogin}: TCustomAccount = useCustomAccount()
   const {moveToPath}: TCustomMove = useCustomMove()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -4,7 +4,7 @@ import {useRecoilState, useResetRecoilState} from 'recoil'
 import signinState from '../atoms/accountState'
 import {removeCookie, setCookie} from '../util/cookieUtil'
 
-export interface TCusotmLogin {
+export interface TCustomAccount {
   loginState: Member
   doLogin: (loginParam: TLoginParam) => Promise<any>
   doRegister: (registerParam: TRegisterParam) => Promise<any>
@@ -12,7 +12,7 @@ export interface TCusotmLogin {
   saveAsCookie: (data: Member) => void
 }
 
-const useCustomLogin = (): TCusotmLogin => {
+const useCustomAccount = (): TCustomAccount => {
   const [loginState, setLoginState] = useRecoilState(signinState)
   const resetState = useResetRecoilState(signinState)
 
@@ -31,6 +31,7 @@ const useCustomLogin = (): TCusotmLogin => {
     const response = await register(registerParam)
     const success = response.status < 400
     if (success) {
+      removeCookie('auth')
       const loginParam = {
         username: registerParam.username,
         password: registerParam.password
@@ -57,4 +58,4 @@ const useCustomLogin = (): TCusotmLogin => {
   return {loginState, doLogin, doRegister, doLogout, saveAsCookie}
 }
 
-export default useCustomLogin
+export default useCustomAccount
