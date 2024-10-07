@@ -23,9 +23,11 @@ const LoginForm = () => {
   }
 
   const handleClickLogin = () => {
-    doLogin(loginParams).then(success => {
-      success && moveToPath('/mypage')
-    })
+    loginParams.username && loginParams.password
+      ? doLogin(loginParams).then(success => {
+          success && moveToPath('/mypage')
+        })
+      : alert('학번과 비밀번호를 입력해주세요.')
   }
 
   return (

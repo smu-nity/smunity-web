@@ -23,9 +23,11 @@ const AgreeForm = () => {
   }
 
   const handleClickAuth = () => {
-    doAuth(authParams).then(success => {
-      success && moveToPath('/accounts/register')
-    })
+    authParams.username && authParams.password
+      ? doAuth(authParams).then(success => {
+          success && moveToPath('/accounts/register')
+        })
+      : alert('학번과 샘물 비밀번호를 입력해주세요.')
   }
 
   useEffect(() => {

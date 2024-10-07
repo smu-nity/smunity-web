@@ -32,15 +32,19 @@ const RegisterForm = () => {
     setRegisterParams({...registerParams})
   }
 
-  const handleClickRegister = () => {
-    if (registerParams.password1 !== registerParams.password2) {
-      return alert('비밀번호가 일치하지 않습니다.')
-    }
+  const requestParam = () => {
     const {name, username, department, email, password1: password} = registerParams
-    const param = {name, username, department, email, password}
-    doRegister(param).then(success => {
-      success && moveToPath('/mypage')
-    })
+    return {name, username, department, email, password}
+  }
+
+  const handleClickRegister = () => {
+    registerParams.password1 && registerParams.password2
+      ? registerParams.password1 === registerParams.password2
+        ? doRegister(requestParam()).then(success => {
+            success && moveToPath('/mypage')
+          })
+        : alert('비밀번호가 일치하지 않습니다.')
+      : alert('비밀번호를 입력해주세요.')
   }
 
   useEffect(() => {
