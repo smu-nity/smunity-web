@@ -34,7 +34,6 @@ const AgreeForm = () => {
 
   useEffect(() => {
     if (authState?.name) {
-      console.log(authState)
       moveToPath('/accounts/register')
     }
   }, [authState, moveToPath])
