@@ -24,11 +24,7 @@ const AgreeForm = () => {
 
   const handleClickAuth = () => {
     doAuth(authParams).then(success => {
-      if (success) {
-        moveToPath('/accounts/register')
-      } else {
-        alert('이메일과 패스워드를 다시 확인하세요')
-      }
+      success && moveToPath('/accounts/register')
     })
   }
 

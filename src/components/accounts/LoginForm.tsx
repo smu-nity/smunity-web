@@ -24,11 +24,7 @@ const LoginForm = () => {
 
   const handleClickLogin = () => {
     doLogin(loginParams).then(success => {
-      if (success) {
-        moveToPath('/mypage')
-      } else {
-        alert('이메일과 패스워드를 다시 확인하세요')
-      }
+      success && moveToPath('/mypage')
     })
   }
 

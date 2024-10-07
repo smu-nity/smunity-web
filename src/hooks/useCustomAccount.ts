@@ -22,6 +22,8 @@ const useCustomAccount = (): TCustomAccount => {
     const success = response.status < 400
     if (success) {
       saveAsCookie(response.data)
+    } else {
+      alert(response.data.message)
     }
     return success
   }
