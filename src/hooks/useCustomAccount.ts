@@ -10,6 +10,7 @@ export interface TCustomAccount {
   doRegister: (registerParam: TRegisterParam) => Promise<any>
   doLogout: () => void
   saveAsCookie: (data: Member) => void
+  isLogin: () => boolean
 }
 
 const useCustomAccount = (): TCustomAccount => {
@@ -57,7 +58,11 @@ const useCustomAccount = (): TCustomAccount => {
     setLoginState({})
   }
 
-  return {loginState, doLogin, doRegister, doLogout, saveAsCookie}
+  const isLogin = () => {
+    return !!(loginState.accessToken && loginState.refreshToken)
+  }
+
+  return {loginState, doLogin, doRegister, doLogout, saveAsCookie, isLogin}
 }
 
 export default useCustomAccount
