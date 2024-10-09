@@ -1,13 +1,13 @@
 import {useEffect, useState} from 'react'
 import {MemberInfo} from '../../types/MemberInfo'
-import {getMember} from '../../api/memberApi'
+import {fetchMember} from '../../api/memberApi'
 import InfoTable from './InfoTable'
 
 const InfoBox = () => {
   const [member, setMember] = useState<MemberInfo>()
 
   useEffect(() => {
-    getMember().then((data: MemberInfo) => {
+    fetchMember().then((data: MemberInfo) => {
       setMember(data)
     })
   }, [])
