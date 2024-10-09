@@ -10,3 +10,7 @@ export interface Course {
   subDomain: string
   credit: number
 }
+
+export type Category = 'ALL' | 'MAJOR_ADVANCED' | 'MAJOR_OPTIONAL' | 'CULTURE'
+
+export type Domain = 'BASIC' | 'CORE' | 'BALANCE'
