@@ -10,6 +10,7 @@ export interface TCustomAgree {
   authState: Auth
   clickCheckBox: () => void
   doAuth: (loginParam: TLoginParam) => Promise<any>
+  isAuth: () => boolean
 }
 
 const useCustomAgree = (): TCustomAgree => {
@@ -36,7 +37,11 @@ const useCustomAgree = (): TCustomAgree => {
     setAuthState(data)
   }
 
-  return {agreeState, authState, clickCheckBox, doAuth}
+  const isAuth = () => {
+    return !!authState.username
+  }
+
+  return {agreeState, authState, clickCheckBox, doAuth, isAuth}
 }
 
 export default useCustomAgree
