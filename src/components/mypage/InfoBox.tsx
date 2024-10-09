@@ -1,4 +1,17 @@
+import {useEffect, useState} from 'react'
+import {MemberInfo} from '../../types/MemberInfo'
+import {getMember} from '../../api/memberApi'
+import InfoTable from './InfoTable'
+
 const InfoBox = () => {
+  const [member, setMember] = useState<MemberInfo>()
+
+  useEffect(() => {
+    getMember().then((data: MemberInfo) => {
+      setMember(data)
+    })
+  }, [])
+
   return (
     <div className="my_box my_box_width">
       <div className="my_box_title">
@@ -10,24 +23,7 @@ const InfoBox = () => {
         </button>
       </div>
       <hr />
-      <table>
-        <tr>
-          <td className="my_box_table_1st_td">이름</td>
-          <td>최현민</td>
-        </tr>
-        <tr>
-          <td className="my_box_table_1st_td">학번</td>
-          <td>201911019</td>
-        </tr>
-        <tr>
-          <td className="my_box_table_1st_td">학과</td>
-          <td>
-            <a className="link_site" href="" target="_blank" rel="noopener noreferrer">
-              컴퓨터과학전공
-            </a>
-          </td>
-        </tr>
-      </table>
+      <InfoTable member={member} />
       <hr style={{marginBottom: '0.8rem', marginTop: '1.6rem'}} />
       <div className="my_box_title">
         <div>
