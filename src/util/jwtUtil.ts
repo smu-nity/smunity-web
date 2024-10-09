@@ -2,27 +2,27 @@ import axios, {
   AxiosError,
   AxiosInstance,
   AxiosResponse,
-  InternalAxiosRequestConfig
+  InternalAxiosRequestConfig,
+  AxiosRequestConfig
 } from 'axios'
 
 import {getCookie, setCookie} from './cookieUtil'
 
 const jwtAxios: AxiosInstance = axios.create()
 
-const refreshJWT = async (accessToken: string, refreshToken: string) => {
-  const header = {headers: {Authorization: `Bearer ${accessToken}`}}
-  const res = await axios.get(`/api/member/refresh?refreshToken=${refreshToken}`, header)
+const refreshJWT = async (refreshToken: string) => {
+  const header = {headers: {'Content-Type': 'application/json'}}
+  const data = JSON.stringify({refreshToken})
+  const res = await axios.post('/api/v1/accounts/refresh', data, header)
   return res.data
 }
 
-//before request
-const beforeReq = (
+// before request
+const beforeReq = async (
   config: InternalAxiosRequestConfig<any>
-): InternalAxiosRequestConfig<any> | Promise<any> => {
-  console.log('before request.............')
+): Promise<InternalAxiosRequestConfig<any>> => {
   const memberInfo = getCookie('member')
   if (!memberInfo) {
-    console.log('Member NOT FOUND')
     return Promise.reject({response: {data: {error: 'REQUIRE_LOGIN'}}})
   }
   const {accessToken} = memberInfo
@@ -32,44 +32,67 @@ const beforeReq = (
   return config
 }
 
-//fail request
+// fail request
 const requestFail = (err: AxiosError | Error): Promise<AxiosError> => {
-  console.log('request error............')
   return Promise.reject(err)
 }
 
-//before return response
+// before return response
 const beforeRes = async (res: AxiosResponse): Promise<any> => {
-  console.log('before return response...........')
-  const data = res.data
-  if (data && data.error === 'ERROR_ACCESS_TOKEN') {
-    const memberCookieValue = getCookie('member')
-    const result = await refreshJWT(
-      memberCookieValue.accessToken,
-      memberCookieValue.refreshToken
-    )
-    console.log('refreshJWT RESULT', result)
-
-    memberCookieValue.accessToken = result.accessToken
-    memberCookieValue.refreshToken = result.refreshToken
-    setCookie('member', JSON.stringify(memberCookieValue), 1)
-
-    //원래의 호출
-    const originalRequest = res.config
-    originalRequest.headers.Authorization = `Bearer ${result.accessToken}`
-    return await axios(originalRequest)
-  }
   return res
 }
 
-//fail response
-const responseFail = (err: AxiosError | Error): Promise<Error> => {
-  console.log('response fail error.............')
+let isRefreshing = false // 토큰 갱신 중인지 여부
+let pendingRequests: any[] = [] // 대기 중인 요청 배열
+
+const onRefreshed = (accessToken: string) => {
+  pendingRequests.forEach(callback => callback(accessToken))
+  pendingRequests = [] // 대기 요청 초기화
+}
+
+const responseFail = async (err: AxiosError): Promise<Error> => {
+  const originalRequest = err.config as AxiosRequestConfig
+
+  if (err.response?.status === 401) {
+    if (isRefreshing) {
+      // 이미 토큰 갱신 중이라면 대기
+      return new Promise(resolve => {
+        pendingRequests.push((accessToken: string) => {
+          if (originalRequest.headers) {
+            originalRequest.headers.Authorization = `Bearer ${accessToken}`
+          }
+          resolve(axios(originalRequest))
+        })
+      })
+    }
+
+    isRefreshing = true
+    const memberCookieValue = getCookie('member')
+
+    try {
+      const result = await refreshJWT(memberCookieValue.refreshToken)
+      memberCookieValue.accessToken = result.accessToken
+      memberCookieValue.refreshToken = result.refreshToken
+      setCookie('member', JSON.stringify(memberCookieValue), 1)
+      onRefreshed(result.accessToken)
+    } catch (error) {
+      // 갱신 실패 시, 대기 요청을 모두 거부
+      pendingRequests.forEach(callback => callback(null))
+      pendingRequests = []
+      return Promise.reject(err)
+    } finally {
+      isRefreshing = false // 토큰 갱신 상태 초기화
+    }
+
+    if (originalRequest.headers) {
+      originalRequest.headers.Authorization = `Bearer ${memberCookieValue.accessToken}`
+    }
+    return axios(originalRequest)
+  }
   return Promise.reject(err)
 }
 
 jwtAxios.interceptors.request.use(beforeReq, requestFail)
-
 jwtAxios.interceptors.response.use(beforeRes, responseFail)
 
 export default jwtAxios
