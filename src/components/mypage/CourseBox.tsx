@@ -1,14 +1,14 @@
 import {useEffect, useState} from 'react'
 import CourseItem from './CourseItem'
 import {Course} from '../../types/Course'
-import {getCourses} from '../../api/courseApi'
+import {fetchCourses} from '../../api/courseApi'
 import {Result} from '../../types/Result'
 
 const CourseBox = () => {
   const [courses, setCourses] = useState<Result<Course>>()
 
   useEffect(() => {
-    getCourses().then((data: Result<Course>) => {
+    fetchCourses().then((data: Result<Course>) => {
       setCourses(data)
     })
   }, [])

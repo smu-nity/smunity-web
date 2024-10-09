@@ -540,6 +540,9 @@ span.center {
   color: #313131;
   font-weight: bolder;
 }
+.result_content_line {
+  border-right: 2px solid lightgray;
+}
 .box {
   display: flex;
   flex-direction: row;

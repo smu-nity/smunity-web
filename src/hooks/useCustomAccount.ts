@@ -1,4 +1,4 @@
-import {login, register, TLoginParam, TRegisterParam} from '../api/accountsApi'
+import {login, register, TLoginParam, TRegisterParam} from '../api/accountApi'
 import {Member} from '../types/Member'
 import {useRecoilState, useResetRecoilState} from 'recoil'
 import signinState from '../atoms/accountState'

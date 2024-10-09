@@ -20,13 +20,13 @@ const postRequest = async (url: string, data: any): Promise<AxiosResponse> => {
 }
 
 export const login = async (loginParam: TLoginParam): Promise<AxiosResponse> => {
-  return postRequest(`/api/v1/accounts/login`, loginParam)
+  return postRequest('/api/v1/accounts/login', loginParam)
 }
 
 export const auth = async (loginParam: TLoginParam): Promise<AxiosResponse> => {
-  return postRequest(`/api/v1/auth`, loginParam)
+  return postRequest('/api/v1/auth', loginParam)
 }
 
 export const register = async (registerParam: TRegisterParam): Promise<AxiosResponse> => {
-  return postRequest(`/api/v1/accounts/register`, registerParam)
+  return postRequest('/api/v1/accounts/register', registerParam)
 }
