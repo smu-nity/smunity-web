@@ -6,7 +6,7 @@ import axios, {
   AxiosRequestConfig
 } from 'axios'
 
-import {getCookie, setCookie} from './cookieUtil'
+import {getCookie, removeCookie, setCookie} from './cookieUtil'
 
 const jwtAxios: AxiosInstance = axios.create()
 
@@ -79,7 +79,8 @@ const responseFail = async (err: AxiosError): Promise<Error> => {
       // 갱신 실패 시, 대기 요청을 모두 거부
       pendingRequests.forEach(callback => callback(null))
       pendingRequests = []
-      return Promise.reject(err)
+      removeCookie('member')
+      window.location.href = '/accounts/login'
     } finally {
       isRefreshing = false // 토큰 갱신 상태 초기화
     }
