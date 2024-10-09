@@ -4,15 +4,13 @@ import PieChart from './PieChart'
 import {Credit} from '../../types/Credit'
 import {fetchCredit} from '../../api/courseApi'
 
-const ResultBox: React.FC = () => {
+const ResultItem: React.FC = () => {
   const [credit, setCredit] = useState<Credit>()
-  const fetchData = async () => {
-    const data = await fetchCredit()
-    setCredit(data)
-  }
 
   useEffect(() => {
-    fetchData()
+    fetchCredit().then((data: Credit) => {
+      setCredit(data)
+    })
   }, [])
 
   return credit ? (
@@ -36,4 +34,4 @@ const ResultBox: React.FC = () => {
   ) : null
 }
 
-export default ResultBox
+export default ResultItem

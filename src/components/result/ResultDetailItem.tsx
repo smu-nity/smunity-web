@@ -5,22 +5,19 @@ import {Category, Course} from '../../types/Course'
 import CreditItem from './CreditItem'
 import PieChart from './PieChart'
 
-interface ResultBoxProps {
+interface ResultDetailItemProps {
   category: Category
 }
 
-const ResultBox: React.FC<ResultBoxProps> = ({category}) => {
+const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category}) => {
   const [courses, setCourses] = useState<Result<Course>>()
-  const fetchData = async () => {
-    const data = await fetchCourses(getQueryParams())
-    setCourses(data)
-  }
 
   useEffect(() => {
-    fetchData()
+    const param = category !== 'ALL' ? {category} : undefined
+    fetchCourses(param).then((data: Result<Course>) => {
+      setCourses(data)
+    })
   }, [category])
-
-  const getQueryParams = () => (category !== 'ALL' ? {category} : undefined)
 
   const categoryDetails = {
     ALL: {text: '이수학점', icon: 'fa-user'},
@@ -47,4 +44,4 @@ const ResultBox: React.FC<ResultBoxProps> = ({category}) => {
   ) : null
 }
 
-export default ResultBox
+export default ResultDetailItem

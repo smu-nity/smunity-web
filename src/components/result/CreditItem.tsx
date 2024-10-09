@@ -1,11 +1,11 @@
-interface ResultContentProps {
+interface CreditItemProps {
   credit: number
   text: string
   line?: boolean
   red?: boolean
 }
 
-const ResultContent: React.FC<ResultContentProps> = ({
+const CreditItem: React.FC<CreditItemProps> = ({
   credit,
   text,
   line = false,
@@ -23,4 +23,4 @@ const ResultContent: React.FC<ResultContentProps> = ({
   )
 }
 
-export default ResultContent
+export default CreditItem
