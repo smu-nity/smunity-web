@@ -42,6 +42,7 @@ const beforeRes = async (res: AxiosResponse): Promise<any> => {
   return res
 }
 
+// fail response
 let isRefreshing = false // 토큰 갱신 중인지 여부
 let pendingRequests: any[] = [] // 대기 중인 요청 배열
 
@@ -68,7 +69,6 @@ const responseFail = async (err: AxiosError): Promise<Error> => {
 
     isRefreshing = true
     const memberCookieValue = getCookie('member')
-
     try {
       const result = await refreshJWT(memberCookieValue.refreshToken)
       memberCookieValue.accessToken = result.accessToken
