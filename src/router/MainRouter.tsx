@@ -1,5 +1,4 @@
 import {BrowserRouter, Navigate, Outlet, Route, Routes} from 'react-router-dom'
-
 import Layout from './Layout'
 import MainPage from '../pages/MainPage'
 import LoginPage from '../pages/accounts/LoginPage'
@@ -10,9 +9,21 @@ import ResultPage from '../pages/mypage/ResultPage'
 import useCustomAccount, {TCustomAccount} from '../hooks/useCustomAccount'
 import {ReactNode} from 'react'
 
-const ProtectedRoute = ({children}: {children: ReactNode}): JSX.Element => {
+const ProtectedRoute = ({
+  children,
+  requireLogin
+}: {
+  children: ReactNode
+  requireLogin: boolean
+}): JSX.Element => {
   const {isLogin}: TCustomAccount = useCustomAccount()
-  return isLogin() ? <>{children}</> : <Navigate to="/accounts/login" />
+  const shouldNavigate = requireLogin ? !isLogin() : isLogin()
+
+  return shouldNavigate ? (
+    <Navigate to={requireLogin ? '/accounts/login' : '/mypage'} />
+  ) : (
+    <>{children}</>
+  )
 }
 
 const MainRouter = (): JSX.Element => {
@@ -21,7 +32,13 @@ const MainRouter = (): JSX.Element => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
-          <Route path="/accounts" element={<Outlet />}>
+          <Route
+            path="/accounts"
+            element={
+              <ProtectedRoute requireLogin={false}>
+                <Outlet />
+              </ProtectedRoute>
+            }>
             <Route path="login" element={<LoginPage />} />
             <Route path="agree" element={<AgreePage />} />
             <Route path="register" element={<RegisterPage />} />
@@ -29,7 +46,7 @@ const MainRouter = (): JSX.Element => {
           <Route
             path="/mypage"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requireLogin={true}>
                 <Outlet />
               </ProtectedRoute>
             }>
