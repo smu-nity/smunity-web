@@ -24,11 +24,7 @@ const useCustomAgree = (): TCustomAgree => {
   const doAuth = async (loginParam: TLoginParam) => {
     const response = await auth(loginParam)
     const success = response.status < 400
-    if (success) {
-      saveAsCookie(response.data)
-    } else {
-      alert(response.data.message)
-    }
+    success ? saveAsCookie(response.data) : alert(response.data.message)
     return success
   }
 

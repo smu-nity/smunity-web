@@ -21,11 +21,7 @@ const useCustomAccount = (): TCustomAccount => {
   const doLogin = async (loginParam: TLoginParam) => {
     const response = await login(loginParam)
     const success = response.status < 400
-    if (success) {
-      saveAsCookie(response.data)
-    } else {
-      alert(response.data.message)
-    }
+    success ? saveAsCookie(response.data) : alert(response.data.message)
     return success
   }
 
@@ -35,11 +31,7 @@ const useCustomAccount = (): TCustomAccount => {
     const success = response.status < 400
     if (success) {
       removeCookie('auth')
-      const loginParam = {
-        username: registerParam.username,
-        password: registerParam.password
-      }
-      return doLogin(loginParam)
+      return doLogin(requestParam(registerParam))
     } else {
       alert(response.data.message)
     }
@@ -60,6 +52,13 @@ const useCustomAccount = (): TCustomAccount => {
 
   const isLogin = () => {
     return !!(loginState.accessToken && loginState.refreshToken)
+  }
+
+  const requestParam = (registerParam: TRegisterParam) => {
+    return {
+      username: registerParam.username,
+      password: registerParam.password
+    }
   }
 
   return {loginState, doLogin, doRegister, doLogout, saveAsCookie, isLogin}
