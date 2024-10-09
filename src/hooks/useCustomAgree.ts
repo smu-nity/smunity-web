@@ -2,7 +2,7 @@ import {useRecoilState} from 'recoil'
 import checkState from '../atoms/agreeState'
 import {auth, TLoginParam} from '../api/accountsApi'
 import {setCookie} from '../util/cookieUtil'
-import {Auth} from '../interfaces/Auth'
+import {Auth} from '../types/Auth'
 import autheState from '../atoms/authState'
 
 export interface TCustomAgree {

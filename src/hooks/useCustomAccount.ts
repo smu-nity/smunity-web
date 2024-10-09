@@ -1,5 +1,5 @@
 import {login, register, TLoginParam, TRegisterParam} from '../api/accountsApi'
-import {Member} from '../interfaces/Member'
+import {Member} from '../types/Member'
 import {useRecoilState, useResetRecoilState} from 'recoil'
 import signinState from '../atoms/accountState'
 import {removeCookie, setCookie} from '../util/cookieUtil'
