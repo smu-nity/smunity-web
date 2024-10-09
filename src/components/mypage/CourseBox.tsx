@@ -1,18 +1,17 @@
-import React from 'react'
+import {useEffect, useState} from 'react'
 import CourseItem from './CourseItem'
+import {Course} from '../../types/Course'
+import {getCourses} from '../../api/courseApi'
+import {Result} from '../../types/Result'
 
 const CourseBox = () => {
-  const course = {
-    year: '2019',
-    semester: '1학기',
-    number: 'HALR1034',
-    name: 'English Foundations(Speaking and Listening)',
-    type: '교필',
-    domain: '기초(영어1)',
-    category: 'CULTURE',
-    subDomain: 'BASIC_ENG_MATH',
-    credit: 2
-  }
+  const [courses, setCourses] = useState<Result<Course>>()
+
+  useEffect(() => {
+    getCourses().then((data: Result<Course>) => {
+      setCourses(data)
+    })
+  }, [])
 
   return (
     <div className="my_box_grade my_box_width" style={{marginTop: '1rem'}}>
@@ -56,7 +55,9 @@ const CourseBox = () => {
               </tr>
             </thead>
             <tbody>
-              <CourseItem course={course} />
+              {courses?.content.map(course => (
+                <CourseItem key={course.id} course={course} />
+              ))}
             </tbody>
           </table>
         </div>
