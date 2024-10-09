@@ -1,5 +1,5 @@
 import {login, register, TLoginParam, TRegisterParam} from '../api/accountsApi'
-import {Member} from '../interfaces/Member'
+import {Member} from '../types/Member'
 import {useRecoilState, useResetRecoilState} from 'recoil'
 import signinState from '../atoms/accountState'
 import {removeCookie, setCookie} from '../util/cookieUtil'
@@ -10,6 +10,7 @@ export interface TCustomAccount {
   doRegister: (registerParam: TRegisterParam) => Promise<any>
   doLogout: () => void
   saveAsCookie: (data: Member) => void
+  isLogin: () => boolean
 }
 
 const useCustomAccount = (): TCustomAccount => {
@@ -20,11 +21,7 @@ const useCustomAccount = (): TCustomAccount => {
   const doLogin = async (loginParam: TLoginParam) => {
     const response = await login(loginParam)
     const success = response.status < 400
-    if (success) {
-      saveAsCookie(response.data)
-    } else {
-      alert(response.data.message)
-    }
+    success ? saveAsCookie(response.data) : alert(response.data.message)
     return success
   }
 
@@ -34,11 +31,7 @@ const useCustomAccount = (): TCustomAccount => {
     const success = response.status < 400
     if (success) {
       removeCookie('auth')
-      const loginParam = {
-        username: registerParam.username,
-        password: registerParam.password
-      }
-      return doLogin(loginParam)
+      return doLogin(requestParam(registerParam))
     } else {
       alert(response.data.message)
     }
@@ -57,7 +50,18 @@ const useCustomAccount = (): TCustomAccount => {
     setLoginState({})
   }
 
-  return {loginState, doLogin, doRegister, doLogout, saveAsCookie}
+  const isLogin = () => {
+    return !!(loginState.accessToken && loginState.refreshToken)
+  }
+
+  const requestParam = (registerParam: TRegisterParam) => {
+    return {
+      username: registerParam.username,
+      password: registerParam.password
+    }
+  }
+
+  return {loginState, doLogin, doRegister, doLogout, saveAsCookie, isLogin}
 }
 
 export default useCustomAccount

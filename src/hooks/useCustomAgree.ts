@@ -2,7 +2,7 @@ import {useRecoilState} from 'recoil'
 import checkState from '../atoms/agreeState'
 import {auth, TLoginParam} from '../api/accountsApi'
 import {setCookie} from '../util/cookieUtil'
-import {Auth} from '../interfaces/Auth'
+import {Auth} from '../types/Auth'
 import autheState from '../atoms/authState'
 
 export interface TCustomAgree {
@@ -10,6 +10,7 @@ export interface TCustomAgree {
   authState: Auth
   clickCheckBox: () => void
   doAuth: (loginParam: TLoginParam) => Promise<any>
+  isAuth: () => boolean
 }
 
 const useCustomAgree = (): TCustomAgree => {
@@ -23,11 +24,7 @@ const useCustomAgree = (): TCustomAgree => {
   const doAuth = async (loginParam: TLoginParam) => {
     const response = await auth(loginParam)
     const success = response.status < 400
-    if (success) {
-      saveAsCookie(response.data)
-    } else {
-      alert(response.data.message)
-    }
+    success ? saveAsCookie(response.data) : alert(response.data.message)
     return success
   }
 
@@ -36,7 +33,11 @@ const useCustomAgree = (): TCustomAgree => {
     setAuthState(data)
   }
 
-  return {agreeState, authState, clickCheckBox, doAuth}
+  const isAuth = () => {
+    return !!authState.username
+  }
+
+  return {agreeState, authState, clickCheckBox, doAuth, isAuth}
 }
 
 export default useCustomAgree

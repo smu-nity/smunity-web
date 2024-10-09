@@ -14,25 +14,19 @@ export type TRegisterParam = {
   department: string
 }
 
-export const login = async (
-  loginParam: TLoginParam
-): Promise<AxiosResponse<any, any>> => {
+const postRequest = async (url: string, data: any): Promise<AxiosResponse> => {
   const header = {headers: {'Content-Type': 'application/json'}}
-  return await api.post(`/api/v1/accounts/login`, JSON.stringify(loginParam), header)
+  return await api.post(url, JSON.stringify(data), header)
 }
 
-export const auth = async (loginParam: TLoginParam): Promise<AxiosResponse<any, any>> => {
-  const header = {headers: {'Content-Type': 'application/json'}}
-  return await api.post(`/api/v1/auth`, JSON.stringify(loginParam), header)
+export const login = async (loginParam: TLoginParam): Promise<AxiosResponse> => {
+  return postRequest(`/api/v1/accounts/login`, loginParam)
 }
 
-export const register = async (
-  registerParam: TRegisterParam
-): Promise<AxiosResponse<any, any>> => {
-  const header = {headers: {'Content-Type': 'application/json'}}
-  return await api.post(
-    `/api/v1/accounts/register`,
-    JSON.stringify(registerParam),
-    header
-  )
+export const auth = async (loginParam: TLoginParam): Promise<AxiosResponse> => {
+  return postRequest(`/api/v1/auth`, loginParam)
+}
+
+export const register = async (registerParam: TRegisterParam): Promise<AxiosResponse> => {
+  return postRequest(`/api/v1/accounts/register`, registerParam)
 }

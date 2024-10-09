@@ -1,5 +1,5 @@
 import {atom, RecoilState} from 'recoil'
-import {Auth} from '../interfaces/Auth'
+import {Auth} from '../types/Auth'
 import {getCookie} from '../util/cookieUtil'
 
 const initState: Auth = {}

@@ -12,7 +12,7 @@ const AgreeForm = () => {
     username: '',
     password: ''
   })
-  const {authState, agreeState, doAuth}: TCustomAgree = useCustomAgree()
+  const {authState, agreeState, doAuth, isAuth}: TCustomAgree = useCustomAgree()
   const {moveToPath}: TCustomMove = useCustomMove()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +31,7 @@ const AgreeForm = () => {
   }
 
   useEffect(() => {
-    if (authState?.name) {
+    if (isAuth()) {
       moveToPath('/accounts/register')
     }
   }, [authState, moveToPath])

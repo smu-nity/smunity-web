@@ -1,7 +1,7 @@
 import RegisterForm from '../../components/accounts/RegisterForm'
 import Header from '../../components/Header'
 
-function RegisterPage() {
+const RegisterPage = () => {
   return (
     <>
       <Header

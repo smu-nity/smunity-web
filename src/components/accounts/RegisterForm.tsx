@@ -14,7 +14,7 @@ interface RegisterCredentials {
 
 const RegisterForm = () => {
   const {doRegister}: TCustomAccount = useCustomAccount()
-  const {authState}: TCustomAgree = useCustomAgree()
+  const {authState, isAuth}: TCustomAgree = useCustomAgree()
   const {moveToPath}: TCustomMove = useCustomMove()
   const [registerParams, setRegisterParams] = useState<RegisterCredentials>({
     name: authState.name ?? '',
@@ -48,7 +48,7 @@ const RegisterForm = () => {
   }
 
   useEffect(() => {
-    if (authState?.name === undefined) {
+    if (!isAuth()) {
       moveToPath('/accounts/agree')
     }
   }, [authState, moveToPath])

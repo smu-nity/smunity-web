@@ -3,7 +3,7 @@ import useCustomAccount, {TCustomAccount} from '../hooks/useCustomAccount'
 import useCustomMove, {TCustomMove} from '../hooks/useCustomMove'
 
 const Navbar = () => {
-  const {doLogout, loginState}: TCustomAccount = useCustomAccount()
+  const {doLogout, isLogin}: TCustomAccount = useCustomAccount()
   const {moveToPath}: TCustomMove = useCustomMove()
 
   const handleClickLogout = () => {
@@ -37,7 +37,7 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {loginState.accessToken && loginState.refreshToken ? (
+            {isLogin() ? (
               <>
                 <li className="nav-item">
                   <Link className="nav-link fs-5 a_tag" to="/mypage">
