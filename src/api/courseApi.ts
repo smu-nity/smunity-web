@@ -7,12 +7,12 @@ import jwtAxios from '../util/jwtUtil'
 export const fetchCourses = async (
   params?: Record<string, string>
 ): Promise<Result<Course>> => {
-  const res = await jwtAxios.get(`/api/v1/courses`, {params: params})
+  const res = await jwtAxios.get('/api/v1/courses', {params: params})
   return res.data
 }
 
 export const fetchCredit = async (): Promise<Credit> => {
-  const res = await jwtAxios.get(`/api/v1/courses/credit`)
+  const res = await jwtAxios.get('/api/v1/courses/credit')
   return res.data
 }
 
