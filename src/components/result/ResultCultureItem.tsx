@@ -24,6 +24,8 @@ const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain}) => {
     BALANCE: {text: '균형교양', icon: 'fa-book-journal-whills'}
   }[domain]
 
+  const labelType = domain === 'BASIC' ? '과목' : '영역'
+
   return cultures ? (
     <div className="resultbox">
       <div className="result_name">
@@ -31,9 +33,9 @@ const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain}) => {
         <div className="recommend">추천 과목 보기</div>
       </div>
       <div className="result_container">
-        <CreditItem credit={cultures.status.total} text="기준 과목" />
-        <CreditItem credit={cultures.status.completed} text="이수 과목" />
-        <CreditItem credit={cultures.status.required} text="필요 과목" red />
+        <CreditItem credit={cultures.status.total} text={`기준 ${labelType}`} />
+        <CreditItem credit={cultures.status.completed} text={`이수 ${labelType}`} />
+        <CreditItem credit={cultures.status.required} text={`필요 ${labelType}`} red />
         <PieChart percent={cultures.status.completion} />
       </div>
     </div>
