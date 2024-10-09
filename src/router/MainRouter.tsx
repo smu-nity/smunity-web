@@ -5,7 +5,7 @@ import LoginPage from '../pages/accounts/LoginPage'
 import AgreePage from '../pages/accounts/AgreePage'
 import RegisterPage from '../pages/accounts/RegisterPage'
 import MyPage from '../pages/mypage/MyPage'
-import ResultPage from '../pages/mypage/ResultPage'
+import ResultPage from '../pages/result/ResultPage'
 import useCustomAccount, {TCustomAccount} from '../hooks/useCustomAccount'
 import {ReactNode} from 'react'
 
