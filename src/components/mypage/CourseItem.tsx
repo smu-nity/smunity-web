@@ -1,12 +1,4 @@
-interface Course {
-  year: string
-  semester: string
-  name: string
-  number: string
-  type: string
-  domain?: string
-  credit: number
-}
+import {Course} from '../../types/Course'
 
 interface CourseItemProps {
   course: Course
