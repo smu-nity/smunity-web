@@ -1,6 +1,18 @@
+import {useEffect, useState} from 'react'
 import QuestionItem from './QuestionItem'
+import {Page} from '../../types/Page'
+import {Question} from '../../types/Question'
+import {fetchQuestions} from '../../api/questionApi'
 
 const QuestionList = () => {
+  const [page, setPage] = useState<Page<Question>>()
+
+  useEffect(() => {
+    fetchQuestions().then((data: Page<Question>) => {
+      setPage(data)
+    })
+  }, [])
+
   return (
     <div className="b_list category b_list2 board-text">
       <div className="bl_head cb" aria-hidden="true">
@@ -12,7 +24,11 @@ const QuestionList = () => {
         </div>
       </div>
       <div className="bl_body">
-        <QuestionItem />
+        {page && page.content ? (
+          page.content.map(question => <QuestionItem question={question} />)
+        ) : (
+          <QuestionItem />
+        )}
       </div>
     </div>
   )
