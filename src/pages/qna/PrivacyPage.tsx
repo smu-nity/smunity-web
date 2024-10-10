@@ -1,4 +1,5 @@
 import Header from '../../components/Header'
+import TabComponent from '../../components/qna/TabComponent'
 
 const PrivacyPage = () => {
   return (
@@ -8,6 +9,14 @@ const PrivacyPage = () => {
         subtitle="스뮤니티 개인정보처리방침은"
         content="다음과 같은 내용을 담고 있습니다."
       />
+      <section className="cs_wrap">
+        <TabComponent />
+        <div className="login-container term-container">
+          <div className="container">
+            <div className="info_box_wrapper"></div>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
