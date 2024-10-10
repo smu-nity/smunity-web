@@ -1,4 +1,5 @@
 import Header from '../../components/Header'
+import PrivacyComponent from '../../components/qna/PrivacyComponent'
 import TabComponent from '../../components/qna/TabComponent'
 
 const PrivacyPage = () => {
@@ -13,7 +14,9 @@ const PrivacyPage = () => {
         <TabComponent />
         <div className="login-container term-container">
           <div className="container">
-            <div className="info_box_wrapper"></div>
+            <div className="info_box_wrapper">
+              <PrivacyComponent />
+            </div>
           </div>
         </div>
       </section>
