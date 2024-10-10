@@ -1,3 +1,4 @@
+import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 import {Question} from '../../types/Question'
 
 interface QuestionItemProps {
@@ -13,8 +14,14 @@ const formatDate = (createdAt: string): string => {
 }
 
 const QuestionItem: React.FC<QuestionItemProps> = ({question}) => {
+  const {moveToPath}: TCustomMove = useCustomMove()
+
+  const handleClick = (id?: number) => {
+    id && moveToPath(`/qna/questions/${id}`)
+  }
+
   return (
-    <li style={{padding: '20px 0;'}}>
+    <li style={{padding: '20px 0'}}>
       <div className="bl_wrap">
         <div className="bl_category ccategory cs wv_category">
           <span className="sound_only">상태</span>
@@ -26,7 +33,7 @@ const QuestionItem: React.FC<QuestionItemProps> = ({question}) => {
             ))}
         </div>
         <div className="bl_subject">
-          <a className="cb relpy_w">
+          <a className="cb relpy_w" onClick={() => handleClick(question?.id)}>
             <span className="sound_only">제목</span>
             {question ? question.title : '질문이 없습니다.'}
           </a>

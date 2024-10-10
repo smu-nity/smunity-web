@@ -24,10 +24,10 @@ const QuestionList = () => {
         </div>
       </div>
       <div className="bl_body">
-        {page && page.content ? (
-          page.content.map(question => <QuestionItem question={question} />)
-        ) : (
+        {page?.empty ? (
           <QuestionItem />
+        ) : (
+          page?.content.map(question => <QuestionItem question={question} />)
         )}
       </div>
     </div>
