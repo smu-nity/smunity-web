@@ -8,6 +8,9 @@ import MyPage from '../pages/mypage/MyPage'
 import ResultPage from '../pages/result/ResultPage'
 import useCustomAccount, {TCustomAccount} from '../hooks/useCustomAccount'
 import {ReactNode} from 'react'
+import TermsPage from '../pages/qna/TermsPage'
+import PrivacyPage from '../pages/qna/PrivacyPage'
+import QuestionPage from '../pages/qna/QuestionPage'
 
 const ProtectedRoute = ({
   children,
@@ -52,6 +55,11 @@ const MainRouter = (): JSX.Element => {
             }>
             <Route index element={<MyPage />} />
             <Route path="result" element={<ResultPage />} />
+          </Route>
+          <Route path="/qna" element={<Outlet />}>
+            <Route path="terms" element={<TermsPage />} />
+            <Route path="privacy" element={<PrivacyPage />} />
+            <Route path="questions" element={<QuestionPage />} />
           </Route>
         </Route>
       </Routes>

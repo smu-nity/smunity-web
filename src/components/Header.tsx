@@ -1,6 +1,7 @@
 interface HeaderProps {
   title: string
   subtitle: string
+  content?: string
 }
 
 const Header = (props: HeaderProps) => {
@@ -10,6 +11,9 @@ const Header = (props: HeaderProps) => {
       <div className="navbar-img__text">
         <span className="navbar-img__text--title">{props.title}</span>
         <span className="navbar-img__text--subtitle">{props.subtitle}</span>
+        {props.content && (
+          <span className="navbar-img__text--subtitle">{props.content}</span>
+        )}
       </div>
     </div>
   )
