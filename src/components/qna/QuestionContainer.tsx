@@ -22,7 +22,7 @@ const QuestionContainer = () => {
     fetchQuestions(params).then((data: Page<Question>) => {
       setPage(data)
     })
-  }, [])
+  }, [JSON.stringify(params)])
 
   return (
     <div className="cs_area">

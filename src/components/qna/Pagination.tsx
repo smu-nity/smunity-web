@@ -12,7 +12,7 @@ const Pagination: React.FC<PaginationProps> = ({page}) => {
 
   const onPageChange = (pageNumber: number) => {
     if (pageNumber >= 0 && pageNumber < totalPages) {
-      navigate(`?page=${pageNumber + 1}`)
+      navigate(`?page=${pageNumber}`)
     }
   }
 
