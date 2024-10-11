@@ -1,25 +1,12 @@
-import {useEffect, useState} from 'react'
 import QuestionItem from './QuestionItem'
 import {Page} from '../../types/Page'
 import {Question} from '../../types/Question'
-import {fetchQuestions} from '../../api/questionApi'
-import {useLocation} from 'react-router-dom'
 
-const useQuery = (): Record<string, string> => {
-  const searchParams = new URLSearchParams(useLocation().search)
-  return Object.fromEntries(searchParams.entries())
+interface QuestionListProps {
+  page: Page<Question>
 }
 
-const QuestionList = () => {
-  const [page, setPage] = useState<Page<Question>>()
-  const params = useQuery()
-
-  useEffect(() => {
-    fetchQuestions(params).then((data: Page<Question>) => {
-      setPage(data)
-    })
-  }, [])
-
+const QuestionList: React.FC<QuestionListProps> = ({page}) => {
   return (
     <div className="b_list category b_list2 board-text">
       <div className="bl_head cb" aria-hidden="true">
@@ -31,10 +18,10 @@ const QuestionList = () => {
         </div>
       </div>
       <div className="bl_body">
-        {page?.empty ? (
+        {page.empty ? (
           <QuestionItem />
         ) : (
-          page?.content.map(question => <QuestionItem question={question} />)
+          page.content.map(question => <QuestionItem question={question} />)
         )}
       </div>
     </div>
