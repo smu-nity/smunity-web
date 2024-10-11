@@ -3,15 +3,22 @@ import QuestionItem from './QuestionItem'
 import {Page} from '../../types/Page'
 import {Question} from '../../types/Question'
 import {fetchQuestions} from '../../api/questionApi'
+import {useLocation} from 'react-router-dom'
+
+const useQuery = (): Record<string, string> => {
+  const searchParams = new URLSearchParams(useLocation().search)
+  return Object.fromEntries(searchParams.entries())
+}
 
 const QuestionList = () => {
   const [page, setPage] = useState<Page<Question>>()
+  const params = useQuery()
 
   useEffect(() => {
-    fetchQuestions().then((data: Page<Question>) => {
+    fetchQuestions(params).then((data: Page<Question>) => {
       setPage(data)
     })
-  }, [])
+  }, [params])
 
   return (
     <div className="b_list category b_list2 board-text">
