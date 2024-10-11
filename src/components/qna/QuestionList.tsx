@@ -18,7 +18,7 @@ const QuestionList = () => {
     fetchQuestions(params).then((data: Page<Question>) => {
       setPage(data)
     })
-  }, [params])
+  }, [])
 
   return (
     <div className="b_list category b_list2 board-text">
