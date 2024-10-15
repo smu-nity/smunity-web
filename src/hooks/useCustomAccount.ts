@@ -11,6 +11,8 @@ export interface TCustomAccount {
   doLogout: () => void
   saveAsCookie: (data: Member) => void
   isLogin: () => boolean
+  isAdmin: () => boolean
+  getMemberId: () => number | undefined
 }
 
 const useCustomAccount = (): TCustomAccount => {
@@ -54,6 +56,14 @@ const useCustomAccount = (): TCustomAccount => {
     return !!(loginState.accessToken && loginState.refreshToken)
   }
 
+  const isAdmin = () => {
+    return loginState.memberRole === 'ROLE_ADMIN'
+  }
+
+  const getMemberId = () => {
+    return loginState.memberId
+  }
+
   const requestParam = (registerParam: TRegisterParam) => {
     return {
       username: registerParam.username,
@@ -61,7 +71,16 @@ const useCustomAccount = (): TCustomAccount => {
     }
   }
 
-  return {loginState, doLogin, doRegister, doLogout, saveAsCookie, isLogin}
+  return {
+    loginState,
+    doLogin,
+    doRegister,
+    doLogout,
+    saveAsCookie,
+    isLogin,
+    isAdmin,
+    getMemberId
+  }
 }
 
 export default useCustomAccount
