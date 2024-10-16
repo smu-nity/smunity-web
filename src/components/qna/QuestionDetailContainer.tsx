@@ -26,11 +26,7 @@ const QuestionDetailContainer: React.FC<QuestionDetailContainerProps> = ({id}) =
       <div
         className="post_detail__body_container container my-3"
         style={{marginBottom: '3rem !important'}}>
-        <QuestionButtonContainer
-          isSuperuser={isAdmin()}
-          isSameUser={false}
-          question={question}
-        />
+        <QuestionButtonContainer isSuperuser={isAdmin()} question={question} />
         <QuestionDetail question={question} />
       </div>
     </>
