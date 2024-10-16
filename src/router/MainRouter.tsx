@@ -11,6 +11,9 @@ import {ReactNode} from 'react'
 import TermsPage from '../pages/qna/TermsPage'
 import PrivacyPage from '../pages/qna/PrivacyPage'
 import QuestionPage from '../pages/qna/QuestionPage'
+import QuestionDetailPage from '../pages/qna/QuestionDetailPage'
+import QuestionCreatePage from '../pages/qna/QuestionCreatePage'
+import QuestionModifyPage from '../pages/qna/QuestionModifyPage'
 
 const ProtectedRoute = ({
   children,
@@ -60,6 +63,9 @@ const MainRouter = (): JSX.Element => {
             <Route path="terms" element={<TermsPage />} />
             <Route path="privacy" element={<PrivacyPage />} />
             <Route path="questions" element={<QuestionPage />} />
+            <Route path="questions/create" element={<QuestionCreatePage />} />
+            <Route path="questions/:id" element={<QuestionDetailPage />} />
+            <Route path="questions/:id/modify" element={<QuestionModifyPage />} />
           </Route>
         </Route>
       </Routes>

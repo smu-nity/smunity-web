@@ -1,6 +1,12 @@
 import QuestionItem from './QuestionItem'
+import {Page} from '../../types/Page'
+import {Question} from '../../types/Question'
 
-const QuestionList = () => {
+interface QuestionListProps {
+  page: Page<Question>
+}
+
+const QuestionList: React.FC<QuestionListProps> = ({page}) => {
   return (
     <div className="b_list category b_list2 board-text">
       <div className="bl_head cb" aria-hidden="true">
@@ -12,7 +18,11 @@ const QuestionList = () => {
         </div>
       </div>
       <div className="bl_body">
-        <QuestionItem />
+        {page.empty ? (
+          <QuestionItem />
+        ) : (
+          page.content.map(question => <QuestionItem question={question} />)
+        )}
       </div>
     </div>
   )
