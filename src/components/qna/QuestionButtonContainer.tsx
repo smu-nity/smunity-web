@@ -1,5 +1,7 @@
 import {Link} from 'react-router-dom'
 import {Question} from '../../types/Question'
+import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
+import {deleteQuestion} from '../../api/questionApi'
 
 interface QuestionButtonContainerProps {
   isSuperuser: boolean
@@ -10,6 +12,15 @@ const QuestionButtonContainer: React.FC<QuestionButtonContainerProps> = ({
   isSuperuser,
   question
 }) => {
+  const {moveToPath}: TCustomMove = useCustomMove()
+
+  const handleDelete = async () => {
+    if (window.confirm('정말로 삭제하시겠습니까?')) {
+      await deleteQuestion(question.id)
+      moveToPath('/qna/questions')
+    }
+  }
+
   return (
     <div className="post_detail__body-title border-bottom">
       <h4 className="post_detail__title-title my-3 py-2 h4-font">질문</h4>
@@ -29,7 +40,9 @@ const QuestionButtonContainer: React.FC<QuestionButtonContainerProps> = ({
               className="btn btn-sm btn-warning">
               수정
             </Link>
-            <button className="delete btn btn-sm btn-danger">삭제</button>
+            <button onClick={handleDelete} className="delete btn btn-sm btn-danger">
+              삭제
+            </button>
           </>
         )}
       </div>

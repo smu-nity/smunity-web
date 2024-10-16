@@ -1,6 +1,6 @@
-import {Answer} from '../types/Answer'
 import {Page} from '../types/Page'
 import {Question} from '../types/Question'
+import jwtAxios from '../util/jwtUtil'
 import api from './config'
 
 export const fetchQuestions = async (
@@ -15,7 +15,6 @@ export const fetchQuestion = async (id: string): Promise<Question> => {
   return res.data
 }
 
-export const fetchAnswer = async (id: string): Promise<Answer> => {
-  const res = await api.get(`/api/v1/questions/${id}/answer`)
-  return res.data
+export const deleteQuestion = async (id: number) => {
+  await jwtAxios.delete(`/api/v1/questions/${id}`)
 }

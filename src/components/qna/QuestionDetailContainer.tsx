@@ -12,7 +12,7 @@ interface QuestionDetailContainerProps {
 
 const QuestionDetailContainer: React.FC<QuestionDetailContainerProps> = ({id}) => {
   const [question, setQuestion] = useState<Question>()
-  const {isAdmin, getMemberId}: TCustomAccount = useCustomAccount()
+  const {isAdmin}: TCustomAccount = useCustomAccount()
 
   useEffect(() => {
     fetchQuestion(id).then((data: Question) => {
