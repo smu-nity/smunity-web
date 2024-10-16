@@ -1,4 +1,4 @@
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
+import {Link} from 'react-router-dom'
 import {Question} from '../../types/Question'
 
 interface QuestionItemProps {
@@ -14,12 +14,6 @@ const formatDate = (createdAt: string): string => {
 }
 
 const QuestionItem: React.FC<QuestionItemProps> = ({question}) => {
-  const {moveToPath}: TCustomMove = useCustomMove()
-
-  const handleClick = (id?: number) => {
-    id && moveToPath(`/qna/questions/${id}`)
-  }
-
   return (
     <li style={{padding: '20px 0'}}>
       <div className="bl_wrap">
@@ -33,10 +27,10 @@ const QuestionItem: React.FC<QuestionItemProps> = ({question}) => {
             ))}
         </div>
         <div className="bl_subject">
-          <a className="cb relpy_w" onClick={() => handleClick(question?.id)}>
+          <Link to={question ? `/qna/questions/${question.id}` : '#'}>
             <span className="sound_only">제목</span>
             {question ? question.title : '질문이 없습니다.'}
-          </a>
+          </Link>
         </div>
         <div className="bl_date light">
           <span className="sound_only">작성일</span>

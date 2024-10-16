@@ -1,14 +1,13 @@
+import {Link} from 'react-router-dom'
 import {Question} from '../../types/Question'
 
 interface QuestionButtonContainerProps {
   isSuperuser: boolean
-  isSameUser: boolean
   question: Question
 }
 
 const QuestionButtonContainer: React.FC<QuestionButtonContainerProps> = ({
   isSuperuser,
-  isSameUser,
   question
 }) => {
   return (
@@ -16,20 +15,20 @@ const QuestionButtonContainer: React.FC<QuestionButtonContainerProps> = ({
       <h4 className="post_detail__title-title my-3 py-2 h4-font">질문</h4>
       <div className="post_detail__body-title--button">
         {isSuperuser && !question.answered && (
-          <a
-            href={`/qna/answer_create/${question.id}`}
+          <Link
+            to={`/qna/questions/${question.id}/answer`}
             className="btn btn-sm btn-primary">
             답변 등록
-          </a>
+          </Link>
         )}
 
-        {(isSuperuser || isSameUser) && (
+        {(isSuperuser || question.isAuthor) && (
           <>
-            <a
-              href={`/qna/question_modify/${question.id}`}
+            <Link
+              to={`/qna/questions/${question.id}/modify`}
               className="btn btn-sm btn-warning">
               수정
-            </a>
+            </Link>
             <button className="delete btn btn-sm btn-danger">삭제</button>
           </>
         )}
