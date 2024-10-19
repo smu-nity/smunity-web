@@ -23,9 +23,11 @@ const QuestionCreateForm = () => {
   }
 
   const handleClick = () => {
-    doCreateQuestion(questionRequest).then(success => {
-      success && moveToPath('/qna/questions')
-    })
+    questionRequest.title && questionRequest.content
+      ? doCreateQuestion(questionRequest).then(success => {
+          success && moveToPath('/qna/questions')
+        })
+      : alert('제목과 내용을 입력해주세요.')
   }
 
   return (
