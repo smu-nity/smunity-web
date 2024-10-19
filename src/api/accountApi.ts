@@ -1,5 +1,5 @@
 import {AxiosResponse} from 'axios'
-import api from './config'
+import {api} from './config'
 
 export type TLoginParam = {
   username: string

@@ -7,8 +7,9 @@ import axios, {
 } from 'axios'
 
 import {getCookie, removeCookie, setCookie} from './cookieUtil'
+import {config} from '../api/config'
 
-const jwtAxios: AxiosInstance = axios.create()
+const jwtAxios: AxiosInstance = axios.create(config)
 
 const refreshJWT = async (refreshToken: string) => {
   const header = {headers: {'Content-Type': 'application/json'}}

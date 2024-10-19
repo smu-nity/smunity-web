@@ -10,4 +10,4 @@ const config: AxiosRequestConfig = {
 
 const api = axios.create(config)
 
-export default api
+export {api, config}
