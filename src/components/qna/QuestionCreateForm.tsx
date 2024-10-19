@@ -1,13 +1,35 @@
+import {useState} from 'react'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
+import {QuestionRequest} from '../../types/Question'
+import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
 
 const QuestionCreateForm = () => {
   const {moveToPath}: TCustomMove = useCustomMove()
-  const handleCancel = () => {
-    moveToPath('/qna/questions')
+  const {doCreateQuestion}: TCustomQuestion = useCustomQuestion()
+  const [questionRequest, setQuestionRequest] = useState<QuestionRequest>({
+    title: '',
+    content: '',
+    anonymous: false
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const {name, value, type} = e.target
+    const fieldValue =
+      type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+    setQuestionRequest(prevRequest => ({
+      ...prevRequest,
+      [name]: fieldValue
+    }))
+  }
+
+  const handleClick = () => {
+    doCreateQuestion(questionRequest).then(success => {
+      success && moveToPath('/qna/questions')
+    })
   }
 
   return (
-    <form method="post" className="my-3 post-form">
+    <form className="my-3 post-form">
       <div className="mb-3 row">
         <label htmlFor="subject" className="col-sm-1 col-form-label">
           제목
@@ -16,15 +38,20 @@ const QuestionCreateForm = () => {
           <input
             type="text"
             className="form-control form-control-lg form-font"
-            name="subject"
-            id="subject"
-            value=""
+            name="title"
+            value={questionRequest.title}
+            onChange={handleChange}
           />
         </div>
 
         <div className="col-auto mt-2 form-check" style={{marginLeft: '1rem'}}>
           <label style={{cursor: 'pointer'}}>
-            <input type="checkbox" name="anonymous" id="id_anonymous" />
+            <input
+              type="checkbox"
+              name="anonymous"
+              checked={questionRequest.anonymous}
+              onChange={handleChange}
+            />
             <label className="form-check-label" htmlFor="id_anonymous"></label> 익명으로
             작성하기
           </label>
@@ -38,13 +65,15 @@ const QuestionCreateForm = () => {
           <textarea
             className="form-control form-control-lg form-font"
             name="content"
-            id="content"
+            value={questionRequest.content}
+            onChange={handleChange}
             rows={10}></textarea>
         </div>
       </div>
       <div className="button">
         <button
-          type="submit"
+          onClick={handleClick}
+          type="button"
           className="btn btn-post_list btn-primary btn-lg rounded-pill"
           style={{backgroundColor: '#273295'}}>
           작성완료
@@ -53,7 +82,7 @@ const QuestionCreateForm = () => {
           className="btn btn-post_list btn-primary btn-lg rounded-pill"
           style={{backgroundColor: '#343a40'}}
           type="button"
-          onClick={handleCancel}>
+          onClick={() => moveToPath('/qna/questions')}>
           취소하기
         </button>
       </div>

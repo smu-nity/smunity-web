@@ -1,7 +1,8 @@
+import {AxiosResponse} from 'axios'
 import {Page} from '../types/Page'
-import {Question} from '../types/Question'
+import {Question, QuestionRequest} from '../types/Question'
 import jwtAxios from '../util/jwtUtil'
-import api from './config'
+import {api} from './config'
 
 export const fetchQuestions = async (
   params?: Record<string, string>
@@ -12,6 +13,20 @@ export const fetchQuestions = async (
 
 export const fetchQuestion = async (id: string): Promise<Question> => {
   const res = await api.get(`/api/v1/questions/${id}`)
+  return res.data
+}
+
+export const createQuestion = async (
+  request: QuestionRequest
+): Promise<AxiosResponse> => {
+  return await jwtAxios.post('/api/v1/questions', request)
+}
+
+export const updateQuestion = async (
+  id: number,
+  request: QuestionRequest
+): Promise<Question> => {
+  const res = await jwtAxios.put(`/api/v1/questions/${id}`, request)
   return res.data
 }
 

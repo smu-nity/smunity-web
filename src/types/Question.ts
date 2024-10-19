@@ -8,3 +8,9 @@ export interface Question {
   createdAt: string
   updatedAt: string
 }
+
+export interface QuestionRequest {
+  title: string
+  content: string
+  anonymous: boolean
+}
