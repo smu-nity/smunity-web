@@ -1,5 +1,5 @@
 import Header from '../../components/Header'
-import QuestionCreateForm from '../../components/qna/QuestionCreateForm'
+import QuestionForm from '../../components/qna/QuestionForm'
 
 const QuestionCreatePage = () => {
   return (
@@ -10,7 +10,7 @@ const QuestionCreatePage = () => {
         content="Q&A 게시판입니다."
       />
       <div className="container" style={{marginTop: '3rem'}}>
-        <QuestionCreateForm />
+        <QuestionForm isEditMode={false} />
       </div>
     </>
   )

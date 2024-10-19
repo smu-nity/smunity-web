@@ -1,16 +1,28 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 import {QuestionRequest} from '../../types/Question'
 import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
 
-const QuestionCreateForm = () => {
+interface QuestionFormProps {
+  isEditMode: boolean
+  id?: string
+  initialData?: QuestionRequest
+}
+
+const QuestionForm: React.FC<QuestionFormProps> = ({isEditMode, id, initialData}) => {
   const {moveToPath}: TCustomMove = useCustomMove()
-  const {doCreateQuestion}: TCustomQuestion = useCustomQuestion()
+  const {doCreateQuestion, doUpdateQuestion}: TCustomQuestion = useCustomQuestion()
   const [questionRequest, setQuestionRequest] = useState<QuestionRequest>({
     title: '',
     content: '',
     anonymous: false
   })
+
+  useEffect(() => {
+    if (isEditMode && initialData) {
+      setQuestionRequest(initialData)
+    }
+  }, [initialData, isEditMode])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {name, value, type} = e.target
@@ -23,11 +35,16 @@ const QuestionCreateForm = () => {
   }
 
   const handleClick = () => {
-    questionRequest.title && questionRequest.content
-      ? doCreateQuestion(questionRequest).then(success => {
-          success && moveToPath('/qna/questions')
-        })
-      : alert('제목과 내용을 입력해주세요.')
+    if (questionRequest.title && questionRequest.content) {
+      const action = isEditMode
+        ? doUpdateQuestion(id as string, questionRequest)
+        : doCreateQuestion(questionRequest)
+      action.then(success => {
+        success && moveToPath(isEditMode ? `/qna/questions/${id}` : '/qna/questions')
+      })
+    } else {
+      alert('제목과 내용을 입력해주세요.')
+    }
   }
 
   return (
@@ -92,4 +109,4 @@ const QuestionCreateForm = () => {
   )
 }
 
-export default QuestionCreateForm
+export default QuestionForm
