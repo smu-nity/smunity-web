@@ -31,7 +31,7 @@ const beforeReq = async (
 ): Promise<InternalAxiosRequestConfig<any>> => {
   const memberInfo = getCookie('member')
   if (!memberInfo) {
-    return Promise.reject({response: {data: {error: 'REQUIRE_LOGIN'}}})
+    return config
   }
   const {accessToken} = memberInfo
 
