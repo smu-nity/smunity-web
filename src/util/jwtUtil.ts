@@ -7,7 +7,14 @@ import axios, {
 } from 'axios'
 
 import {getCookie, removeCookie, setCookie} from './cookieUtil'
-import {config} from '../api/config'
+
+const config: AxiosRequestConfig = {
+  validateStatus: function (status: number) {
+    return status < 500 && status !== 401
+  },
+  timeout: 10000,
+  withCredentials: true
+}
 
 const jwtAxios: AxiosInstance = axios.create(config)
 
