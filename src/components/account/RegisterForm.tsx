@@ -26,10 +26,8 @@ const RegisterForm = () => {
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name in registerParams) {
-      registerParams[e.target.name as keyof RegisterCredentials] = e.target.value
-    }
-    setRegisterParams({...registerParams})
+    const {name, value} = e.target
+    setRegisterParams(prevParams => ({...prevParams, [name]: value}))
   }
 
   const requestParam = () => {

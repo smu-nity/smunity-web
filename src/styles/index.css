@@ -1740,10 +1740,12 @@ body:not(.device-touch) .suc_btn {
 .table-body__proceeding {
   color: rgb(42, 80, 135);
   font-weight: bold;
+  margin: 0;
 }
 .table-body__complete {
   color: rgb(191, 72, 84);
   font-weight: bold;
+  margin: 0;
 }
 .form-check-label {
   font-size: 16px;

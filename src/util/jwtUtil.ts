@@ -8,7 +8,15 @@ import axios, {
 
 import {getCookie, removeCookie, setCookie} from './cookieUtil'
 
-const jwtAxios: AxiosInstance = axios.create()
+const config: AxiosRequestConfig = {
+  validateStatus: function (status: number) {
+    return status < 500 && status !== 401
+  },
+  timeout: 10000,
+  withCredentials: true
+}
+
+const jwtAxios: AxiosInstance = axios.create(config)
 
 const refreshJWT = async (refreshToken: string) => {
   const header = {headers: {'Content-Type': 'application/json'}}
@@ -23,7 +31,7 @@ const beforeReq = async (
 ): Promise<InternalAxiosRequestConfig<any>> => {
   const memberInfo = getCookie('member')
   if (!memberInfo) {
-    return Promise.reject({response: {data: {error: 'REQUIRE_LOGIN'}}})
+    return config
   }
   const {accessToken} = memberInfo
 
