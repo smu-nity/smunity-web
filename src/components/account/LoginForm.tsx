@@ -16,10 +16,8 @@ const LoginForm = () => {
   const {moveToPath}: TCustomMove = useCustomMove()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name in loginParams) {
-      loginParams[e.target.name as keyof LoginCredentials] = e.target.value
-    }
-    setLoginParams({...loginParams})
+    const {name, value} = e.target
+    setLoginParams(prevParams => ({...prevParams, [name]: value}))
   }
 
   const handleClickLogin = () => {

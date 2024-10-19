@@ -16,10 +16,8 @@ const AgreeForm = () => {
   const {moveToPath}: TCustomMove = useCustomMove()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name in authParams) {
-      authParams[e.target.name as keyof AuthCredentials] = e.target.value
-    }
-    setLoginParams({...authParams})
+    const {name, value} = e.target
+    setLoginParams(prevParams => ({...prevParams, [name]: value}))
   }
 
   const handleClickAuth = () => {
