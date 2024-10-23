@@ -9,7 +9,7 @@ export interface TCustomAgree {
   agreeState: boolean
   authState: Auth
   clickCheckBox: () => void
-  doAuth: (loginParam: TLoginParam) => Promise<any>
+  doAuth: (loginParam: TLoginParam) => Promise<boolean>
   isAuth: () => boolean
 }
 
