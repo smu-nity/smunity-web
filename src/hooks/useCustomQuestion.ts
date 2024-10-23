@@ -1,12 +1,20 @@
-import {createQuestion, updateQuestion} from '../api/questionApi'
-import {QuestionRequest} from '../types/Question'
+import {createQuestion, fetchQuestion, updateQuestion} from '../api/questionApi'
+import {Question, QuestionRequest} from '../types/Question'
 
 export interface TCustomQuestion {
-  doCreateQuestion: (questionRequest: QuestionRequest) => Promise<any>
-  doUpdateQuestion: (id: string, questionRequest: QuestionRequest) => Promise<any>
+  doFetchQuestion: (id: string) => Promise<Question>
+  doCreateQuestion: (questionRequest: QuestionRequest) => Promise<boolean>
+  doUpdateQuestion: (id: string, questionRequest: QuestionRequest) => Promise<boolean>
 }
 
 const useCustomQuestion = (): TCustomQuestion => {
+  const doFetchQuestion = async (id: string) => {
+    const response = await fetchQuestion(id)
+    const success = response.status < 400
+    !success && alert(response.data.message)
+    return success ? response.data : null
+  }
+
   const doCreateQuestion = async (request: QuestionRequest) => {
     const response = await createQuestion(request)
     const success = response.status < 400
@@ -21,7 +29,7 @@ const useCustomQuestion = (): TCustomQuestion => {
     return success
   }
 
-  return {doCreateQuestion, doUpdateQuestion}
+  return {doFetchQuestion, doCreateQuestion, doUpdateQuestion}
 }
 
 export default useCustomQuestion
