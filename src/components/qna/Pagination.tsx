@@ -11,20 +11,20 @@ const Pagination: React.FC<PaginationProps> = ({page}) => {
   const navigate = useNavigate()
 
   const onPageChange = (pageNumber: number) => {
-    if (pageNumber >= 0 && pageNumber < totalPages) {
+    if (pageNumber > 0 && pageNumber <= totalPages) {
       navigate(`?page=${pageNumber}`)
     }
   }
 
   const handlePrevious = () => {
     if (!page.first) {
-      onPageChange(number - 1)
+      onPageChange(number)
     }
   }
 
   const handleNext = () => {
     if (!page.last) {
-      onPageChange(number + 1)
+      onPageChange(number + 2)
     }
   }
 
@@ -38,7 +38,7 @@ const Pagination: React.FC<PaginationProps> = ({page}) => {
 
       {Array.from({length: totalPages}, (_, idx) => (
         <li key={idx} className={`page-item ${number === idx ? 'active' : ''}`}>
-          <a className="page-link" onClick={() => onPageChange(idx)}>
+          <a className="page-link" onClick={() => onPageChange(idx + 1)}>
             {idx + 1}
           </a>
         </li>
