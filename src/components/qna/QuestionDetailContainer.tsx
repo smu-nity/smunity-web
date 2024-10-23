@@ -9,6 +9,7 @@ import AnswerButtonContainer from './AnswerButtonContainer'
 import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
 import useCustomAnswer, {TCustomAnswer} from '../../hooks/useCustomAnswer'
 import {useLocation} from 'react-router-dom'
+import AnswerDetail from './AnswerDetail'
 
 interface QuestionDetailContainerProps {
   id: string
@@ -45,6 +46,7 @@ const QuestionDetailContainer: React.FC<QuestionDetailContainerProps> = ({id}) =
               isSuperuser={isAdmin()}
               questionId={answer.questionId}
             />
+            <AnswerDetail answer={answer} />
           </>
         )}
       </div>
