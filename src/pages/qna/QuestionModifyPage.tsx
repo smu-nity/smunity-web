@@ -2,9 +2,9 @@ import {useParams} from 'react-router-dom'
 import Header from '../../components/Header'
 import {useEffect, useState} from 'react'
 import {Question} from '../../types/Question'
-import {fetchQuestion} from '../../api/questionApi'
 import QuestionForm from '../../components/qna/QuestionForm'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
+import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
 
 const convertToRequest = (question: Question) => {
   return {
@@ -17,11 +17,12 @@ const convertToRequest = (question: Question) => {
 const QuestionModifyPage = () => {
   const {id} = useParams<{id: string}>()
   const [question, setQuestion] = useState<Question>()
+  const {doFetchQuestion}: TCustomQuestion = useCustomQuestion()
   const {moveToPath}: TCustomMove = useCustomMove()
 
   useEffect(() => {
     id &&
-      fetchQuestion(id).then((data: Question) => {
+      doFetchQuestion(id).then((data: Question) => {
         setQuestion(data)
       })
   }, [id])

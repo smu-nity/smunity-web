@@ -13,9 +13,8 @@ export const fetchQuestions = async (
   return res.data
 }
 
-export const fetchQuestion = async (id: string): Promise<Question> => {
-  const res = await jwtAxios.get(`/api/v1/questions/${id}`)
-  return res.data
+export const fetchQuestion = async (id: string): Promise<AxiosResponse> => {
+  return await jwtAxios.get(`/api/v1/questions/${id}`)
 }
 
 export const createQuestion = async (
