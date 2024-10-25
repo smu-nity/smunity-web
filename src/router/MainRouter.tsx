@@ -14,6 +14,8 @@ import QuestionPage from '../pages/qna/QuestionPage'
 import QuestionDetailPage from '../pages/qna/QuestionDetailPage'
 import QuestionCreatePage from '../pages/qna/QuestionCreatePage'
 import QuestionModifyPage from '../pages/qna/QuestionModifyPage'
+import AnswerCreatePage from '../pages/qna/AnswerCreatePage'
+import AnswerModifyPage from '../pages/qna/AnswerModifyPage'
 
 const ProtectedRoute = ({
   children,
@@ -66,6 +68,8 @@ const MainRouter = (): JSX.Element => {
             <Route path="questions/create" element={<QuestionCreatePage />} />
             <Route path="questions/:id" element={<QuestionDetailPage />} />
             <Route path="questions/:id/modify" element={<QuestionModifyPage />} />
+            <Route path="questions/:id/answer" element={<AnswerCreatePage />} />
+            <Route path="questions/:id/answer/modify" element={<AnswerModifyPage />} />
           </Route>
         </Route>
       </Routes>
