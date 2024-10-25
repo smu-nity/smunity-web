@@ -13,23 +13,16 @@ export const fetchQuestions = async (
   return res.data
 }
 
-export const fetchQuestion = async (id: string): Promise<AxiosResponse> => {
-  return await jwtAxios.get(`/api/v1/questions/${id}`)
-}
+export const fetchQuestion = async (id: string): Promise<AxiosResponse> =>
+  await jwtAxios.get(`/api/v1/questions/${id}`)
 
-export const createQuestion = async (
-  request: QuestionRequest
-): Promise<AxiosResponse> => {
-  return await jwtAxios.post('/api/v1/questions', request)
-}
+export const createQuestion = async (request: QuestionRequest): Promise<AxiosResponse> =>
+  await jwtAxios.post('/api/v1/questions', request)
 
 export const updateQuestion = async (
   id: string,
   request: QuestionRequest
-): Promise<AxiosResponse> => {
-  return await jwtAxios.put(`/api/v1/questions/${id}`, request)
-}
+): Promise<AxiosResponse> => await jwtAxios.put(`/api/v1/questions/${id}`, request)
 
-export const deleteQuestion = async (id: number) => {
+export const deleteQuestion = async (id: number) =>
   await jwtAxios.delete(`/api/v1/questions/${id}`)
-}
