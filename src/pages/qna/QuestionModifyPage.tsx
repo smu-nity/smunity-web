@@ -5,6 +5,7 @@ import {Question} from '../../types/Question'
 import QuestionForm from '../../components/qna/QuestionForm'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
+import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
 
 const convertToRequest = (question: Question) => {
   return {
@@ -18,6 +19,7 @@ const QuestionModifyPage = () => {
   const {id} = useParams<{id: string}>()
   const [question, setQuestion] = useState<Question>()
   const {doFetchQuestion}: TCustomQuestion = useCustomQuestion()
+  const {isAdmin}: TCustomAccount = useCustomAccount()
   const {moveToPath}: TCustomMove = useCustomMove()
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const QuestionModifyPage = () => {
       })
   }, [id])
 
-  if (question && !question.isAuthor) {
+  if (question && !question.isAuthor && !isAdmin()) {
     moveToPath('/qna/questions')
     return null
   }
