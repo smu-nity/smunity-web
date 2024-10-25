@@ -2,9 +2,10 @@ import {useParams} from 'react-router-dom'
 import Header from '../../components/Header'
 import {useEffect, useState} from 'react'
 import {Question} from '../../types/Question'
-import {fetchQuestion} from '../../api/questionApi'
 import QuestionForm from '../../components/qna/QuestionForm'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
+import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
+import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
 
 const convertToRequest = (question: Question) => {
   return {
@@ -17,16 +18,18 @@ const convertToRequest = (question: Question) => {
 const QuestionModifyPage = () => {
   const {id} = useParams<{id: string}>()
   const [question, setQuestion] = useState<Question>()
+  const {doFetchQuestion}: TCustomQuestion = useCustomQuestion()
+  const {isAdmin}: TCustomAccount = useCustomAccount()
   const {moveToPath}: TCustomMove = useCustomMove()
 
   useEffect(() => {
     id &&
-      fetchQuestion(id).then((data: Question) => {
+      doFetchQuestion(id).then((data: Question) => {
         setQuestion(data)
       })
   }, [id])
 
-  if (question && !question.isAuthor) {
+  if (question && !question.isAuthor && !isAdmin()) {
     moveToPath('/qna/questions')
     return null
   }

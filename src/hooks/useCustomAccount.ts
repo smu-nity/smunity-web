@@ -6,8 +6,8 @@ import {removeCookie, setCookie} from '../util/cookieUtil'
 
 export interface TCustomAccount {
   loginState: Member
-  doLogin: (loginParam: TLoginParam) => Promise<any>
-  doRegister: (registerParam: TRegisterParam) => Promise<any>
+  doLogin: (loginParam: TLoginParam) => Promise<boolean>
+  doRegister: (registerParam: TRegisterParam) => Promise<boolean>
   doLogout: () => void
   saveAsCookie: (data: Member) => void
   isLogin: () => boolean

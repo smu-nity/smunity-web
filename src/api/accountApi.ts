@@ -14,14 +14,11 @@ export type TRegisterParam = {
   department: string
 }
 
-export const login = async (loginParam: TLoginParam): Promise<AxiosResponse> => {
-  return await api.post('/api/v1/accounts/login', loginParam)
-}
+export const login = async (loginParam: TLoginParam): Promise<AxiosResponse> =>
+  await api.post('/api/v1/accounts/login', loginParam)
 
-export const auth = async (loginParam: TLoginParam): Promise<AxiosResponse> => {
-  return await api.post('/api/v1/auth', loginParam)
-}
+export const auth = async (loginParam: TLoginParam): Promise<AxiosResponse> =>
+  await api.post('/api/v1/auth', loginParam)
 
-export const register = async (registerParam: TRegisterParam): Promise<AxiosResponse> => {
-  return await api.post('/api/v1/accounts/register', registerParam)
-}
+export const register = async (registerParam: TRegisterParam): Promise<AxiosResponse> =>
+  await api.post('/api/v1/accounts/register', registerParam)

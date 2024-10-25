@@ -5,3 +5,7 @@ export interface Answer {
   createdAt: string
   updatedAt: string
 }
+
+export interface AnswerRequest {
+  content: string
+}
