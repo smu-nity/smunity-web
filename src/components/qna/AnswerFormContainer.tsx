@@ -38,7 +38,11 @@ const AnswerFormContainer: React.FC<AnswerFormContainerProps> = ({isEditMode, id
       <div className="post_detail__body-title border-bottom">
         <h4 className="py-2 my-3 post_detail__title-title h4-font">답변</h4>
       </div>
-      <AnswerForm isEditMode={isEditMode} id={id} />
+      <AnswerForm
+        isEditMode={isEditMode}
+        id={id}
+        initialData={answer ? {content: answer.content} : undefined}
+      />
     </div>
   )
 }

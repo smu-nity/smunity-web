@@ -42,6 +42,7 @@ const AnswerForm: React.FC<AnswerFormProps> = ({isEditMode, id, initialData}) =>
     <form className="my-3">
       <div className="mb-3">
         <textarea
+          value={answerRequest.content}
           onChange={handleChange}
           className="form-control"
           name="content"
