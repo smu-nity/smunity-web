@@ -4,6 +4,7 @@ import {Result} from '../../types/Result'
 import {Category, Course} from '../../types/Course'
 import CreditItem from './CreditItem'
 import PieChart from './PieChart'
+import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
 
 interface ResultDetailItemProps {
   category: Category
@@ -11,6 +12,7 @@ interface ResultDetailItemProps {
 
 const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category}) => {
   const [courses, setCourses] = useState<Result<Course>>()
+  const {getDetail}: TCustomResult = useCustomResult()
 
   useEffect(() => {
     const param = category !== 'ALL' ? {category} : undefined
@@ -19,12 +21,7 @@ const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category}) => {
     })
   }, [category])
 
-  const categoryDetails = {
-    ALL: {text: '이수학점', icon: 'fa-user'},
-    MAJOR_ADVANCED: {text: '전공심화', icon: 'fa-pen'},
-    MAJOR_OPTIONAL: {text: '전공선택', icon: 'fa-pen-to-square'},
-    CULTURE: {text: '교양', icon: 'fa-book'}
-  }[category]
+  const categoryDetails = getDetail(category)
 
   return courses ? (
     <div className={`resultbox ${category === 'ALL' ? 'resultbox-mobile' : ''}`}>

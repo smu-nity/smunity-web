@@ -4,6 +4,7 @@ import PieChart from './PieChart'
 import {Culture, Domain} from '../../types/Culture'
 import {Result} from '../../types/Result'
 import {fetchCulture} from '../../api/courseApi'
+import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
 
 interface ResultCultureItemProps {
   domain: Domain
@@ -11,6 +12,7 @@ interface ResultCultureItemProps {
 
 const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain}) => {
   const [cultures, setCultures] = useState<Result<Culture>>()
+  const {getDetail}: TCustomResult = useCustomResult()
 
   useEffect(() => {
     fetchCulture(domain).then((data: Result<Culture>) => {
@@ -18,11 +20,7 @@ const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain}) => {
     })
   }, [domain])
 
-  const domainDetails = {
-    BASIC: {text: '기초교양', icon: 'fa-book-open-reader'},
-    CORE: {text: '상명핵심역량교양', icon: 'fa-book-open'},
-    BALANCE: {text: '균형교양', icon: 'fa-book-journal-whills'}
-  }[domain]
+  const domainDetails = getDetail(domain)
 
   const labelType = domain === 'BASIC' ? '과목' : '영역'
 
