@@ -16,17 +16,18 @@ const ModalContainer: React.FC<ModalContainerProps> = ({
   category,
   children
 }) => {
-  const {getDetail}: TCustomResult = useCustomResult()
+  const {getDetail, getContent}: TCustomResult = useCustomResult()
 
-  const categoryDetails = getDetail(category)
+  const {title, explanation} = getContent(category)
+  const {icon} = getDetail(category)
 
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={categoryDetails.text}
-      explanation={categoryDetails.text}
-      icon={categoryDetails.icon}>
+      title={title}
+      explanation={explanation}
+      icon={icon}>
       {children}
     </Modal>
   )
