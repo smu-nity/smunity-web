@@ -8,9 +8,10 @@ import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
 
 interface ResultDetailItemProps {
   category: Category
+  openModal: () => void
 }
 
-const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category}) => {
+const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}) => {
   const [courses, setCourses] = useState<Result<Course>>()
   const {getDetail}: TCustomResult = useCustomResult()
 
@@ -28,7 +29,9 @@ const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category}) => {
       <div className="result_name">
         <i className={`fa-solid ${categoryDetails.icon}`}>{categoryDetails.text}</i>
         {(category === 'MAJOR_ADVANCED' || category === 'MAJOR_OPTIONAL') && (
-          <div className="recommend">추천 과목 보기</div>
+          <div className="recommend" onClick={() => openModal()}>
+            추천 과목 보기
+          </div>
         )}
       </div>
       <div className="result_container">

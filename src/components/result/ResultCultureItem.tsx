@@ -8,9 +8,10 @@ import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
 
 interface ResultCultureItemProps {
   domain: Domain
+  openModal: () => void
 }
 
-const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain}) => {
+const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain, openModal}) => {
   const [cultures, setCultures] = useState<Result<Culture>>()
   const {getDetail}: TCustomResult = useCustomResult()
 
@@ -28,7 +29,9 @@ const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain}) => {
     <div className="resultbox">
       <div className="result_name">
         <i className={`fa-solid ${domainDetails.icon}`}>{domainDetails.text}</i>
-        <div className="recommend">추천 과목 보기</div>
+        <div className="recommend" onClick={() => openModal()}>
+          추천 과목 보기
+        </div>
       </div>
       <div className="result_container">
         <CreditItem credit={cultures.status.total} text={`기준 ${labelType}`} />
