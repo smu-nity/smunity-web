@@ -8,12 +8,9 @@ import {useRecoilState} from 'recoil'
 
 export interface TCustomResult {
   resultDataState: ResultData
-  getDetail: (category: Category | Domain) => Detail
-  getContent: (category: Category | Domain) => Content
-  saveResult: (
-    category: Category | Domain,
-    result: Result<Course> | Result<Culture>
-  ) => void
+  getDetail: (type: Category | Domain) => Detail
+  getContent: (type: Category | Domain) => Content
+  saveResult: (type: Category | Domain, result: Result<Course> | Result<Culture>) => void
 }
 
 const details: Record<Category | Domain, Detail> = {
@@ -64,19 +61,19 @@ const fieldMapping: Record<Category | Domain, keyof ResultData | null> = {
 const useCustomResult = (): TCustomResult => {
   const [resultDataState, setResultDataState] = useRecoilState(resultState)
 
-  const getDetail = (category: Category | Domain) => {
-    return details[category]
+  const getDetail = (type: Category | Domain) => {
+    return details[type]
   }
 
-  const getContent = (category: Category | Domain) => {
-    return contents[category]
+  const getContent = (type: Category | Domain) => {
+    return contents[type]
   }
 
   const saveResult = (
-    category: Category | Domain,
+    type: Category | Domain,
     result: Result<Course> | Result<Culture>
   ) => {
-    const field = fieldMapping[category]
+    const field = fieldMapping[type]
     if (field) {
       setResultDataState(prevResult => ({
         ...prevResult,

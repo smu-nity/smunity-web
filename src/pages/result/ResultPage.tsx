@@ -45,7 +45,7 @@ const ResultPage = () => {
         <ModalContainer
           isOpen={modal === isOpenModal}
           onClose={() => setIsOpenModal('')}
-          category={modal}
+          type={modal}
           children={<MajorResult />}
           key={index}
         />

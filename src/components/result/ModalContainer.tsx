@@ -6,20 +6,20 @@ import Modal from '../Modal'
 interface ModalContainerProps {
   isOpen: boolean
   onClose: () => void
-  category: Category | Domain
+  type: Category | Domain
   children: React.ReactNode
 }
 
 const ModalContainer: React.FC<ModalContainerProps> = ({
   isOpen,
   onClose,
-  category,
+  type,
   children
 }) => {
   const {getDetail, getContent}: TCustomResult = useCustomResult()
 
-  const {title, explanation} = getContent(category)
-  const {icon} = getDetail(category)
+  const {title, explanation} = getContent(type)
+  const {icon} = getDetail(type)
 
   return (
     <Modal
