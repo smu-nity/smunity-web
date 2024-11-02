@@ -1,13 +1,22 @@
-import {Domain} from '../types/Culture'
-import {Category} from '../types/Course'
+import {Culture, Domain} from '../types/Culture'
+import {Category, Course} from '../types/Course'
 import {Content, Detail} from '../types/Modal'
+import {Result} from '../types/Result'
+import {ResultData} from '../types/ResultData'
+import resultState from '../atoms/resultState'
+import {useRecoilState} from 'recoil'
 
 export interface TCustomResult {
+  resultDataState: ResultData
   getDetail: (category: Category | Domain) => Detail
   getContent: (category: Category | Domain) => Content
+  saveResult: (
+    category: Category | Domain,
+    result: Result<Course> | Result<Culture>
+  ) => void
 }
 
-const details = {
+const details: Record<Category | Domain, Detail> = {
   ALL: {text: '이수학점', icon: 'fa-user'},
   MAJOR_ADVANCED: {text: '전공심화', icon: 'fa-pen'},
   MAJOR_OPTIONAL: {text: '전공선택', icon: 'fa-pen-to-square'},
@@ -17,7 +26,7 @@ const details = {
   BALANCE: {text: '균형교양', icon: 'fa-book-journal-whills'}
 }
 
-const contents = {
+const contents: Record<Category | Domain, Content> = {
   ALL: {title: '', explanation: ''},
   MAJOR_ADVANCED: {
     title: '전공심화 추천과목',
@@ -42,7 +51,19 @@ const contents = {
   }
 }
 
+const fieldMapping: Record<Category | Domain, keyof ResultData | null> = {
+  ALL: null,
+  MAJOR_ADVANCED: 'advanced',
+  MAJOR_OPTIONAL: 'optional',
+  CULTURE: null,
+  BASIC: 'basic',
+  CORE: 'core',
+  BALANCE: 'balance'
+}
+
 const useCustomResult = (): TCustomResult => {
+  const [resultDataState, setResultDataState] = useRecoilState(resultState)
+
   const getDetail = (category: Category | Domain) => {
     return details[category]
   }
@@ -51,9 +72,24 @@ const useCustomResult = (): TCustomResult => {
     return contents[category]
   }
 
+  const saveResult = (
+    category: Category | Domain,
+    result: Result<Course> | Result<Culture>
+  ) => {
+    const field = fieldMapping[category]
+    if (field) {
+      setResultDataState(prevResult => ({
+        ...prevResult,
+        [field]: result
+      }))
+    }
+  }
+
   return {
+    resultDataState,
     getDetail,
-    getContent
+    getContent,
+    saveResult
   }
 }
 

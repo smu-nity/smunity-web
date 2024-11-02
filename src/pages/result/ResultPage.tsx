@@ -1,10 +1,11 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import ResultCultureItem from '../../components/result/ResultCultureItem'
 import ResultDetailItem from '../../components/result/ResultDetailItem'
 import ResultItem from '../../components/result/ResultItem'
 import {Category} from '../../types/Course'
 import {Domain} from '../../types/Culture'
-import ModalContainer from '../../components/modal/ModalContainer'
+import ModalContainer from '../../components/result/ModalContainer'
+import MajorResult from '../../components/result/MajorResult'
 
 const ResultPage = () => {
   const categorys: Category[] = ['ALL', 'MAJOR_ADVANCED', 'MAJOR_OPTIONAL', 'CULTURE']
@@ -18,11 +19,6 @@ const ResultPage = () => {
   ]
 
   const [isOpenModal, setIsOpenModal] = useState('')
-
-  useEffect(() => {
-    console.log(isOpenModal)
-    console.log(modals[0] === isOpenModal)
-  }, [isOpenModal])
 
   return (
     <div className="lcontainer">
@@ -50,7 +46,7 @@ const ResultPage = () => {
           isOpen={modal === isOpenModal}
           onClose={() => setIsOpenModal('')}
           category={modal}
-          children={<div>test</div>}
+          children={<MajorResult />}
           key={index}
         />
       ))}

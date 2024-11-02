@@ -13,11 +13,12 @@ interface ResultCultureItemProps {
 
 const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain, openModal}) => {
   const [cultures, setCultures] = useState<Result<Culture>>()
-  const {getDetail}: TCustomResult = useCustomResult()
+  const {getDetail, saveResult}: TCustomResult = useCustomResult()
 
   useEffect(() => {
     fetchCulture(domain).then((data: Result<Culture>) => {
       setCultures(data)
+      saveResult(domain, data)
     })
   }, [domain])
 

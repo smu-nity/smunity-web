@@ -13,12 +13,13 @@ interface ResultDetailItemProps {
 
 const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}) => {
   const [courses, setCourses] = useState<Result<Course>>()
-  const {getDetail}: TCustomResult = useCustomResult()
+  const {getDetail, saveResult}: TCustomResult = useCustomResult()
 
   useEffect(() => {
     const param = category !== 'ALL' ? {category} : undefined
     fetchCourses(param).then((data: Result<Course>) => {
       setCourses(data)
+      saveResult(category, data)
     })
   }, [category])
 
