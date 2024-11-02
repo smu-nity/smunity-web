@@ -11,6 +11,7 @@ export interface TCustomResult {
   getDetail: (type: Category | Domain) => Detail
   getContent: (type: Category | Domain) => Content
   saveResult: (type: Category | Domain, result: Result<Course> | Result<Culture>) => void
+  getResult: (type: Category | Domain) => Result<Course> | Result<Culture> | null
 }
 
 const details: Record<Category | Domain, Detail> = {
@@ -48,7 +49,7 @@ const contents: Record<Category | Domain, Content> = {
   }
 }
 
-const fieldMapping: Record<Category | Domain, keyof ResultData | null> = {
+const fields: Record<Category | Domain, keyof ResultData | null> = {
   ALL: null,
   MAJOR_ADVANCED: 'advanced',
   MAJOR_OPTIONAL: 'optional',
@@ -73,7 +74,7 @@ const useCustomResult = (): TCustomResult => {
     type: Category | Domain,
     result: Result<Course> | Result<Culture>
   ) => {
-    const field = fieldMapping[type]
+    const field = fields[type]
     if (field) {
       setResultDataState(prevResult => ({
         ...prevResult,
@@ -82,11 +83,17 @@ const useCustomResult = (): TCustomResult => {
     }
   }
 
+  const getResult = (type: Category | Domain) => {
+    const field = fields[type]
+    return field && resultDataState[field]
+  }
+
   return {
     resultDataState,
     getDetail,
     getContent,
-    saveResult
+    saveResult,
+    getResult
   }
 }
 

@@ -2,14 +2,14 @@ import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
 import {Category} from '../../types/Course'
 import {Domain} from '../../types/Culture'
 
-interface MajorResultProps {
+interface CultureBasicResultProps {
   type: Category | Domain
 }
 
-const MajorResult: React.FC<MajorResultProps> = ({type}) => {
+const CultureBasicResult: React.FC<CultureBasicResultProps> = ({type}) => {
   const {getResult}: TCustomResult = useCustomResult()
   const result = getResult(type)
   return <div>{result?.status.total}</div>
 }
 
-export default MajorResult
+export default CultureBasicResult

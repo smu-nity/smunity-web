@@ -5,7 +5,7 @@ import ResultItem from '../../components/result/ResultItem'
 import {Category} from '../../types/Course'
 import {Domain} from '../../types/Culture'
 import ModalContainer from '../../components/result/ModalContainer'
-import MajorResult from '../../components/result/MajorResult'
+import ResultContainer from '../../components/result/ResultContainer'
 
 const ResultPage = () => {
   const categorys: Category[] = ['ALL', 'MAJOR_ADVANCED', 'MAJOR_OPTIONAL', 'CULTURE']
@@ -46,7 +46,7 @@ const ResultPage = () => {
           isOpen={modal === isOpenModal}
           onClose={() => setIsOpenModal('')}
           type={modal}
-          children={<MajorResult />}
+          children={<ResultContainer type={modal} />}
           key={index}
         />
       ))}
