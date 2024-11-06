@@ -1836,6 +1836,9 @@ body:not(.device-touch) .suc_btn {
 .h4-font {
   font-size: calc(1.275rem + 0.3vw);
 }
+.text-bold {
+  font-weight: bold;
+}
 .text-completed {
   color: #17a55e;
 }
@@ -1851,8 +1854,14 @@ body:not(.device-touch) .suc_btn {
 .w-12 {
   width: 12%;
 }
+.w-16 {
+  width: 16%;
+}
 .w-40 {
   width: 40%;
+}
+.w-52 {
+  width: 52%;
 }
 @media screen and (max-width: 1024px) {
   .main-img {
