@@ -2,9 +2,9 @@ import React from 'react'
 import {Category, CourseCulture, Domain} from '../../types/Course'
 import MajorTable from './MajorTable'
 import CultureBasicTable from './CultureBasicTable'
-import CultureResult from './CultureResult'
 import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
 import {Result} from '../../types/Result'
+import CultureTable from './CultureTable'
 
 interface ResultContainerProps {
   type: Category | Domain
@@ -25,8 +25,8 @@ const ResultContainer: React.FC<ResultContainerProps> = ({type}) => {
     MAJOR_OPTIONAL: <MajorTable type={type} />,
     CULTURE: null,
     BASIC: <CultureBasicTable result={result as Result<CourseCulture>} />,
-    CORE: <CultureResult type={type} />,
-    BALANCE: <CultureResult type={type} />
+    CORE: <CultureTable result={result as Result<CourseCulture>} />,
+    BALANCE: <CultureTable result={result as Result<CourseCulture>} />
   }[type]
 
   return (
