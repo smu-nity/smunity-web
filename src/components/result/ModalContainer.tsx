@@ -26,7 +26,8 @@ const ModalContainer: React.FC<ModalContainerProps> = ({
       onClose={onClose}
       title={title}
       explanation={explanation}
-      icon={icon}>
+      icon={icon}
+      scroll={type === 'CORE' || type === 'BALANCE'}>
       {children}
     </Modal>
   )

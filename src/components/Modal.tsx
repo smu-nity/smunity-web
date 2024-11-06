@@ -6,6 +6,7 @@ interface ModalProps {
   title: string
   explanation: string
   icon?: string
+  scroll?: boolean
   children: React.ReactNode
 }
 
@@ -15,13 +16,18 @@ const Modal: React.FC<ModalProps> = ({
   title,
   explanation,
   icon,
+  scroll,
   children
 }) => {
   if (!isOpen) return null
 
   return (
     <div id="m3" className="modal">
-      <div className="update_modal_content">
+      <div
+        className={`update_modal_content ${scroll && 'modal-scroll'}`}
+        style={{
+          maxHeight: scroll ? '75%' : 'none'
+        }}>
         <div id="c3" className="close" onClick={onClose}>
           &times;
         </div>

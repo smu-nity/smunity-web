@@ -36,6 +36,11 @@ const ResultContainer: React.FC<ResultContainerProps> = ({type}) => {
         <span className={`text-${result?.completed ? 'completed' : 'uncompleted'}`}>
           {explain}
         </span>
+        {(type === 'CORE' || type === 'BALANCE') &&
+          result?.completed &&
+          (result as Result<CourseCulture>).content.map((culture, index) => {
+            return <div key={index}>{culture.subDomain}</div>
+          })}
       </div>
     </>
   )
