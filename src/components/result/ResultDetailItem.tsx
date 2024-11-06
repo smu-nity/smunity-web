@@ -4,34 +4,35 @@ import {Result} from '../../types/Result'
 import {Category, Course} from '../../types/Course'
 import CreditItem from './CreditItem'
 import PieChart from './PieChart'
+import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
 
 interface ResultDetailItemProps {
   category: Category
+  openModal: () => void
 }
 
-const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category}) => {
+const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}) => {
   const [courses, setCourses] = useState<Result<Course>>()
+  const {getDetail, saveResult}: TCustomResult = useCustomResult()
 
   useEffect(() => {
     const param = category !== 'ALL' ? {category} : undefined
     fetchCourses(param).then((data: Result<Course>) => {
       setCourses(data)
+      saveResult(category, data)
     })
   }, [category])
 
-  const categoryDetails = {
-    ALL: {text: '이수학점', icon: 'fa-user'},
-    MAJOR_ADVANCED: {text: '전공심화', icon: 'fa-pen'},
-    MAJOR_OPTIONAL: {text: '전공선택', icon: 'fa-pen-to-square'},
-    CULTURE: {text: '교양', icon: 'fa-book'}
-  }[category]
+  const categoryDetails = getDetail(category)
 
   return courses ? (
     <div className={`resultbox ${category === 'ALL' ? 'resultbox-mobile' : ''}`}>
       <div className="result_name">
-        <i className={`fa-solid ${categoryDetails.icon}`}>{categoryDetails.text}</i>
+        <i className={`fas fa-solid ${categoryDetails.icon}`} /> {categoryDetails.text}
         {(category === 'MAJOR_ADVANCED' || category === 'MAJOR_OPTIONAL') && (
-          <div className="recommend">추천 과목 보기</div>
+          <div className="recommend" onClick={() => openModal()}>
+            추천 과목 보기
+          </div>
         )}
       </div>
       <div className="result_container">

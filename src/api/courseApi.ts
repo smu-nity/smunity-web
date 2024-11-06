@@ -1,6 +1,5 @@
-import {Course} from '../types/Course'
+import {Course, CourseCulture, Domain} from '../types/Course'
 import {Credit} from '../types/Credit'
-import {Culture, Domain} from '../types/Culture'
 import {Result} from '../types/Result'
 import jwtAxios from '../util/jwtUtil'
 
@@ -16,7 +15,7 @@ export const fetchCredit = async (): Promise<Credit> => {
   return res.data
 }
 
-export const fetchCulture = async (domain: Domain): Promise<Result<Culture>> => {
+export const fetchCulture = async (domain: Domain): Promise<Result<CourseCulture>> => {
   const res = await jwtAxios.get(`/api/v1/courses/cultures/${domain}`)
   return res.data
 }

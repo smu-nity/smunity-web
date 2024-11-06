@@ -684,6 +684,15 @@ strong {
   border-right: 1px solid #dadada;
   border-bottom: 1px solid #dadada;
 }
+.culture-td {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.culture-border {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
 .mytable {
   margin: 0 auto;
   width: 80%;
@@ -706,6 +715,13 @@ strong {
   border-bottom: 1px solid #dadada;
 }
 .mytr:hover {
+  background-color: #f1f1f1;
+}
+.culture-tr {
+  color: black;
+  border-bottom: 1px solid #dadada;
+}
+.culture-tr:hover {
   background-color: #f1f1f1;
 }
 .mydiv {
@@ -741,7 +757,6 @@ strong {
 
 /* ---------------------------------( 모달 )---------------------------------------- */
 .modal {
-  display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 3; /* Sit on top */
   left: 0;
@@ -1836,6 +1851,39 @@ body:not(.device-touch) .suc_btn {
 }
 .h4-font {
   font-size: calc(1.275rem + 0.3vw);
+}
+.text-bold {
+  font-weight: bold;
+}
+.text-completed {
+  color: #17a55e;
+}
+.text-uncompleted {
+  color: #d32f2f;
+}
+.border-r {
+  border-right: 1px solid #cccccc;
+}
+.w-8 {
+  width: 8%;
+}
+.w-12 {
+  width: 12%;
+}
+.w-16 {
+  width: 16%;
+}
+.w-24 {
+  width: 24%;
+}
+.w-40 {
+  width: 40%;
+}
+.fas {
+  margin-right: 0.5rem;
+}
+.margin-l {
+  margin-left: 1rem;
 }
 @media screen and (max-width: 1024px) {
   .main-img {
