@@ -1,5 +1,4 @@
-import {Culture, Domain} from '../types/Culture'
-import {Category, Course} from '../types/Course'
+import {Category, Course, CourseCulture, Domain} from '../types/Course'
 import {Content, Detail, Explain} from '../types/Modal'
 import {Result} from '../types/Result'
 import {ResultData} from '../types/ResultData'
@@ -10,8 +9,11 @@ export interface TCustomResult {
   resultDataState: ResultData
   getDetail: (type: Category | Domain) => Detail
   getContent: (type: Category | Domain) => Content
-  saveResult: (type: Category | Domain, result: Result<Course> | Result<Culture>) => void
-  getResult: (type: Category | Domain) => Result<Course> | Result<Culture> | null
+  saveResult: (
+    type: Category | Domain,
+    result: Result<Course> | Result<CourseCulture>
+  ) => void
+  getResult: (type: Category | Domain) => Result<Course> | Result<CourseCulture> | null
   getExplain: (type: Category | Domain, completed?: boolean, required?: string) => string
 }
 
@@ -83,7 +85,7 @@ const useCustomResult = (): TCustomResult => {
 
   const saveResult = (
     type: Category | Domain,
-    result: Result<Course> | Result<Culture>
+    result: Result<Course> | Result<CourseCulture>
   ) => {
     const field = fields[type]
     if (field) {

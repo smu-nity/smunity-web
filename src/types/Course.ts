@@ -11,4 +11,12 @@ export interface Course {
   credit: number
 }
 
+export interface CourseCulture {
+  subDomain: string
+  subDomainName: string
+  completed: boolean
+}
+
 export type Category = 'ALL' | 'MAJOR_ADVANCED' | 'MAJOR_OPTIONAL' | 'CULTURE'
+
+export type Domain = 'BASIC' | 'CORE' | 'BALANCE'

@@ -1,6 +1,5 @@
 import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
-import {Category} from '../../types/Course'
-import {Domain} from '../../types/Culture'
+import {Category, Domain} from '../../types/Course'
 
 interface CultureResultProps {
   type: Category | Domain

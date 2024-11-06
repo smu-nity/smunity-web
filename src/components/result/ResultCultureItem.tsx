@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react'
 import CreditItem from './CreditItem'
 import PieChart from './PieChart'
-import {Culture, Domain} from '../../types/Culture'
 import {Result} from '../../types/Result'
 import {fetchCulture} from '../../api/courseApi'
 import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
+import {CourseCulture, Domain} from '../../types/Course'
 
 interface ResultCultureItemProps {
   domain: Domain
@@ -12,11 +12,11 @@ interface ResultCultureItemProps {
 }
 
 const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain, openModal}) => {
-  const [cultures, setCultures] = useState<Result<Culture>>()
+  const [cultures, setCultures] = useState<Result<CourseCulture>>()
   const {getDetail, saveResult}: TCustomResult = useCustomResult()
 
   useEffect(() => {
-    fetchCulture(domain).then((data: Result<Culture>) => {
+    fetchCulture(domain).then((data: Result<CourseCulture>) => {
       setCultures(data)
       saveResult(domain, data)
     })

@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react'
-import {Category} from '../../types/Course'
-import {Domain} from '../../types/Culture'
+import {Category, Domain} from '../../types/Course'
 import {fetchMajors} from '../../api/majorApi'
 import {Base} from '../../types/Result'
 import {Major} from '../../types/Major'

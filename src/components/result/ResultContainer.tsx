@@ -1,6 +1,5 @@
 import React from 'react'
-import {Culture, Domain} from '../../types/Culture'
-import {Category} from '../../types/Course'
+import {Category, CourseCulture, Domain} from '../../types/Course'
 import MajorTable from './MajorTable'
 import CultureBasicTable from './CultureBasicTable'
 import CultureResult from './CultureResult'
@@ -25,7 +24,7 @@ const ResultContainer: React.FC<ResultContainerProps> = ({type}) => {
     MAJOR_ADVANCED: <MajorTable type={type} />,
     MAJOR_OPTIONAL: <MajorTable type={type} />,
     CULTURE: null,
-    BASIC: <CultureBasicTable result={result as Result<Culture>} />,
+    BASIC: <CultureBasicTable result={result as Result<CourseCulture>} />,
     CORE: <CultureResult type={type} />,
     BALANCE: <CultureResult type={type} />
   }[type]

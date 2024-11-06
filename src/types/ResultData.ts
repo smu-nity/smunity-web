@@ -1,11 +1,10 @@
-import {Course} from './Course'
-import {Culture} from './Culture'
+import {Course, CourseCulture} from './Course'
 import {Result} from './Result'
 
 export interface ResultData {
   advanced: Result<Course>
   optional: Result<Course>
-  basic: Result<Culture>
-  core: Result<Culture>
-  balance: Result<Culture>
+  basic: Result<CourseCulture>
+  core: Result<CourseCulture>
+  balance: Result<CourseCulture>
 }

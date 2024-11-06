@@ -1,9 +1,9 @@
-import {Culture} from '../../types/Culture'
+import {CourseCulture} from '../../types/Course'
 import {Result} from '../../types/Result'
 import CultureBasicItem from './CultureBasicItem'
 
 interface CultureBasicTableProps {
-  result: Result<Culture>
+  result: Result<CourseCulture>
 }
 
 const CultureBasicTable: React.FC<CultureBasicTableProps> = ({result}) => {
