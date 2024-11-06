@@ -1873,11 +1873,11 @@ body:not(.device-touch) .suc_btn {
 .w-16 {
   width: 16%;
 }
+.w-24 {
+  width: 24%;
+}
 .w-40 {
   width: 40%;
-}
-.w-52 {
-  width: 52%;
 }
 @media screen and (max-width: 1024px) {
   .main-img {

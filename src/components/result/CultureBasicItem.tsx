@@ -5,10 +5,15 @@ import {fetchCultures} from '../../api/cultureApi'
 
 interface CultureBasicItemProps {
   subDomain: string
+  subDomainName: string
   completed: boolean
 }
 
-const CultureBasicItem: React.FC<CultureBasicItemProps> = ({subDomain, completed}) => {
+const CultureBasicItem: React.FC<CultureBasicItemProps> = ({
+  subDomain,
+  subDomainName,
+  completed
+}) => {
   const [cultures, setCultures] = useState<Base<Culture> | null>(null)
 
   useEffect(() => {
@@ -30,6 +35,7 @@ const CultureBasicItem: React.FC<CultureBasicItemProps> = ({subDomain, completed
 
   return (
     <tr className="culture-tr">
+      <td className="mytd">{subDomainName}</td>
       <td className="mytd">{renderCultureColumn('number')}</td>
       <td className="mytd">{renderCultureColumn('name')}</td>
       <td className="mytd">{renderCultureColumn('credit')}</td>
