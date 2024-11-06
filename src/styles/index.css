@@ -1836,6 +1836,12 @@ body:not(.device-touch) .suc_btn {
 .h4-font {
   font-size: calc(1.275rem + 0.3vw);
 }
+.text-completed {
+  color: #17a55e;
+}
+.text-uncompleted {
+  color: #d32f2f;
+}
 @media screen and (max-width: 1024px) {
   .main-img {
     justify-content: center;

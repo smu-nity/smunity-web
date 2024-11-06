@@ -1,6 +1,6 @@
 import {Culture, Domain} from '../types/Culture'
 import {Category, Course} from '../types/Course'
-import {Content, Detail} from '../types/Modal'
+import {Content, Detail, Explain} from '../types/Modal'
 import {Result} from '../types/Result'
 import {ResultData} from '../types/ResultData'
 import resultState from '../atoms/resultState'
@@ -12,6 +12,7 @@ export interface TCustomResult {
   getContent: (type: Category | Domain) => Content
   saveResult: (type: Category | Domain, result: Result<Course> | Result<Culture>) => void
   getResult: (type: Category | Domain) => Result<Course> | Result<Culture> | null
+  getExplain: (type: Category | Domain, completed?: boolean, required?: string) => string
 }
 
 const details: Record<Category | Domain, Detail> = {
@@ -31,7 +32,7 @@ const contents: Record<Category | Domain, Content> = {
     explanation: '전공심화 과목 중 미이수과목을 학년 순으로 추천합니다.'
   },
   MAJOR_OPTIONAL: {
-    title: ' 전공선택 추천과목',
+    title: '전공선택 추천과목',
     explanation: '전공선택 과목 중 미이수과목을 학년 순으로 추천합니다.'
   },
   CULTURE: {title: '', explanation: ''},
@@ -47,6 +48,16 @@ const contents: Record<Category | Domain, Content> = {
     title: '균형교양 영역 현황',
     explanation: '균형교양 중 영역 3개 이상 이수해야 졸업요건을 충족합니다.'
   }
+}
+
+const explains: Record<Category | Domain, Explain> = {
+  ALL: {completed: '', uncompleted: ''},
+  MAJOR_ADVANCED: {completed: '기준 학점', uncompleted: '학점'},
+  MAJOR_OPTIONAL: {completed: '기준 학점', uncompleted: '학점'},
+  CULTURE: {completed: '', uncompleted: ''},
+  BASIC: {completed: '필수과목 조건', uncompleted: '필수과목'},
+  CORE: {completed: '선택영역 조건', uncompleted: '선택영역'},
+  BALANCE: {completed: '선택영역 조건', uncompleted: '선택영역'}
 }
 
 const fields: Record<Category | Domain, keyof ResultData | null> = {
@@ -88,12 +99,24 @@ const useCustomResult = (): TCustomResult => {
     return field && resultDataState[field]
   }
 
+  const getExplain = (
+    type: Category | Domain,
+    completed?: boolean,
+    required?: string
+  ) => {
+    const explain = explains[type]
+    return completed ?? false
+      ? `${explain.completed}을 만족했습니다.`
+      : `${required || ''} ${explain.uncompleted}이 부족합니다.`
+  }
+
   return {
     resultDataState,
     getDetail,
     getContent,
     saveResult,
-    getResult
+    getResult,
+    getExplain
   }
 }
 
