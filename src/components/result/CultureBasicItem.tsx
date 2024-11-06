@@ -1,14 +1,38 @@
+import {useEffect, useState} from 'react'
+import {Base} from '../../types/Result'
+import {Culture} from '../../types/Culture'
+import {fetchCultures} from '../../api/cultureApi'
+
 interface CultureBasicItemProps {
   subDomain: string
   completed: boolean
 }
 
 const CultureBasicItem: React.FC<CultureBasicItemProps> = ({subDomain, completed}) => {
+  const [cultures, setCultures] = useState<Base<Culture> | null>(null)
+
+  useEffect(() => {
+    fetchCultures({subDomain}).then((data: Base<Culture>) => {
+      setCultures(data)
+    })
+  }, [subDomain])
+
+  const renderCultureColumn = (key: keyof Culture) =>
+    cultures?.content.map((culture, index) => {
+      const text = culture[key]
+      const isLast = index === cultures?.content.length - 1
+      return (
+        <div key={index} className={`culture-td ${!isLast && 'culture-border'}`}>
+          {text}
+        </div>
+      )
+    })
+
   return (
-    <tr className="mytr">
-      <td className="mytd">{subDomain}</td>
-      <td className="mytd">{subDomain}</td>
-      <td className="mytd">{subDomain}</td>
+    <tr className="culture-tr">
+      <td className="mytd">{renderCultureColumn('number')}</td>
+      <td className="mytd">{renderCultureColumn('name')}</td>
+      <td className="mytd">{renderCultureColumn('credit')}</td>
       <td className={`mytd text-bold text-${completed ? 'completed' : 'uncompleted'}`}>
         {completed ? '이수' : '미이수'}
       </td>

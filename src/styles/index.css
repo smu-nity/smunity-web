@@ -684,6 +684,15 @@ strong {
   border-right: 1px solid #dadada;
   border-bottom: 1px solid #dadada;
 }
+.culture-td {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.culture-border {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
 .mytable {
   margin: 0 auto;
   width: 80%;
@@ -706,6 +715,13 @@ strong {
   border-bottom: 1px solid #dadada;
 }
 .mytr:hover {
+  background-color: #f1f1f1;
+}
+.culture-tr {
+  color: black;
+  border-bottom: 1px solid #dadada;
+}
+.culture-tr:hover {
   background-color: #f1f1f1;
 }
 .mydiv {
