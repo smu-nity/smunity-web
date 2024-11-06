@@ -1842,6 +1842,18 @@ body:not(.device-touch) .suc_btn {
 .text-uncompleted {
   color: #d32f2f;
 }
+.border-r {
+  border-right: 1px solid #cccccc;
+}
+.w-8 {
+  width: 8%;
+}
+.w-12 {
+  width: 12%;
+}
+.w-40 {
+  width: 40%;
+}
 @media screen and (max-width: 1024px) {
   .main-img {
     justify-content: center;

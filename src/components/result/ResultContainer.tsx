@@ -1,7 +1,7 @@
 import React from 'react'
 import {Domain} from '../../types/Culture'
 import {Category} from '../../types/Course'
-import MajorResult from './MajorResult'
+import MajorTable from './MajorTable'
 import CultureBasicResult from './CultureBasicResult'
 import CultureResult from './CultureResult'
 import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
@@ -13,8 +13,8 @@ interface ResultContainerProps {
 const ResultContainer: React.FC<ResultContainerProps> = ({type}) => {
   const table = {
     ALL: null,
-    MAJOR_ADVANCED: <MajorResult type={type} />,
-    MAJOR_OPTIONAL: <MajorResult type={type} />,
+    MAJOR_ADVANCED: <MajorTable type={type} />,
+    MAJOR_OPTIONAL: <MajorTable type={type} />,
     CULTURE: null,
     BASIC: <CultureBasicResult type={type} />,
     CORE: <CultureResult type={type} />,
