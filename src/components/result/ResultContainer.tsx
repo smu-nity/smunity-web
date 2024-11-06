@@ -5,6 +5,7 @@ import CultureBasicTable from './CultureBasicTable'
 import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
 import {Result} from '../../types/Result'
 import CultureTable from './CultureTable'
+import CultureResultTable from './CultureResultTable'
 
 interface ResultContainerProps {
   type: Category | Domain
@@ -37,10 +38,16 @@ const ResultContainer: React.FC<ResultContainerProps> = ({type}) => {
           {explain}
         </span>
         {(type === 'CORE' || type === 'BALANCE') &&
-          result?.completed &&
-          (result as Result<CourseCulture>).content.map((culture, index) => {
-            return <div key={index}>{culture.subDomain}</div>
-          })}
+          !result?.completed &&
+          (result as Result<CourseCulture>).content
+            .filter(culture => !culture.completed)
+            .map((culture, index) => (
+              <CultureResultTable
+                key={index}
+                subDomain={culture.subDomain}
+                subDomainName={culture.subDomainName}
+              />
+            ))}
       </div>
     </>
   )

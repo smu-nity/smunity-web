@@ -28,7 +28,7 @@ const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}
   return courses ? (
     <div className={`resultbox ${category === 'ALL' ? 'resultbox-mobile' : ''}`}>
       <div className="result_name">
-        <i className={`fa-solid ${categoryDetails.icon}`}>{categoryDetails.text}</i>
+        <i className={`fas fa-solid ${categoryDetails.icon}`} /> {categoryDetails.text}
         {(category === 'MAJOR_ADVANCED' || category === 'MAJOR_OPTIONAL') && (
           <div className="recommend" onClick={() => openModal()}>
             추천 과목 보기

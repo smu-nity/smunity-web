@@ -1879,6 +1879,12 @@ body:not(.device-touch) .suc_btn {
 .w-40 {
   width: 40%;
 }
+.fas {
+  margin-right: 0.5rem;
+}
+.margin-l {
+  margin-left: 1rem;
+}
 @media screen and (max-width: 1024px) {
   .main-img {
     justify-content: center;

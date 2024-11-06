@@ -16,8 +16,8 @@ const ResultItem: React.FC = () => {
   return credit ? (
     <div className="resultbox-main">
       <div className="result_name">
-        <i className="fa-solid fa-user"></i> 이수학점
-        <span className="small">
+        <i className="fas fa-solid fa-user"></i> 이수학점
+        <span className="small margin-l">
           {credit.username} {credit.name}
         </span>
       </div>

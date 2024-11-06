@@ -32,7 +32,7 @@ const Modal: React.FC<ModalProps> = ({
           &times;
         </div>
         <div className="modal-title">
-          {icon && <i className={`fa-solid ${icon}`} />}
+          {icon && <i className={`fas fa-solid ${icon}`} />}
           {title}
         </div>
         <div className="modal-expl">{explanation}</div>

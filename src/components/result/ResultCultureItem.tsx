@@ -29,7 +29,7 @@ const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain, openModal}
   return cultures ? (
     <div className="resultbox">
       <div className="result_name">
-        <i className={`fa-solid ${domainDetails.icon}`}>{domainDetails.text}</i>
+        <i className={`fas fa-solid ${domainDetails.icon}`} /> {domainDetails.text}
         <div className="recommend" onClick={() => openModal()}>
           추천 과목 보기
         </div>
