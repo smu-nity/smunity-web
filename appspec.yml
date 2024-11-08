@@ -3,11 +3,17 @@ os: linux
 
 files:
   - source: /
-    destination: /home/ec2-user/smunity-web
+    destination: /home/ubuntu/smunity-web
     overwrite: yes
 
 permissions:
-  - object: /home/ec2-user/smunity-web
-    owner: ec2-user
-    group: ec2-user
+  - object: /home/ubuntu/smunity-web
+    owner: ubuntu
+    group: ubuntu
     mode: 755
+
+hooks:
+  AfterInstall:
+    - location: 'service nginx restart'
+      timeout: 60
+      runas: root
