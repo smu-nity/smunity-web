@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
 
-      - name: Set up Node.js 20
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20.11.1'
@@ -25,7 +25,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: unset CI && npm run build
 
       - name: Create Deployment Package
         run: zip -qq -r ./build.zip .
