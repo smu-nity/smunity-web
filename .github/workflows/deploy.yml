@@ -42,11 +42,11 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: aws s3 cp --region ap-northeast-2 ./build.zip s3://smunity-web/build.zip
+        run: aws s3 cp --region ap-northeast-2 ./build.zip s3://smunity/build.zip
 
       - name: Deploy
         run: aws deploy create-deployment
-          --application-name ec2-code-deploy
+          --application-name smunity
           --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name smunity
-          --s3-location bucket=smunity-web,key=build.zip,bundleType=zip
+          --deployment-group-name smunity-web
+          --s3-location bucket=smunity,key=build.zip,bundleType=zip
