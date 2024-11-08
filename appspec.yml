@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/smunity-web
+    overwrite: yes
+
+permissions:
+  - object: /home/ubuntu/smunity-web
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+# hooks:
+#   AfterInstall:
+#     - location: 'service nginx restart'
+#       timeout: 60
+#       runas: root
