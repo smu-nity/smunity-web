@@ -11,9 +11,8 @@ permissions:
     owner: ubuntu
     group: ubuntu
     mode: 755
-
-hooks:
-  AfterInstall:
-    - location: 'service nginx restart'
-      timeout: 60
-      runas: root
+# hooks:
+#   AfterInstall:
+#     - location: 'service nginx restart'
+#       timeout: 60
+#       runas: root
