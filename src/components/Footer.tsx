@@ -21,7 +21,25 @@ const Footer = () => {
             이용약관
           </Link>
         </h4>
-        <h4>Copyright ⓒ Smunity</h4>
+        <h4>
+          Copyright ⓒ Smunity{' '}
+          <a
+            href={`https://github.com/smu-nity/smunity-web/releases/tag/${process.env.REACT_APP_VERSION}`}
+            className="footer_link"
+            target="_blank"
+            rel="noreferrer">
+            {process.env.REACT_APP_VERSION}
+          </a>{' '}
+          (
+          <a
+            href={`https://github.com/smu-nity/smunity-web/commit/${process.env.REACT_APP_COMMIT_HASH}`}
+            className="footer_link"
+            target="_blank"
+            rel="noreferrer">
+            {process.env.REACT_APP_COMMIT_HASH}
+          </a>
+          )
+        </h4>
       </div>
     </footer>
   )

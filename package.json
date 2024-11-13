@@ -1,6 +1,6 @@
 {
   "name": "smunity-web",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -21,10 +21,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm run version && react-scripts start",
+    "build": "npm run version && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "version": "echo REACT_APP_VERSION=$(git describe --tags --abbrev=0) > .env && echo REACT_APP_COMMIT_HASH=$(git rev-parse --short HEAD) >> .env"
   },
   "eslintConfig": {
     "extends": [
