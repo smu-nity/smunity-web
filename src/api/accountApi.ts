@@ -20,5 +20,12 @@ export const login = async (loginParam: TLoginParam): Promise<AxiosResponse> =>
 export const auth = async (loginParam: TLoginParam): Promise<AxiosResponse> =>
   await api.post('/api/v1/auth', loginParam)
 
-export const register = async (registerParam: TRegisterParam): Promise<AxiosResponse> =>
-  await api.post('/api/v1/accounts/register', registerParam)
+export const register = async (
+  registerParam: TRegisterParam,
+  authToken?: string
+): Promise<AxiosResponse> =>
+  await api.post('/api/v1/accounts/register', registerParam, {
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    }
+  })

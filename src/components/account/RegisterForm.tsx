@@ -38,7 +38,7 @@ const RegisterForm = () => {
   const handleClickRegister = () => {
     registerParams.password1 && registerParams.password2
       ? registerParams.password1 === registerParams.password2
-        ? doRegister(requestParam()).then(success => {
+        ? doRegister(requestParam(), authState.authToken).then(success => {
             success && moveToPath('/mypage')
           })
         : alert('비밀번호가 일치하지 않습니다.')
