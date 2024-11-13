@@ -7,7 +7,7 @@ import {removeCookie, setCookie} from '../util/cookieUtil'
 export interface TCustomAccount {
   loginState: Member
   doLogin: (loginParam: TLoginParam) => Promise<boolean>
-  doRegister: (registerParam: TRegisterParam) => Promise<boolean>
+  doRegister: (registerParam: TRegisterParam, authToken?: string) => Promise<boolean>
   doLogout: () => void
   saveAsCookie: (data: Member) => void
   isLogin: () => boolean
@@ -27,8 +27,8 @@ const useCustomAccount = (): TCustomAccount => {
   }
 
   //----------회원가입 함수
-  const doRegister = async (registerParam: TRegisterParam) => {
-    const response = await register(registerParam)
+  const doRegister = async (registerParam: TRegisterParam, authToken?: string) => {
+    const response = await register(registerParam, authToken)
     const success = response.status < 400
     if (success) {
       removeCookie('auth')
