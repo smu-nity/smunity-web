@@ -17,7 +17,7 @@ const ResultPage = () => {
     'BALANCE'
   ]
 
-  const [isOpenModal, setIsOpenModal] = useState('')
+  const [activeModal, setActiveModal] = useState<string | null>(null)
 
   return (
     <div className="lcontainer">
@@ -28,22 +28,22 @@ const ResultPage = () => {
         {categorys.map((category, index) => (
           <ResultDetailItem
             category={category}
-            openModal={() => setIsOpenModal(category)}
+            openModal={() => setActiveModal(category)}
             key={index}
           />
         ))}
         {domains.map((domain, index) => (
           <ResultCultureItem
             domain={domain}
-            openModal={() => setIsOpenModal(domain)}
+            openModal={() => setActiveModal(domain)}
             key={index}
           />
         ))}
       </div>
       {modals.map((modal, index) => (
         <ModalContainer
-          isOpen={modal === isOpenModal}
-          onClose={() => setIsOpenModal('')}
+          isOpen={modal === activeModal}
+          onClose={() => setActiveModal(null)}
           type={modal}
           children={<ResultContainer type={modal} />}
           key={index}
