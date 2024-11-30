@@ -4,6 +4,7 @@ import {Course} from '../../types/Course'
 import {fetchCourses} from '../../api/courseApi'
 import {Result} from '../../types/Result'
 import Modal from '../Modal'
+import CourseUpdateForm from './CourseUpdateForm'
 
 const CourseBox = () => {
   const [courses, setCourses] = useState<Result<Course>>()
@@ -77,7 +78,7 @@ const CourseBox = () => {
         title={'기이수과목 업데이트'}
         explanation={'샘물 통합로그인을 통해 재학생 인증을 진행합니다.'}
         link
-        children={null}
+        children={<CourseUpdateForm />}
       />
     </>
   )
