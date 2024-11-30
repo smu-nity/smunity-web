@@ -4,6 +4,7 @@ import {fetchMember} from '../../api/memberApi'
 import InfoTable from './InfoTable'
 import Modal from '../Modal'
 import Section from './Section'
+import InfoUpdateForm from './InfoUpdateForm'
 
 const modals: any[] = [
   {
@@ -11,7 +12,7 @@ const modals: any[] = [
     title: '내 정보 업데이트',
     explanation: '샘물 통합로그인을 통해 재학생 인증을 진행합니다.',
     link: true,
-    children: null
+    children: <InfoUpdateForm />
   },
   {id: 'password', title: '비밀번호 변경', children: null},
   {

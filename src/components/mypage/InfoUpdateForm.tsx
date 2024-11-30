@@ -1,22 +1,22 @@
 import {useState} from 'react'
 import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
+import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 
 const CourseUpdateForm = () => {
   const [password, setPassword] = useState('')
-  const {moveToPath}: TCustomMove = useCustomMove()
   const {getUsername}: TCustomAccount = useCustomAccount()
-  const {uploadCourse}: TCustomMypage = useCustomMypage()
+  const {memberUpdate}: TCustomMypage = useCustomMypage()
+  const {reload}: TCustomMove = useCustomMove()
   const username = getUsername()
 
   const handleClick = () => {
     const loginParams = {username, password}
     password
-      ? uploadCourse(loginParams).then(success => {
+      ? memberUpdate(loginParams).then(success => {
           if (success) {
-            alert('기이수과목이 업데이트 되었습니다.')
-            moveToPath('/mypage/result')
+            alert('회원 정보가 업데이트 되었습니다.')
+            reload()
           }
         })
       : alert('비밀번호를 입력해주세요.')

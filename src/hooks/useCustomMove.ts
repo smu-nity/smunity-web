@@ -2,6 +2,7 @@ import {useNavigate} from 'react-router-dom'
 
 export interface TCustomMove {
   moveToPath: (path: string) => void
+  reload: () => void
 }
 
 const useCustomMove = (): TCustomMove => {
@@ -12,7 +13,11 @@ const useCustomMove = (): TCustomMove => {
     navigate({pathname: path}, {replace: true})
   }
 
-  return {moveToPath}
+  const reload = () => {
+    navigate(0)
+  }
+
+  return {moveToPath, reload}
 }
 
 export default useCustomMove
