@@ -47,14 +47,14 @@ const InfoBox = () => {
           onClick={() => handleOpenModal('info')}>
           <InfoTable member={member} />
         </Section>
-
+        <hr style={{margin: '1.6rem 0 0.8rem 0'}} />
         <Section
           icon="fas fa-key"
           title="비밀번호 변경"
           buttonLabel="변경하기"
           onClick={() => handleOpenModal('password')}
         />
-
+        <hr style={{margin: '0.8rem 0 0.8rem 0'}} />
         <Section
           icon="fas fa-exclamation-triangle"
           title="회원 탈퇴"

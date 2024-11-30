@@ -23,8 +23,8 @@ const Section: React.FC<SectionProps> = ({
         {buttonLabel}
       </button>
     </div>
+    {children && <hr />}
     {children}
-    <hr style={{margin: '0.8rem 0'}} />
   </>
 )
 
