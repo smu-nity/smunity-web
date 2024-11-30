@@ -5,6 +5,7 @@ import InfoTable from './InfoTable'
 import Modal from '../Modal'
 import Section from './Section'
 import InfoUpdateForm from './InfoUpdateForm'
+import ChangePasswordFrom from './ChangePasswordForm'
 
 const modals: any[] = [
   {
@@ -14,7 +15,7 @@ const modals: any[] = [
     link: true,
     children: <InfoUpdateForm />
   },
-  {id: 'password', title: '비밀번호 변경', children: null},
+  {id: 'password', title: '비밀번호 변경', children: <ChangePasswordFrom />},
   {
     id: 'quit',
     title: '회원 탈퇴',

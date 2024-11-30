@@ -1,10 +1,11 @@
 import {TLoginParam} from '../api/accountApi'
 import {courseUpload} from '../api/courseApi'
-import {updateMember} from '../api/memberApi'
+import {changePassword, TPasswordParam, updateMember} from '../api/memberApi'
 
 export interface TCustomMypage {
   uploadCourse: (loginParam: TLoginParam) => Promise<boolean>
   memberUpdate: (loginParam: TLoginParam) => Promise<boolean>
+  passwordChange: (passwordParam: TPasswordParam) => Promise<boolean>
 }
 
 const useCustomMypage = (): TCustomMypage => {
@@ -22,7 +23,14 @@ const useCustomMypage = (): TCustomMypage => {
     return success
   }
 
-  return {uploadCourse, memberUpdate}
+  const passwordChange = async (passwordParam: TPasswordParam) => {
+    const response = await changePassword(passwordParam)
+    const success = response.status < 400
+    !success && alert(response.data.message)
+    return success
+  }
+
+  return {uploadCourse, memberUpdate, passwordChange}
 }
 
 export default useCustomMypage
