@@ -20,7 +20,6 @@ const modals: any[] = [
     id: 'quit',
     title: '회원 탈퇴',
     explanation: '스뮤니티에서 탈퇴합니다. (회원 정보 모두 삭제)',
-    link: true,
     children: null
   }
 ]

@@ -880,6 +880,7 @@ input[type='checkbox'] + label {
   height: 13px;
   border: 1px solid #000000;
   cursor: pointer;
+  margin: 0 0.5rem;
 }
 input[type='checkbox']:checked + label {
   background-image: url('/public/svg/checker-on.svg');
@@ -1646,7 +1647,6 @@ body:not(.device-touch) .suc_btn {
 }
 .info_agree {
   padding-top: 1rem;
-  text-align: right;
 }
 .logo_img {
   height: 60px;
