@@ -28,10 +28,12 @@ const QuestionButtonContainer: React.FC<QuestionButtonContainerProps> = ({
           <>
             <Link
               to={`/qna/questions/${questionId}/answer/modify`}
-              className="btn btn-sm btn-warning">
+              className="btn btn-sm btn-warning btn-margin">
               수정
             </Link>
-            <button onClick={handleDelete} className="delete btn btn-sm btn-danger">
+            <button
+              onClick={handleDelete}
+              className="delete btn btn-sm btn-danger btn-margin">
               삭제
             </button>
           </>
