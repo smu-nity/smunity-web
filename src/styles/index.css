@@ -1201,7 +1201,7 @@ input[type='checkbox'] {
   display: flex;
   position: relative;
   align-content: center;
-  margin-top: 1.5rem;
+  margin: 1rem;
   padding-left: 12rem;
   padding-right: 12rem;
 }
