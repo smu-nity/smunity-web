@@ -2129,6 +2129,13 @@ body:not(.device-touch) .suc_btn {
     font-size: 1.2rem;
     margin: 1rem 0.8rem;
   }
+  .info_agree {
+    font-size: 0.85rem;
+  }
+  input[type='checkbox'] + label {
+    width: 0.6rem;
+    height: 0.6rem;
+  }
 }
 @media screen and (max-width: 575px) {
   .form-check {

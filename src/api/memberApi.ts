@@ -17,3 +17,6 @@ export const updateMember = async (loginParam: TLoginParam): Promise<AxiosRespon
 
 export const changePassword = async (passwordParam: TPasswordParam) =>
   await jwtAxios.patch('/api/v1/members/me/password', passwordParam)
+
+export const deleteMember = async (): Promise<AxiosResponse> =>
+  await jwtAxios.delete('/api/v1/members/me')

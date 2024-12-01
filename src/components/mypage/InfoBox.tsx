@@ -6,6 +6,7 @@ import Modal from '../Modal'
 import Section from './Section'
 import InfoUpdateForm from './InfoUpdateForm'
 import ChangePasswordFrom from './ChangePasswordForm'
+import QuitForm from './QuitForm'
 
 const modals: any[] = [
   {
@@ -18,9 +19,9 @@ const modals: any[] = [
   {id: 'password', title: '비밀번호 변경', children: <ChangePasswordFrom />},
   {
     id: 'quit',
-    title: '회원 탈퇴',
-    explanation: '스뮤니티에서 탈퇴합니다. (회원 정보 모두 삭제)',
-    children: null
+    title: '탈퇴 안내',
+    explanation: '회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요.',
+    children: <QuitForm />
   }
 ]
 
