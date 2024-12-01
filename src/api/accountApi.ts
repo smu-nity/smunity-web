@@ -17,9 +17,6 @@ export type TRegisterParam = {
 export const login = async (loginParam: TLoginParam): Promise<AxiosResponse> =>
   await api.post('/api/v1/accounts/login', loginParam)
 
-export const auth = async (loginParam: TLoginParam): Promise<AxiosResponse> =>
-  await api.post('/api/v1/auth/register', loginParam)
-
 export const register = async (
   registerParam: TRegisterParam,
   authToken?: string
