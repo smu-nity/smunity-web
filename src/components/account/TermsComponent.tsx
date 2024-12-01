@@ -25,6 +25,7 @@ const TermsComponent = () => {
             className="link_site"
             target="_blank"
             href="https://www.smu.ac.kr/kor/life/curriculum.do"
+            style={{marginLeft: '0.3rem'}}
             rel="noreferrer">
             전공
           </a>
@@ -32,6 +33,7 @@ const TermsComponent = () => {
             className="link_site"
             target="_blank"
             href="https://www.smu.ac.kr/smgs/curriculum/culture1.do"
+            style={{marginLeft: '0.3rem'}}
             rel="noreferrer">
             교양
           </a>

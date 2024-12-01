@@ -28,7 +28,7 @@ const QuestionButtonContainer: React.FC<QuestionButtonContainerProps> = ({
         {isSuperuser && !question.answered && (
           <Link
             to={`/qna/questions/${question.id}/answer`}
-            className="btn btn-sm btn-primary">
+            className="btn btn-sm btn-primary btn-margin">
             답변 등록
           </Link>
         )}
@@ -37,10 +37,12 @@ const QuestionButtonContainer: React.FC<QuestionButtonContainerProps> = ({
           <>
             <Link
               to={`/qna/questions/${question.id}/modify`}
-              className="btn btn-sm btn-warning">
+              className="btn btn-sm btn-warning btn-margin">
               수정
             </Link>
-            <button onClick={handleDelete} className="delete btn btn-sm btn-danger">
+            <button
+              onClick={handleDelete}
+              className="delete btn btn-sm btn-danger btn-margin">
               삭제
             </button>
           </>

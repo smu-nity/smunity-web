@@ -5,6 +5,8 @@ export interface TCustomQuestion {
   doFetchQuestion: (id: string) => Promise<Question>
   doCreateQuestion: (questionRequest: QuestionRequest) => Promise<boolean>
   doUpdateQuestion: (id: string, questionRequest: QuestionRequest) => Promise<boolean>
+  formatDate: (createdAt: string) => string
+  formatTime: (createdAt: string) => string
 }
 
 const useCustomQuestion = (): TCustomQuestion => {
@@ -29,7 +31,24 @@ const useCustomQuestion = (): TCustomQuestion => {
     return success
   }
 
-  return {doFetchQuestion, doCreateQuestion, doUpdateQuestion}
+  const formatDate = (createdAt: string) => {
+    const date = new Date(createdAt)
+    const year = date.getFullYear().toString().slice(-2)
+    const month = (date.getMonth() + 1).toString().padStart(2, '0')
+    const day = date.getDate().toString().padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
+  const formatTime = (createdAt: string) => {
+    const date = new Date(createdAt)
+    const month = (date.getMonth() + 1).toString().padStart(2, '0')
+    const day = date.getDate().toString().padStart(2, '0')
+    const hours = date.getHours().toString().padStart(2, '0')
+    const minutes = date.getMinutes().toString().padStart(2, '0')
+    return `${month}-${day} ${hours}:${minutes}`
+  }
+
+  return {doFetchQuestion, doCreateQuestion, doUpdateQuestion, formatDate, formatTime}
 }
 
 export default useCustomQuestion
