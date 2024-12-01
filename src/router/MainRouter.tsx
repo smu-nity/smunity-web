@@ -16,6 +16,7 @@ import QuestionCreatePage from '../pages/qna/QuestionCreatePage'
 import QuestionModifyPage from '../pages/qna/QuestionModifyPage'
 import AnswerCreatePage from '../pages/qna/AnswerCreatePage'
 import AnswerModifyPage from '../pages/qna/AnswerModifyPage'
+import PasswordResetPage from '../pages/account/PasswordResetPage'
 
 const ProtectedRoute = ({
   children,
@@ -50,6 +51,7 @@ const MainRouter = (): JSX.Element => {
             <Route path="login" element={<LoginPage />} />
             <Route path="agree" element={<AgreePage />} />
             <Route path="register" element={<RegisterPage />} />
+            <Route path="password/reset" element={<PasswordResetPage />} />
           </Route>
           <Route
             path="/mypage"

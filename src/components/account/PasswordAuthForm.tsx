@@ -20,7 +20,7 @@ const PasswordAuthForm = () => {
   const handleClick = () => {
     loginParams.username && loginParams.password
       ? doPasswordAuth(loginParams).then(success => {
-          success && moveToPath('/accounts/find')
+          success && moveToPath('/accounts/password/reset')
         })
       : alert('학번과 비밀번호를 입력해주세요.')
   }

@@ -15,6 +15,7 @@ export interface TCustomAgree {
   doAuth: (loginParam: TLoginParam) => Promise<boolean>
   doPasswordAuth: (loginParam: TLoginParam) => Promise<boolean>
   isAuth: () => boolean
+  isAuthPassword: () => boolean
   removeAuth: () => void
 }
 
@@ -57,6 +58,10 @@ const useCustomAgree = (): TCustomAgree => {
     return !!authState.username
   }
 
+  const isAuthPassword = () => {
+    return !!authPasswordState.username
+  }
+
   const removeAuth = () => {
     removeCookie('auth')
     resetAgreeState()
@@ -73,6 +78,7 @@ const useCustomAgree = (): TCustomAgree => {
     doAuth,
     doPasswordAuth,
     isAuth,
+    isAuthPassword,
     removeAuth
   }
 }

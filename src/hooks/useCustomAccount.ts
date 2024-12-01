@@ -5,6 +5,7 @@ import signinState from '../atoms/accountState'
 import {removeCookie, setCookie} from '../util/cookieUtil'
 import useCustomAgree, {TCustomAgree} from './useCustomAgree'
 import useCustomMove, {TCustomMove} from './useCustomMove'
+import {resetPassword, TPasswordParam} from '../api/memberApi'
 
 export interface TCustomAccount {
   loginState: Member
@@ -15,6 +16,7 @@ export interface TCustomAccount {
   isLogin: () => boolean
   isAdmin: () => boolean
   getUsername: () => string
+  passwordReset: (passwordParam: TPasswordParam, authToken?: string) => Promise<boolean>
 }
 
 const useCustomAccount = (): TCustomAccount => {
@@ -69,6 +71,13 @@ const useCustomAccount = (): TCustomAccount => {
     return loginState.username || ''
   }
 
+  const passwordReset = async (passwordParam: TPasswordParam, authToken?: string) => {
+    const response = await resetPassword(passwordParam, authToken)
+    const success = response.status < 400
+    !success && alert(response.data.message)
+    return success
+  }
+
   const requestParam = (registerParam: TRegisterParam) => {
     return {
       username: registerParam.username,
@@ -84,7 +93,8 @@ const useCustomAccount = (): TCustomAccount => {
     saveAsCookie,
     isLogin,
     isAdmin,
-    getUsername
+    getUsername,
+    passwordReset
   }
 }
 
