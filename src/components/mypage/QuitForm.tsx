@@ -27,7 +27,12 @@ const QuitForm = () => {
       </div>
       <div className="info_agree" style={{textAlign: 'left'}}>
         <label style={{cursor: 'pointer'}}>
-          <input type="checkbox" id="agree" onClick={() => setAgree(!agree)} />
+          <input
+            type="checkbox"
+            id="agree"
+            onClick={() => setAgree(!agree)}
+            checked={agree}
+          />
           <label htmlFor="agree"></label>
           안내 사항을 모두 확인하였으며, 이에 동의합니다.
         </label>

@@ -2,7 +2,7 @@ import TermsComponent from './TermsComponent'
 import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
 
 const TermsBox = () => {
-  const {clickCheckBox}: TCustomAgree = useCustomAgree()
+  const {agreeState, clickCheckBox}: TCustomAgree = useCustomAgree()
 
   return (
     <div className="container" style={{width: 'auto'}}>
@@ -15,7 +15,12 @@ const TermsBox = () => {
         </div>
         <div className="info_agree">
           <label style={{cursor: 'pointer'}}>
-            <input type="checkbox" onClick={clickCheckBox} id="agree" />
+            <input
+              id="agree"
+              type="checkbox"
+              onClick={clickCheckBox}
+              checked={agreeState}
+            />
             <label htmlFor="agree"></label>
             다음 이용약관에 동의합니다.
           </label>

@@ -3,6 +3,7 @@ import {Member} from '../types/Member'
 import {useRecoilState, useResetRecoilState} from 'recoil'
 import signinState from '../atoms/accountState'
 import {removeCookie, setCookie} from '../util/cookieUtil'
+import useCustomAgree, {TCustomAgree} from './useCustomAgree'
 
 export interface TCustomAccount {
   loginState: Member
@@ -18,6 +19,7 @@ export interface TCustomAccount {
 const useCustomAccount = (): TCustomAccount => {
   const [loginState, setLoginState] = useRecoilState(signinState)
   const resetState = useResetRecoilState(signinState)
+  const {removeAuth}: TCustomAgree = useCustomAgree()
 
   //----------로그인 함수
   const doLogin = async (loginParam: TLoginParam) => {
@@ -32,7 +34,7 @@ const useCustomAccount = (): TCustomAccount => {
     const response = await register(registerParam, authToken)
     const success = response.status < 400
     if (success) {
-      removeCookie('auth')
+      removeAuth()
       return doLogin(requestParam(registerParam))
     } else {
       alert(response.data.message)

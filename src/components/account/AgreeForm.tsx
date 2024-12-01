@@ -21,8 +21,8 @@ const AgreeForm = () => {
   }
 
   const handleClickAuth = () => {
-    authParams.username && authParams.password
-      ? agreeState
+    agreeState
+      ? authParams.username && authParams.password
         ? doAuth(authParams).then(success => {
             success && moveToPath('/accounts/register')
           })
