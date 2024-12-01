@@ -18,14 +18,14 @@ const useCustomMypage = (): TCustomMypage => {
   const uploadCourse = async (loginParam: TLoginParam) => {
     const response = await courseUpload(loginParam)
     const success = response.status < 400
-    !success && alert(response.data.message)
+    !success && alert('샘물 포털 아이디 및 비밀번호가 일치하지 않습니다.')
     return success
   }
 
   const memberUpdate = async (loginParam: TLoginParam) => {
     const response = await updateMember(loginParam)
     const success = response.status < 400
-    !success && alert(response.data.message)
+    !success && alert('샘물 포털 아이디 및 비밀번호가 일치하지 않습니다.')
     return success
   }
 
