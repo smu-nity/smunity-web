@@ -880,6 +880,7 @@ input[type='checkbox'] + label {
   height: 13px;
   border: 1px solid #000000;
   cursor: pointer;
+  margin: 0 0.5rem;
 }
 input[type='checkbox']:checked + label {
   background-image: url('/public/svg/checker-on.svg');
@@ -1200,7 +1201,7 @@ input[type='checkbox'] {
   display: flex;
   position: relative;
   align-content: center;
-  margin-top: 1.5rem;
+  margin: 1rem;
   padding-left: 12rem;
   padding-right: 12rem;
 }
@@ -1646,7 +1647,6 @@ body:not(.device-touch) .suc_btn {
 }
 .info_agree {
   padding-top: 1rem;
-  text-align: right;
 }
 .logo_img {
   height: 60px;
@@ -2128,6 +2128,13 @@ body:not(.device-touch) .suc_btn {
     height: auto;
     font-size: 1.2rem;
     margin: 1rem 0.8rem;
+  }
+  .info_agree {
+    font-size: 0.85rem;
+  }
+  input[type='checkbox'] + label {
+    width: 0.6rem;
+    height: 0.6rem;
   }
 }
 @media screen and (max-width: 575px) {

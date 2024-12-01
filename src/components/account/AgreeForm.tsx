@@ -21,11 +21,13 @@ const AgreeForm = () => {
   }
 
   const handleClickAuth = () => {
-    authParams.username && authParams.password
-      ? doAuth(authParams).then(success => {
-          success && moveToPath('/accounts/register')
-        })
-      : alert('학번과 샘물 비밀번호를 입력해주세요.')
+    agreeState
+      ? authParams.username && authParams.password
+        ? doAuth(authParams).then(success => {
+            success && moveToPath('/accounts/register')
+          })
+        : alert('학번과 샘물 비밀번호를 입력해주세요.')
+      : alert('이용약관에 동의해주세요.')
   }
 
   useEffect(() => {
@@ -85,7 +87,7 @@ const AgreeForm = () => {
                 />
               </div>
               <div id="login_btn">
-                {agreeState ? (
+                {
                   <input
                     type="submit"
                     className="btn btn-primary button-sm"
@@ -93,11 +95,7 @@ const AgreeForm = () => {
                     style={{marginTop: '1rem'}}
                     onClick={handleClickAuth}
                   />
-                ) : (
-                  <div className="login_btn_default" style={{color: 'rgb(1, 42, 127)'}}>
-                    이용약관에 동의해주세요.
-                  </div>
-                )}
+                }
               </div>
             </div>
           </div>

@@ -3,6 +3,8 @@ import {Member} from '../types/Member'
 import {useRecoilState, useResetRecoilState} from 'recoil'
 import signinState from '../atoms/accountState'
 import {removeCookie, setCookie} from '../util/cookieUtil'
+import useCustomAgree, {TCustomAgree} from './useCustomAgree'
+import useCustomMove, {TCustomMove} from './useCustomMove'
 
 export interface TCustomAccount {
   loginState: Member
@@ -12,11 +14,14 @@ export interface TCustomAccount {
   saveAsCookie: (data: Member) => void
   isLogin: () => boolean
   isAdmin: () => boolean
+  getUsername: () => string
 }
 
 const useCustomAccount = (): TCustomAccount => {
   const [loginState, setLoginState] = useRecoilState(signinState)
   const resetState = useResetRecoilState(signinState)
+  const {removeAuth}: TCustomAgree = useCustomAgree()
+  const {moveToPath}: TCustomMove = useCustomMove()
 
   //----------로그인 함수
   const doLogin = async (loginParam: TLoginParam) => {
@@ -31,7 +36,8 @@ const useCustomAccount = (): TCustomAccount => {
     const response = await register(registerParam, authToken)
     const success = response.status < 400
     if (success) {
-      removeCookie('auth')
+      moveToPath('/accounts/login')
+      removeAuth()
       return doLogin(requestParam(registerParam))
     } else {
       alert(response.data.message)
@@ -59,6 +65,10 @@ const useCustomAccount = (): TCustomAccount => {
     return loginState.memberRole === 'ROLE_ADMIN'
   }
 
+  const getUsername = () => {
+    return loginState.username || ''
+  }
+
   const requestParam = (registerParam: TRegisterParam) => {
     return {
       username: registerParam.username,
@@ -73,7 +83,8 @@ const useCustomAccount = (): TCustomAccount => {
     doLogout,
     saveAsCookie,
     isLogin,
-    isAdmin
+    isAdmin,
+    getUsername
   }
 }
 

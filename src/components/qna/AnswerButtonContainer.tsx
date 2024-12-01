@@ -14,7 +14,7 @@ const QuestionButtonContainer: React.FC<QuestionButtonContainerProps> = ({
   const {moveToPath}: TCustomMove = useCustomMove()
 
   const handleDelete = async () => {
-    if (window.confirm('정말로 삭제하시겠습니까?')) {
+    if (window.confirm('선택한 답변을 정말 삭제하시겠습니까?')) {
       await deleteAnswer(questionId)
       moveToPath(`/qna/questions/${questionId}`)
     }
