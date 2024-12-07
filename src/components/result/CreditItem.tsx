@@ -6,6 +6,7 @@ interface CreditItemProps {
   line?: boolean
   red?: boolean
   animated?: boolean
+  culture?: boolean
 }
 
 const CreditItem: React.FC<CreditItemProps> = ({
@@ -13,7 +14,8 @@ const CreditItem: React.FC<CreditItemProps> = ({
   text,
   line = false,
   red = false,
-  animated = false
+  animated = false,
+  culture = false
 }) => {
   const [animatedCredit, setAnimatedCredit] = useState(0)
 
@@ -42,6 +44,7 @@ const CreditItem: React.FC<CreditItemProps> = ({
         className={`result_content_number 
           ${line && 'result_content_line'} ${red && 'rednumber'}`}>
         {animated ? animatedCredit : credit}
+        {culture && '개'}
       </div>
       <div className="result_content_info">{text}</div>
     </div>
