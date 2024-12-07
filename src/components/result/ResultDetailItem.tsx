@@ -37,7 +37,12 @@ const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}
       </div>
       <div className="result_container">
         <CreditItem credit={courses.status.total} text="총 기준 학점" />
-        <CreditItem credit={courses.status.completed} text="총 이수 학점" line={true} />
+        <CreditItem
+          credit={courses.status.completed}
+          text="총 이수 학점"
+          line={true}
+          animated
+        />
         <CreditItem credit={courses.status.required} text="필요 학점" red={true} />
         <PieChart percent={courses.status.completion} />
       </div>
