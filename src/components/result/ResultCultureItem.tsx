@@ -35,9 +35,19 @@ const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain, openModal}
         </div>
       </div>
       <div className="result_container">
-        <CreditItem credit={cultures.status.total} text={`기준 ${labelType}`} />
-        <CreditItem credit={cultures.status.completed} text={`이수 ${labelType}`} />
-        <CreditItem credit={cultures.status.required} text={`필요 ${labelType}`} red />
+        <CreditItem credit={cultures.status.total} text={`기준 ${labelType}`} culture />
+        <CreditItem
+          credit={cultures.status.completed}
+          text={`이수 ${labelType}`}
+          animated
+          culture
+        />
+        <CreditItem
+          credit={cultures.status.required}
+          text={`필요 ${labelType}`}
+          red
+          culture
+        />
         <PieChart percent={cultures.status.completion} />
       </div>
     </div>

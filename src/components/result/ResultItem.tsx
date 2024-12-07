@@ -23,11 +23,11 @@ const ResultItem: React.FC = () => {
       </div>
       <div className="result_container">
         <CreditItem credit={credit.total} text="총 기준 학점" />
-        <CreditItem credit={credit.completed} text="총 이수 학점" line={true} />
-        <CreditItem credit={credit.major} text="전공" />
-        <CreditItem credit={credit.culture} text="교양" />
-        <CreditItem credit={credit.etc} text="일반" line={true} />
-        <CreditItem credit={credit.required} text="필요 학점" red={true} />
+        <CreditItem credit={credit.completed} text="총 이수 학점" line animated />
+        <CreditItem credit={credit.major} text="전공" animated />
+        <CreditItem credit={credit.culture} text="교양" animated />
+        <CreditItem credit={credit.etc} text="일반" line animated />
+        <CreditItem credit={credit.required} text="필요 학점" red />
         <PieChart percent={credit.completion} />
       </div>
     </div>
