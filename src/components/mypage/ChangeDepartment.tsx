@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import {fetchDepartments} from '../../api/departmentApi'
+import {fetchEditableDepartments} from '../../api/departmentApi'
 import {Base} from '../../types/Result'
-import {Department} from '../../types/Department'
+import {DepartmentEditable} from '../../types/DepartmentEditable'
 import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 
@@ -12,11 +12,11 @@ interface ChangeDepartmentProps {
 const ChangeDepartment: React.FC<ChangeDepartmentProps> = ({department}) => {
   const {departmentChange}: TCustomMypage = useCustomMypage()
   const {reload}: TCustomMove = useCustomMove()
-  const [departments, setDepartments] = useState<Base<Department>>()
+  const [departments, setDepartments] = useState<Base<DepartmentEditable>>()
   const [selectedDepartmentId, setSelectedDepartmentId] = useState<number | undefined>()
 
   useEffect(() => {
-    fetchDepartments({isEditable: 'true'}).then((data: Base<Department>) => {
+    fetchEditableDepartments().then((data: Base<DepartmentEditable>) => {
       setDepartments(data)
       const initialDepartment = data.content.find(dept => dept.name === department)
       if (initialDepartment) {
