@@ -19,7 +19,7 @@ const InfoTable: React.FC<InfoTableProps> = ({member}) => {
       <tr>
         <td className="my_box_table_1st_td">학과</td>
         {member?.deptEditable ? (
-          <ChangeDepartment />
+          <ChangeDepartment department={member?.department} />
         ) : (
           <td>
             <a

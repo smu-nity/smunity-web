@@ -5,16 +5,25 @@ import {Department} from '../../types/Department'
 import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 
-const ChangeDepartment = () => {
+interface ChangeDepartmentProps {
+  department: string
+}
+
+const ChangeDepartment: React.FC<ChangeDepartmentProps> = ({department}) => {
   const {departmentChange}: TCustomMypage = useCustomMypage()
   const {reload}: TCustomMove = useCustomMove()
   const [departments, setDepartments] = useState<Base<Department>>()
+  const [selectedDepartmentId, setSelectedDepartmentId] = useState<number | undefined>()
 
   useEffect(() => {
     fetchDepartments({isEditable: 'true'}).then((data: Base<Department>) => {
       setDepartments(data)
+      const initialDepartment = data.content.find(dept => dept.name === department)
+      if (initialDepartment) {
+        setSelectedDepartmentId(initialDepartment.id)
+      }
     })
-  }, [])
+  }, [department])
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const departmentId: number = parseInt(event.target.value, 10)
@@ -28,7 +37,7 @@ const ChangeDepartment = () => {
 
   return (
     <td className="regi_box" style={{width: '90%', marginLeft: '0', marginRight: '1rem'}}>
-      <select id="major" onChange={handleSelectChange}>
+      <select id="major" value={selectedDepartmentId} onChange={handleSelectChange}>
         {departments?.content?.map(department => (
           <option key={department.id} value={department.id}>
             {department.name}
