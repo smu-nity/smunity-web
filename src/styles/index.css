@@ -1366,7 +1366,7 @@ input[type='checkbox'] {
   background: none;
   border: 0.01px solid rgb(216, 216, 216);
   padding: 0px 10px 0px 10px;
-  margin-top: 0.5rem;
+  margin: 0.5rem 0 0 0;
   outline: 0;
   height: 2.8rem;
 }

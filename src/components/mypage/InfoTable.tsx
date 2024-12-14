@@ -1,4 +1,5 @@
 import {MemberInfo} from '../../types/MemberInfo'
+import ChangeDepartment from './ChangeDepartment'
 
 interface InfoTableProps {
   member?: MemberInfo
@@ -17,11 +18,19 @@ const InfoTable: React.FC<InfoTableProps> = ({member}) => {
       </tr>
       <tr>
         <td className="my_box_table_1st_td">학과</td>
-        <td>
-          <a className="link_site" href="" target="_blank" rel="noopener noreferrer">
-            {member?.department}
-          </a>
-        </td>
+        {member?.deptEditable ? (
+          <ChangeDepartment department={member?.department} />
+        ) : (
+          <td>
+            <a
+              className="link_site"
+              href={`https://www.smu.ac.kr/_custom/smu/_app/curriculum.do?srSust=${member?.deptCode}&srShyr=all`}
+              target="_blank"
+              rel="noopener noreferrer">
+              {member?.department}
+            </a>
+          </td>
+        )}
       </tr>
     </table>
   )
