@@ -18,7 +18,11 @@ const InfoTable: React.FC<InfoTableProps> = ({member}) => {
       <tr>
         <td className="my_box_table_1st_td">학과</td>
         <td>
-          <a className="link_site" href="" target="_blank" rel="noopener noreferrer">
+          <a
+            className="link_site"
+            href={`https://www.smu.ac.kr/_custom/smu/_app/curriculum.do?srSust=${member?.deptCode}&srShyr=all`}
+            target="_blank"
+            rel="noopener noreferrer">
             {member?.department}
           </a>
         </td>
