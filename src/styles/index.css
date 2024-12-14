@@ -200,12 +200,54 @@ button:hover:after {
   font-size: 0.9rem;
   font-weight: bold;
   letter-spacing: 0.8px;
-  width: 11.5rem;
+  width: 13rem;
   clear: right;
   float: right;
   text-align: left;
   justify-content: right;
   align-items: center;
+}
+.total__item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.total__item__title {
+  text-align: left;
+}
+.total__item__count {
+  text-align: right;
+}
+.department-stats {
+  max-height: 8rem;
+  overflow-y: auto;
+}
+.result__item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background-color: #f5f5f5;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+.result__item:hover {
+  background-color: #e0e0e0;
+}
+.result__item__title {
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+.result__item__count {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #555;
 }
 .popup_content {
   margin: 0 auto;
@@ -1887,6 +1929,11 @@ body:not(.device-touch) .suc_btn {
 }
 .btn-margin {
   margin: 0 0.1rem;
+}
+@media screen and (max-width: 1200px) {
+  .department-stats {
+    max-height: 5rem;
+  }
 }
 @media screen and (max-width: 1024px) {
   .main-img {
