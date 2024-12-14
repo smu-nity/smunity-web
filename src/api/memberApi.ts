@@ -8,6 +8,10 @@ export type TPasswordParam = {
   password: string
 }
 
+export type TDepartmentParam = {
+  departmentId: number
+}
+
 export const fetchMember = async (): Promise<MemberInfo> => {
   const res = await jwtAxios.get('/api/v1/members/me')
   return res.data
@@ -18,6 +22,9 @@ export const updateMember = async (loginParam: TLoginParam): Promise<AxiosRespon
 
 export const changePassword = async (passwordParam: TPasswordParam) =>
   await jwtAxios.patch('/api/v1/members/me/password', passwordParam)
+
+export const changeDepartment = async (departmentParam: TDepartmentParam) =>
+  await jwtAxios.patch('/api/v1/members/me/department', departmentParam)
 
 export const deleteMember = async (): Promise<AxiosResponse> =>
   await jwtAxios.delete('/api/v1/members/me')

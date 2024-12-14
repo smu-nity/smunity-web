@@ -1,8 +1,10 @@
 import {TLoginParam} from '../api/accountApi'
 import {courseUpload} from '../api/courseApi'
 import {
+  changeDepartment,
   changePassword,
   deleteMember,
+  TDepartmentParam,
   TPasswordParam,
   updateMember
 } from '../api/memberApi'
@@ -11,6 +13,7 @@ export interface TCustomMypage {
   uploadCourse: (loginParam: TLoginParam) => Promise<boolean>
   memberUpdate: (loginParam: TLoginParam) => Promise<boolean>
   passwordChange: (passwordParam: TPasswordParam) => Promise<boolean>
+  departmentChange: (departmentParam: TDepartmentParam) => Promise<boolean>
   memberDelete: () => Promise<boolean>
 }
 
@@ -36,6 +39,13 @@ const useCustomMypage = (): TCustomMypage => {
     return success
   }
 
+  const departmentChange = async (departmentParam: TDepartmentParam) => {
+    const response = await changeDepartment(departmentParam)
+    const success = response.status < 400
+    !success && alert(response.data.message)
+    return success
+  }
+
   const memberDelete = async () => {
     const response = await deleteMember()
     const success = response.status < 400
@@ -43,7 +53,7 @@ const useCustomMypage = (): TCustomMypage => {
     return success
   }
 
-  return {uploadCourse, memberUpdate, passwordChange, memberDelete}
+  return {uploadCourse, memberUpdate, passwordChange, departmentChange, memberDelete}
 }
 
 export default useCustomMypage

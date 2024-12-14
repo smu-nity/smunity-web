@@ -2,8 +2,12 @@ import {useEffect, useState} from 'react'
 import {fetchDepartments} from '../../api/departmentApi'
 import {Base} from '../../types/Result'
 import {Department} from '../../types/Department'
+import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
+import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 
 const ChangeDepartment = () => {
+  const {departmentChange}: TCustomMypage = useCustomMypage()
+  const {reload}: TCustomMove = useCustomMove()
   const [departments, setDepartments] = useState<Base<Department>>()
 
   useEffect(() => {
@@ -12,9 +16,19 @@ const ChangeDepartment = () => {
     })
   }, [])
 
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const departmentId: number = parseInt(event.target.value, 10)
+    departmentChange({departmentId: departmentId}).then(success => {
+      if (success) {
+        alert('학과가 업데이트 되었습니다.')
+        reload()
+      }
+    })
+  }
+
   return (
     <td className="regi_box" style={{width: '90%', marginLeft: '0', marginRight: '1rem'}}>
-      <select id="major">
+      <select id="major" onChange={handleSelectChange}>
         {departments?.content?.map(department => (
           <option key={department.id} value={department.id}>
             {department.name}
