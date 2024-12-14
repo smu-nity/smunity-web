@@ -1,10 +1,25 @@
+import {useEffect, useState} from 'react'
+import {fetchDepartments} from '../../api/departmentApi'
+import {Base} from '../../types/Result'
+import {Department} from '../../types/Department'
+
 const ChangeDepartment = () => {
+  const [departments, setDepartments] = useState<Base<Department>>()
+
+  useEffect(() => {
+    fetchDepartments({isEditable: 'true'}).then((data: Base<Department>) => {
+      setDepartments(data)
+    })
+  }, [])
+
   return (
     <td className="regi_box" style={{width: '90%', marginLeft: '0', marginRight: '1rem'}}>
       <select id="major">
-        <option value="7">핀테크전공</option>
-        <option value="8">빅데이터융합전공</option>
-        <option value="9">스마트생산전공</option>
+        {departments?.content?.map(department => (
+          <option key={department.id} value={department.id}>
+            {department.name}
+          </option>
+        ))}
       </select>
     </td>
   )
