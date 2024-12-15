@@ -44,7 +44,7 @@ const TargetTable = () => {
                     href={`https://www.smu.ac.kr/_custom/smu/_app/curriculum.do?srSust=${department.code}&srShyr=all`}
                     target="_blank"
                     rel="noopener noreferrer">
-                    <span className="desktop-only">{department.name}</span>
+                    <span className="desktop-only margin-r3">{department.name}</span>
                     교육과정
                   </a>
                 </td>

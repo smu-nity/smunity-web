@@ -7,29 +7,29 @@ const Footer = () => {
         <h4>
           <a
             href="https://github.com/smu-nity/smunity-server"
-            className="footer_link"
+            className="footer_link margin-3"
             target="_blank"
             rel="noreferrer">
             GitHub
-          </a>{' '}
-          |{' '}
-          <Link to="/qna/privacy" className="footer_link">
+          </a>
+          |
+          <Link to="/qna/privacy" className="footer_link margin-3">
             개인정보처리방침
-          </Link>{' '}
-          |{' '}
-          <Link to="/qna/terms" className="footer_link">
+          </Link>
+          |
+          <Link to="/qna/terms" className="footer_link margin-3">
             이용약관
           </Link>
         </h4>
         <h4>
-          Copyright ⓒ Smunity{' '}
+          Copyright ⓒ Smunity
           <a
             href={`https://github.com/smu-nity/smunity-web/releases/tag/${process.env.REACT_APP_VERSION}`}
-            className="footer_link"
+            className="footer_link margin-3"
             target="_blank"
             rel="noreferrer">
             {process.env.REACT_APP_VERSION}
-          </a>{' '}
+          </a>
           (
           <a
             href={`https://github.com/smu-nity/smunity-web/commit/${process.env.REACT_APP_COMMIT_HASH}`}

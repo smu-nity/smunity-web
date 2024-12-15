@@ -45,12 +45,12 @@ const Modal: React.FC<ModalProps> = ({
               <br />(
               <a
                 href="https://portal.smu.ac.kr/"
-                className="footer_link"
+                className="footer_link margin-r3"
                 style={{fontWeight: 'bold'}}
                 target="_blank"
                 rel="noreferrer">
                 상명대학교 샘물포털시스템
-              </a>{' '}
+              </a>
               학번/비밀번호)
             </>
           )}
