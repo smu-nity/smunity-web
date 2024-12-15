@@ -27,10 +27,15 @@ const QuestionModifyPage = () => {
       doFetchQuestion(id).then((data: Question) => {
         setQuestion(data)
       })
-  }, [id])
+  }, [id, doFetchQuestion])
+
+  useEffect(() => {
+    if (question && !question.isAuthor && !isAdmin()) {
+      moveToPath('/qna/questions')
+    }
+  }, [question, isAdmin, moveToPath])
 
   if (question && !question.isAuthor && !isAdmin()) {
-    moveToPath('/qna/questions')
     return null
   }
 
