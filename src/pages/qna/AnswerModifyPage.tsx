@@ -1,9 +1,24 @@
 import {useParams} from 'react-router-dom'
 import Header from '../../components/Header'
 import AnswerFormContainer from '../../components/qna/AnswerFormContainer'
+import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
+import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
+import {useEffect} from 'react'
 
 const AnswerModifyPage = () => {
+  const {isAdmin}: TCustomAccount = useCustomAccount()
+  const {moveToPath}: TCustomMove = useCustomMove()
   const {id} = useParams<{id: string}>()
+
+  useEffect(() => {
+    if (!isAdmin()) {
+      moveToPath('/qna/questions')
+    }
+  }, [isAdmin, moveToPath])
+
+  if (!isAdmin()) {
+    return null
+  }
 
   return (
     <>
