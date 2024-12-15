@@ -3,6 +3,7 @@ import {MemberInfo} from '../types/MemberInfo'
 import jwtAxios from '../util/jwtUtil'
 import {TLoginParam} from './accountApi'
 import api from './config'
+import {MemberCount} from '../types/MemberCount'
 
 export type TPasswordParam = {
   password: string
@@ -14,6 +15,11 @@ export type TDepartmentParam = {
 
 export const fetchMember = async (): Promise<MemberInfo> => {
   const res = await jwtAxios.get('/api/v1/members/me')
+  return res.data
+}
+
+export const fetchMembersCount = async (): Promise<MemberCount> => {
+  const res = await jwtAxios.get('/api/v1/members/count')
   return res.data
 }
 

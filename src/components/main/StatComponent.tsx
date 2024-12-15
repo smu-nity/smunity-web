@@ -1,5 +1,9 @@
+import {useEffect, useState} from 'react'
+import {fetchMembersCount} from '../../api/memberApi'
+import {MemberCount} from '../../types/MemberCount'
+
 const StatComponent = () => {
-  const totalMembers = 4300
+  const [count, setCount] = useState<number>(0)
   const departments = [
     {name: '컴퓨터과학과', count: 1300, link: 'https://example.com/컴퓨터과학과'},
     {
@@ -12,6 +16,12 @@ const StatComponent = () => {
     {name: '디자인학과', count: 370, link: 'https://example.com/디자인학과'}
   ]
 
+  useEffect(() => {
+    fetchMembersCount().then((data: MemberCount) => {
+      setCount(data.count)
+    })
+  }, [])
+
   return (
     <div className="main-img__text card-margin">
       <div className=" num_visit cards">
@@ -19,7 +29,7 @@ const StatComponent = () => {
           <div className="total__item__title">
             <i className="fas fa-user" aria-hidden="true"></i>총 회원 수
           </div>
-          <div className="total__item__title">{totalMembers.toLocaleString()}명</div>
+          <div className="total__item__title">{count.toLocaleString()}명</div>
         </div>
         <div className="department-stats">
           {departments.map((department, index) => (
