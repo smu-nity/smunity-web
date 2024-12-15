@@ -967,7 +967,7 @@ input[type='checkbox'] {
   border-bottom: 1px solid #dadada;
 }
 .target_table_td {
-  text-align: left;
+  text-align: center;
   padding: 0.3rem 0.7rem 0.3rem 0.7rem;
   height: 2rem;
   border-right: 1px solid #dadada;
@@ -1930,6 +1930,15 @@ body:not(.device-touch) .suc_btn {
 .btn-margin {
   margin: 0 0.1rem;
 }
+.margin-r3 {
+  margin-right: 0.3rem;
+}
+.margin-l3 {
+  margin-left: 0.3rem;
+}
+.margin-3 {
+  margin: 0 0.3rem;
+}
 @media screen and (max-width: 1200px) {
   .department-stats {
     max-height: 5rem;
@@ -2185,6 +2194,9 @@ body:not(.device-touch) .suc_btn {
   input[type='checkbox'] + label {
     width: 0.6rem;
     height: 0.6rem;
+  }
+  .desktop-only {
+    display: none;
   }
 }
 @media screen and (max-width: 575px) {

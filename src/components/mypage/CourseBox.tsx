@@ -64,9 +64,17 @@ const CourseBox = () => {
                 </tr>
               </thead>
               <tbody>
-                {courses?.content.map(course => (
-                  <CourseItem key={course.id} course={course} />
-                ))}
+                {courses?.content && courses.content.length > 0 ? (
+                  courses.content.map(course => (
+                    <CourseItem key={course.id} course={course} />
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={7} style={{textAlign: 'center', padding: '20px'}}>
+                      기이수과목을 업데이트해주세요.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
