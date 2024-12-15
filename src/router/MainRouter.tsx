@@ -67,11 +67,18 @@ const MainRouter = (): JSX.Element => {
             <Route path="terms" element={<TermsPage />} />
             <Route path="privacy" element={<PrivacyPage />} />
             <Route path="questions" element={<QuestionPage />} />
-            <Route path="questions/create" element={<QuestionCreatePage />} />
             <Route path="questions/:id" element={<QuestionDetailPage />} />
-            <Route path="questions/:id/modify" element={<QuestionModifyPage />} />
-            <Route path="questions/:id/answer" element={<AnswerCreatePage />} />
-            <Route path="questions/:id/answer/modify" element={<AnswerModifyPage />} />
+            <Route
+              element={
+                <ProtectedRoute requireLogin={true}>
+                  <Outlet />
+                </ProtectedRoute>
+              }>
+              <Route path="questions/create" element={<QuestionCreatePage />} />
+              <Route path="questions/:id/modify" element={<QuestionModifyPage />} />
+              <Route path="questions/:id/answer" element={<AnswerCreatePage />} />
+              <Route path="questions/:id/answer/modify" element={<AnswerModifyPage />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
