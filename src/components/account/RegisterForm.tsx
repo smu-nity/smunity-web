@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
+import LoadingSpinner from '../LoadingSpinner'
 
 interface RegisterCredentials {
   name: string
@@ -24,6 +25,7 @@ const RegisterForm = () => {
     password1: '',
     password2: ''
   })
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target
@@ -36,13 +38,19 @@ const RegisterForm = () => {
   }
 
   const handleClickRegister = () => {
-    registerParams.password1 && registerParams.password2
-      ? registerParams.password1 === registerParams.password2
-        ? doRegister(requestParam(), authState.authToken).then(success => {
-            success && moveToPath('/mypage')
-          })
-        : alert('비밀번호가 일치하지 않습니다.')
-      : alert('비밀번호를 입력해주세요.')
+    if (registerParams.password1 && registerParams.password2) {
+      if (registerParams.password1 === registerParams.password2) {
+        setIsLoading(true)
+        doRegister(requestParam(), authState.authToken).then(success => {
+          setIsLoading(false)
+          success && moveToPath('/mypage')
+        })
+      } else {
+        alert('비밀번호가 일치하지 않습니다.')
+      }
+    } else {
+      alert('비밀번호를 입력해주세요.')
+    }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -129,6 +137,7 @@ const RegisterForm = () => {
           가입하기
         </button>
       </div>
+      {isLoading && <LoadingSpinner />}
     </div>
   )
 }

@@ -4,12 +4,14 @@ import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 import Modal from '../Modal'
 import PasswordAuthForm from './PasswordAuthForm'
 import {LoginCredentials} from '../../types/LoginCredentials'
+import LoadingSpinner from '../LoadingSpinner'
 
 const LoginForm = () => {
   const [loginParams, setLoginParams] = useState<LoginCredentials>({
     username: '',
     password: ''
   })
+  const [isLoading, setIsLoading] = useState(false)
   const [isOpenModal, setIsOpenModal] = useState(false)
   const {doLogin}: TCustomAccount = useCustomAccount()
   const {moveToPath}: TCustomMove = useCustomMove()
@@ -20,11 +22,15 @@ const LoginForm = () => {
   }
 
   const handleClickLogin = () => {
-    loginParams.username && loginParams.password
-      ? doLogin(loginParams).then(success => {
-          success && moveToPath('/mypage')
-        })
-      : alert('학번과 비밀번호를 입력해주세요.')
+    if (loginParams.username && loginParams.password) {
+      setIsLoading(true)
+      doLogin(loginParams).then(success => {
+        setIsLoading(false)
+        success && moveToPath('/mypage')
+      })
+    } else {
+      alert('학번과 비밀번호를 입력해주세요.')
+    }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -84,6 +90,7 @@ const LoginForm = () => {
         link
         children={<PasswordAuthForm />}
       />
+      {isLoading && <LoadingSpinner />}
     </>
   )
 }
