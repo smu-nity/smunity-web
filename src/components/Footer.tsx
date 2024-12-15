@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="copyright">
         <h4>
           <a
-            href="https://github.com/smu-nity/SMUNITY"
+            href="https://github.com/smu-nity/smunity-server"
             className="footer_link"
             target="_blank"
             rel="noreferrer">
