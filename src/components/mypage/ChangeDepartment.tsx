@@ -12,12 +12,12 @@ interface ChangeDepartmentProps {
 const ChangeDepartment: React.FC<ChangeDepartmentProps> = ({department}) => {
   const {departmentChange}: TCustomMypage = useCustomMypage()
   const {reload}: TCustomMove = useCustomMove()
-  const [departments, setDepartments] = useState<Base<DepartmentEditable>>()
+  const [departments, setDepartments] = useState<DepartmentEditable[]>()
   const [selectedDepartmentId, setSelectedDepartmentId] = useState<number | undefined>()
 
   useEffect(() => {
     fetchEditableDepartments().then((data: Base<DepartmentEditable>) => {
-      setDepartments(data)
+      setDepartments(data.content)
       const initialDepartment = data.content.find(dept => dept.name === department)
       if (initialDepartment) {
         setSelectedDepartmentId(initialDepartment.id)
@@ -38,7 +38,7 @@ const ChangeDepartment: React.FC<ChangeDepartmentProps> = ({department}) => {
   return (
     <td className="regi_box" style={{width: '90%', marginLeft: '0', marginRight: '1rem'}}>
       <select id="major" value={selectedDepartmentId} onChange={handleSelectChange}>
-        {departments?.content?.map(department => (
+        {departments?.map(department => (
           <option key={department.id} value={department.id}>
             {department.name}
           </option>
