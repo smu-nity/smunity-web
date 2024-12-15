@@ -25,9 +25,15 @@ const PasswordAuthForm = () => {
       : alert('학번과 비밀번호를 입력해주세요.')
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter') {
+      handleClick()
+    }
+  }
+
   return (
     <>
-      <div className="form-login">
+      <div className="form-login" onKeyDown={handleKeyDown}>
         <div className="input-group flex-nowrap">
           <input
             type="text"

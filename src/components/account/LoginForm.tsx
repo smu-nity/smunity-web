@@ -27,9 +27,15 @@ const LoginForm = () => {
       : alert('학번과 비밀번호를 입력해주세요.')
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter') {
+      handleClickLogin()
+    }
+  }
+
   return (
     <>
-      <div className="login-form">
+      <div className="login-form" onKeyDown={handleKeyDown}>
         <div className="login_logo">
           <img id="login_logo" src="/images/logo.png" />
         </div>

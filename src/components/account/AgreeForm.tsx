@@ -30,11 +30,17 @@ const AgreeForm = () => {
       : alert('이용약관에 동의해주세요.')
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter') {
+      handleClickAuth()
+    }
+  }
+
   useEffect(() => {
     if (isAuth()) {
       moveToPath('/accounts/register')
     }
-  }, [authState, moveToPath])
+  }, [isAuth, moveToPath])
 
   return (
     <>
@@ -56,7 +62,7 @@ const AgreeForm = () => {
           학번/비밀번호
         </p>
       </div>
-      <div className="container" style={{width: 'auto'}}>
+      <div className="container" style={{width: 'auto'}} onKeyDown={handleKeyDown}>
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <div
             className="login-form login-margin"

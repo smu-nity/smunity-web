@@ -42,6 +42,12 @@ const PasswordResetForm = () => {
       : alert('비밀번호를 입력해주세요.')
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter') {
+      handleClick()
+    }
+  }
+
   useEffect(() => {
     if (!isAuthPassword()) {
       moveToPath('/accounts/login')
@@ -49,7 +55,7 @@ const PasswordResetForm = () => {
   }, [isAuthPassword, moveToPath])
 
   return (
-    <>
+    <div onKeyDown={handleKeyDown}>
       <div className="box-margin3">
         <label>학번</label>
         <input
@@ -86,7 +92,7 @@ const PasswordResetForm = () => {
           변경하기
         </button>
       </div>
-    </>
+    </div>
   )
 }
 
