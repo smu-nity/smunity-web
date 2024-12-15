@@ -18,10 +18,10 @@ const QuestionList: React.FC<QuestionListProps> = ({page}) => {
         </div>
       </div>
       <div className="bl_body">
-        {page.empty ? (
-          <QuestionItem />
-        ) : (
+        {!page.empty ? (
           page.content.map(question => <QuestionItem question={question} />)
+        ) : (
+          <li style={{textAlign: 'center', padding: '20px'}}>질문이 없습니다.</li>
         )}
       </div>
     </div>
