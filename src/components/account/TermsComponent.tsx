@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import Modal from '../Modal'
+import TargetTable from './TargetTable'
 
 const TermsComponent = () => {
   const [isOpenModal, setIsOpenModal] = useState(false)
@@ -63,7 +64,7 @@ const TermsComponent = () => {
         onClose={() => setIsOpenModal(false)}
         title={'검사대상표'}
         explanation={'아래 표에 해당하는 학과만 회원가입 가능합니다.'}
-        children={<>검사대상표</>}
+        children={<TargetTable />}
       />
     </>
   )

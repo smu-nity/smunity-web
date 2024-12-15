@@ -967,7 +967,7 @@ input[type='checkbox'] {
   border-bottom: 1px solid #dadada;
 }
 .target_table_td {
-  text-align: left;
+  text-align: center;
   padding: 0.3rem 0.7rem 0.3rem 0.7rem;
   height: 2rem;
   border-right: 1px solid #dadada;
