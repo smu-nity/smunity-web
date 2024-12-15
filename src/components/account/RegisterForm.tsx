@@ -45,14 +45,20 @@ const RegisterForm = () => {
       : alert('비밀번호를 입력해주세요.')
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter') {
+      handleClickRegister()
+    }
+  }
+
   useEffect(() => {
     if (!isAuth()) {
       moveToPath('/accounts/agree')
     }
-  }, [authState, moveToPath])
+  }, [isAuth, moveToPath])
 
   return (
-    <>
+    <div onKeyDown={handleKeyDown}>
       <div className="box-margin3">
         <label>이름</label>
         <input
@@ -123,7 +129,7 @@ const RegisterForm = () => {
           가입하기
         </button>
       </div>
-    </>
+    </div>
   )
 }
 
