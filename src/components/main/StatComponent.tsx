@@ -1,24 +1,23 @@
 import {useEffect, useState} from 'react'
 import {fetchMembersCount} from '../../api/memberApi'
 import {MemberCount} from '../../types/MemberCount'
+import {Department} from '../../types/Department'
+import {fetchDepartments} from '../../api/departmentApi'
+import {Base} from '../../types/Result'
 
 const StatComponent = () => {
   const [count, setCount] = useState<number>(0)
-  const departments = [
-    {name: '컴퓨터과학과', count: 1300, link: 'https://example.com/컴퓨터과학과'},
-    {
-      name: '휴먼지능정보공학전공',
-      count: 850,
-      link: 'https://example.com/휴먼지능정보공학전공'
-    },
-    {name: '기계공학과', count: 430, link: 'https://example.com/기계공학과'},
-    {name: '경영학과', count: 520, link: 'https://example.com/경영학과'},
-    {name: '디자인학과', count: 370, link: 'https://example.com/디자인학과'}
-  ]
+  const [departments, setDepartments] = useState<Department[]>([])
 
   useEffect(() => {
     fetchMembersCount().then((data: MemberCount) => {
       setCount(data.count)
+    })
+  }, [])
+
+  useEffect(() => {
+    fetchDepartments().then((data: Base<Department>) => {
+      setDepartments(data.content)
     })
   }, [])
 
@@ -35,7 +34,7 @@ const StatComponent = () => {
           {departments.map((department, index) => (
             <a
               key={index}
-              href={department.link}
+              href={`https://www.smu.ac.kr/_custom/smu/_app/curriculum.do?srSust=${department.code}&srShyr=all`}
               className="result__item"
               target="_blank"
               rel="noreferrer">
