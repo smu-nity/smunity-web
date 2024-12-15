@@ -2,9 +2,11 @@ import {useState} from 'react'
 import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
 import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
+import LoadingSpinner from '../LoadingSpinner'
 
 const InfoUpdateForm = () => {
   const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const {getUsername}: TCustomAccount = useCustomAccount()
   const {memberUpdate}: TCustomMypage = useCustomMypage()
   const {reload}: TCustomMove = useCustomMove()
@@ -12,14 +14,18 @@ const InfoUpdateForm = () => {
 
   const handleClick = () => {
     const loginParams = {username, password}
-    password
-      ? memberUpdate(loginParams).then(success => {
-          if (success) {
-            alert('회원 정보가 업데이트 되었습니다.')
-            reload()
-          }
-        })
-      : alert('비밀번호를 입력해주세요.')
+    if (password) {
+      setIsLoading(true)
+      memberUpdate(loginParams).then(success => {
+        setIsLoading(false)
+        if (success) {
+          alert('회원 정보가 업데이트 되었습니다.')
+          reload()
+        }
+      })
+    } else {
+      alert('비밀번호를 입력해주세요.')
+    }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -56,6 +62,7 @@ const InfoUpdateForm = () => {
         value="인증하기"
         onClick={handleClick}
       />
+      {isLoading && <LoadingSpinner />}
     </>
   )
 }

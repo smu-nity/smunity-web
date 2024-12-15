@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
+import LoadingSpinner from '../LoadingSpinner'
 
 interface AuthCredentials {
   username: string
@@ -12,7 +13,8 @@ const AgreeForm = () => {
     username: '',
     password: ''
   })
-  const {authState, agreeState, doAuth, isAuth}: TCustomAgree = useCustomAgree()
+  const [isLoading, setIsLoading] = useState(false)
+  const {agreeState, doAuth, isAuth}: TCustomAgree = useCustomAgree()
   const {moveToPath}: TCustomMove = useCustomMove()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,13 +23,19 @@ const AgreeForm = () => {
   }
 
   const handleClickAuth = () => {
-    agreeState
-      ? authParams.username && authParams.password
-        ? doAuth(authParams).then(success => {
-            success && moveToPath('/accounts/register')
-          })
-        : alert('학번과 샘물 비밀번호를 입력해주세요.')
-      : alert('이용약관에 동의해주세요.')
+    if (agreeState) {
+      if (authParams.username && authParams.password) {
+        setIsLoading(true)
+        doAuth(authParams).then(success => {
+          setIsLoading(false)
+          success && moveToPath('/accounts/register')
+        })
+      } else {
+        alert('학번과 샘물 비밀번호를 입력해주세요.')
+      }
+    } else {
+      alert('이용약관에 동의해주세요.')
+    }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -107,6 +115,7 @@ const AgreeForm = () => {
           </div>
         </div>
       </div>
+      {isLoading && <LoadingSpinner />}
     </>
   )
 }

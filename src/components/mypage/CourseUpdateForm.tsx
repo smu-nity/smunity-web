@@ -2,9 +2,11 @@ import {useState} from 'react'
 import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
+import LoadingSpinner from '../LoadingSpinner'
 
 const CourseUpdateForm = () => {
   const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const {moveToPath}: TCustomMove = useCustomMove()
   const {getUsername}: TCustomAccount = useCustomAccount()
   const {uploadCourse}: TCustomMypage = useCustomMypage()
@@ -12,14 +14,18 @@ const CourseUpdateForm = () => {
 
   const handleClick = () => {
     const loginParams = {username, password}
-    password
-      ? uploadCourse(loginParams).then(success => {
-          if (success) {
-            alert('기이수과목이 업데이트 되었습니다.')
-            moveToPath('/mypage/result')
-          }
-        })
-      : alert('비밀번호를 입력해주세요.')
+    if (password) {
+      setIsLoading(true)
+      uploadCourse(loginParams).then(success => {
+        setIsLoading(false)
+        if (success) {
+          alert('기이수과목이 업데이트 되었습니다.')
+          moveToPath('/mypage/result')
+        }
+      })
+    } else {
+      alert('비밀번호를 입력해주세요.')
+    }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -56,6 +62,7 @@ const CourseUpdateForm = () => {
         value="인증하기"
         onClick={handleClick}
       />
+      {isLoading && <LoadingSpinner />}
     </>
   )
 }

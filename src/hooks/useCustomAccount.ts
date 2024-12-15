@@ -40,7 +40,8 @@ const useCustomAccount = (): TCustomAccount => {
     if (success) {
       moveToPath('/accounts/login')
       removeAuth()
-      return doLogin(requestParam(registerParam))
+      alert('회원가입이 완료되었습니다.')
+      return true
     } else {
       alert(response.data.message)
     }

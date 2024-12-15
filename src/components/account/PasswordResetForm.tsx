@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
+import LoadingSpinner from '../LoadingSpinner'
 
 interface ResetCredentials {
   username: string
@@ -18,6 +19,7 @@ const PasswordResetForm = () => {
     password1: '',
     password2: ''
   })
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target
@@ -30,16 +32,22 @@ const PasswordResetForm = () => {
   }
 
   const handleClick = () => {
-    registerParams.password1 && registerParams.password2
-      ? registerParams.password1 === registerParams.password2
-        ? passwordReset(requestParam(), authPasswordState.authToken).then(success => {
-            if (success) {
-              alert('비밀번호가 변경되었습니다.')
-              moveToPath('/accounts/login')
-            }
-          })
-        : alert('비밀번호가 일치하지 않습니다.')
-      : alert('비밀번호를 입력해주세요.')
+    if (registerParams.password1 && registerParams.password2) {
+      if (registerParams.password1 === registerParams.password2) {
+        setIsLoading(true)
+        passwordReset(requestParam(), authPasswordState.authToken).then(success => {
+          setIsLoading(false)
+          if (success) {
+            alert('비밀번호가 변경되었습니다.')
+            moveToPath('/accounts/login')
+          }
+        })
+      } else {
+        alert('비밀번호가 일치하지 않습니다.')
+      }
+    } else {
+      alert('비밀번호를 입력해주세요.')
+    }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -92,6 +100,7 @@ const PasswordResetForm = () => {
           변경하기
         </button>
       </div>
+      {isLoading && <LoadingSpinner />}
     </div>
   )
 }
