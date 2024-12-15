@@ -1930,6 +1930,9 @@ body:not(.device-touch) .suc_btn {
 .btn-margin {
   margin: 0 0.1rem;
 }
+.desktop-only {
+  margin-right: 0.3rem;
+}
 @media screen and (max-width: 1200px) {
   .department-stats {
     max-height: 5rem;
@@ -2185,6 +2188,9 @@ body:not(.device-touch) .suc_btn {
   input[type='checkbox'] + label {
     width: 0.6rem;
     height: 0.6rem;
+  }
+  .desktop-only {
+    display: none;
   }
 }
 @media screen and (max-width: 575px) {
