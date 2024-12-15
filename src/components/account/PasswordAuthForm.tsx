@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {LoginCredentials} from '../../types/LoginCredentials'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
+import LoadingSpinner from '../LoadingSpinner'
 
 const PasswordAuthForm = () => {
   const {moveToPath}: TCustomMove = useCustomMove()
@@ -11,6 +12,7 @@ const PasswordAuthForm = () => {
     username: '',
     password: ''
   })
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target
@@ -18,11 +20,15 @@ const PasswordAuthForm = () => {
   }
 
   const handleClick = () => {
-    loginParams.username && loginParams.password
-      ? doPasswordAuth(loginParams).then(success => {
-          success && moveToPath('/accounts/password/reset')
-        })
-      : alert('학번과 비밀번호를 입력해주세요.')
+    if (loginParams.username && loginParams.password) {
+      setIsLoading(true)
+      doPasswordAuth(loginParams).then(success => {
+        setIsLoading(false)
+        success && moveToPath('/accounts/password/reset')
+      })
+    } else {
+      alert('학번과 비밀번호를 입력해주세요.')
+    }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -61,6 +67,7 @@ const PasswordAuthForm = () => {
         value="인증하기"
         onClick={handleClick}
       />
+      {isLoading && <LoadingSpinner />}
     </>
   )
 }
