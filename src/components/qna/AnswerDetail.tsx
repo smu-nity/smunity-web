@@ -1,3 +1,4 @@
+import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
 import {Answer} from '../../types/Answer'
 
 interface AnswerDetailProps {
@@ -5,6 +6,8 @@ interface AnswerDetailProps {
 }
 
 const AnswerDetail: React.FC<AnswerDetailProps> = ({answer}) => {
+  const {formatTime}: TCustomQuestion = useCustomQuestion()
+
   return (
     <div className="my-3 card">
       <div className="card-body">
@@ -15,8 +18,8 @@ const AnswerDetail: React.FC<AnswerDetailProps> = ({answer}) => {
       <div className="d-flex justify-content-end" style={{marginBottom: '0.5rem'}}>
         <div className="p-2 mx-3 badge bg-light text-dark text-start">
           {answer.createdAt !== answer.updatedAt
-            ? `${answer.updatedAt} (수정)`
-            : answer.createdAt}
+            ? `${formatTime(answer.updatedAt)} (수정)`
+            : formatTime(answer.createdAt)}
         </div>
       </div>
     </div>
