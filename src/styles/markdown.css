@@ -1,0 +1,114 @@
+.markdown-viewer {
+  line-height: 1.8;
+  color: #333;
+}
+
+.markdown-viewer h1,
+.markdown-viewer h2,
+.markdown-viewer h3 {
+  margin-top: 1.5rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.markdown-viewer h1 {
+  font-size: 2.5rem;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.3rem;
+}
+
+.markdown-viewer h2 {
+  font-size: 2rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.2rem;
+}
+
+.markdown-viewer h3 {
+  font-size: 1.75rem;
+}
+
+.markdown-viewer p {
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+
+.markdown-viewer ul,
+.markdown-viewer ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.markdown-viewer li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.markdown-viewer a {
+  color: #007acc;
+  text-decoration: none;
+  border-bottom: 1px dotted #007acc;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.markdown-viewer a:hover {
+  color: #005b99;
+  border-color: #005b99;
+}
+
+.markdown-viewer blockquote {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-left: 4px solid #ccc;
+  font-style: italic;
+  color: #666;
+}
+
+.markdown-viewer code {
+  font-family: 'Courier New', monospace;
+  background: #f4f4f4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #d63384;
+}
+
+.markdown-viewer pre {
+  background: #272822;
+  color: #f8f8f2;
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-size: 0.95rem;
+}
+
+.markdown-viewer pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.markdown-viewer table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.markdown-viewer table th,
+.markdown-viewer table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.markdown-viewer table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.markdown-viewer img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 8px;
+}
