@@ -1,5 +1,6 @@
 import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
 import {Question} from '../../types/Question'
+import MarkdownViewer from './MarkdownViewer'
 
 interface QuestionDetailProps {
   question: Question
@@ -12,7 +13,7 @@ const QuestionDetail: React.FC<QuestionDetailProps> = ({question}) => {
     <div className="card my-3">
       <div className="card-body">
         <div className="post_detail__body-text card-text">
-          <div dangerouslySetInnerHTML={{__html: question.content}} />
+          <MarkdownViewer content={question.content} />
         </div>
       </div>
       <div className="d-flex justify-content-end" style={{marginBottom: '0.5rem'}}>
