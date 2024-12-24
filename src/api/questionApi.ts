@@ -2,7 +2,6 @@ import {AxiosResponse} from 'axios'
 import {Page} from '../types/Page'
 import {Question, QuestionRequest} from '../types/Question'
 import jwtAxios from '../util/jwtUtil'
-import api from './config'
 
 export const fetchQuestions = async (
   params: Record<string, string>
@@ -10,12 +9,12 @@ export const fetchQuestions = async (
   if (params.page) {
     params.page = (parseInt(params.page) - 1).toString()
   }
-  const res = await api.get('/api/v1/questions', {params})
+  const res = await jwtAxios.get('/api/v1/questions', {params})
   return res.data
 }
 
 export const fetchQuestion = async (id: string): Promise<AxiosResponse> =>
-  await api.get(`/api/v1/questions/${id}`)
+  await jwtAxios.get(`/api/v1/questions/${id}`)
 
 export const createQuestion = async (request: QuestionRequest): Promise<AxiosResponse> =>
   await jwtAxios.post('/api/v1/questions', request)
