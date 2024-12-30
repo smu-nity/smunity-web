@@ -43,7 +43,7 @@ const LoginForm = () => {
     <>
       <div className="login-form" onKeyDown={handleKeyDown}>
         <div className="login_logo">
-          <img id="login_logo" src="/images/logo.png" />
+          <img id="login_logo" src="/images/logo.png" alt="스뮤니티 로고" />
         </div>
         <div className="content">
           <div className="input-group flex-nowrap">

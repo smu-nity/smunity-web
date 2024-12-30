@@ -17,7 +17,7 @@ const Navbar = () => {
         <Link
           to="/"
           className="d-flex align-items-center mb-md-0 me-md-auto text-dark text-decoration-none">
-          <img src="/images/logo.png" className="logo_img" />
+          <img src="/images/logo.png" className="logo_img" alt="스뮤니티 로고" />
         </Link>
         <button
           className="navbar-toggler"
