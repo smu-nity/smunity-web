@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import '../../styles/markdown.css'
+import remarkBreaks from 'remark-breaks'
 
 interface MarkdownViewerProps {
   content: string
@@ -9,7 +10,7 @@ interface MarkdownViewerProps {
 const MarkdownViewer: React.FC<MarkdownViewerProps> = ({content}) => {
   return (
     <div className="markdown-viewer">
-      <ReactMarkdown>{content}</ReactMarkdown>
+      <ReactMarkdown remarkPlugins={[remarkBreaks]}>{content}</ReactMarkdown>
     </div>
   )
 }
