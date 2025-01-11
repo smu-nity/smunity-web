@@ -22,7 +22,14 @@ const Footer = () => {
           </Link>
         </h4>
         <h4>
-          Copyright ⓒ Smunity
+          Copyright ⓒ
+          <a
+            href={`https://github.com/smu-nity`}
+            className="footer_link margin-l3"
+            target="_blank"
+            rel="noreferrer">
+            SMUNITY
+          </a>
           <a
             href={`https://github.com/smu-nity/smunity-web/releases/tag/${process.env.REACT_APP_VERSION}`}
             className="footer_link margin-3"
