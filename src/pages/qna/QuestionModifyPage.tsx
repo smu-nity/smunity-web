@@ -27,7 +27,7 @@ const QuestionModifyPage = () => {
       doFetchQuestion(id).then((data: Question) => {
         setQuestion(data)
       })
-  }, [id, doFetchQuestion])
+  }, [id])
 
   useEffect(() => {
     if (question && !question.isAuthor && !isAdmin()) {
