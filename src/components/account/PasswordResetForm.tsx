@@ -60,7 +60,7 @@ const PasswordResetForm = () => {
     if (!isAuthPassword()) {
       moveToPath('/accounts/login')
     }
-  }, [isAuthPassword, moveToPath])
+  }, [isAuthPassword])
 
   return (
     <div onKeyDown={handleKeyDown}>

@@ -8,7 +8,6 @@ import {Answer} from '../../types/Answer'
 import AnswerButtonContainer from './AnswerButtonContainer'
 import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
 import useCustomAnswer, {TCustomAnswer} from '../../hooks/useCustomAnswer'
-import {useLocation} from 'react-router-dom'
 import AnswerDetail from './AnswerDetail'
 
 interface QuestionDetailContainerProps {
@@ -21,7 +20,6 @@ const QuestionDetailContainer: React.FC<QuestionDetailContainerProps> = ({id}) =
   const {doFetchQuestion}: TCustomQuestion = useCustomQuestion()
   const {doFetchAnswer}: TCustomAnswer = useCustomAnswer()
   const {isAdmin}: TCustomAccount = useCustomAccount()
-  const location = useLocation()
 
   useEffect(() => {
     doFetchQuestion(id).then((data: Question) => {
@@ -30,7 +28,7 @@ const QuestionDetailContainer: React.FC<QuestionDetailContainerProps> = ({id}) =
     doFetchAnswer(id).then((data: Answer) => {
       setAnswer(data)
     })
-  }, [id, location])
+  }, [id])
 
   return question ? (
     <>
