@@ -14,7 +14,7 @@ const AnswerCreatePage = () => {
     if (!isAdmin()) {
       moveToPath('/qna/questions')
     }
-  }, [isAdmin, moveToPath])
+  }, [isAdmin])
 
   if (!isAdmin()) {
     return null

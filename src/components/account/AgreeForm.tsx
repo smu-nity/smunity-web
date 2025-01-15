@@ -48,7 +48,7 @@ const AgreeForm = () => {
     if (isAuth()) {
       moveToPath('/accounts/register')
     }
-  }, [isAuth, moveToPath])
+  }, [isAuth])
 
   return (
     <>

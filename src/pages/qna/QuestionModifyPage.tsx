@@ -33,7 +33,7 @@ const QuestionModifyPage = () => {
     if (question && !question.isAuthor && !isAdmin()) {
       moveToPath('/qna/questions')
     }
-  }, [question, isAdmin, moveToPath])
+  }, [question, isAdmin])
 
   if (question && !question.isAuthor && !isAdmin()) {
     return null

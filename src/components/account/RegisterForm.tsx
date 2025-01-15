@@ -63,7 +63,7 @@ const RegisterForm = () => {
     if (!isAuth()) {
       moveToPath('/accounts/agree')
     }
-  }, [isAuth, moveToPath])
+  }, [isAuth])
 
   return (
     <div onKeyDown={handleKeyDown}>
