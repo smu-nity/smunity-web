@@ -13,21 +13,21 @@ const useCustomQuestion = (): TCustomQuestion => {
   const doFetchQuestion = async (id: string) => {
     const response = await fetchQuestion(id)
     const success = response.status < 400
-    !success && alert(response.data.message)
+    !success && alertError(response.data)
     return success ? response.data : null
   }
 
   const doCreateQuestion = async (request: QuestionRequest) => {
     const response = await createQuestion(request)
     const success = response.status < 400
-    !success && alert(response.data.message)
+    !success && alertError(response.data)
     return success
   }
 
   const doUpdateQuestion = async (id: string, request: QuestionRequest) => {
     const response = await updateQuestion(id, request)
     const success = response.status < 400
-    !success && alert(response.data.message)
+    !success && alertError(response.data)
     return success
   }
 
@@ -47,6 +47,13 @@ const useCustomQuestion = (): TCustomQuestion => {
     const minutes = date.getMinutes().toString().padStart(2, '0')
     return `${month}-${day} ${hours}:${minutes}`
   }
+
+  const alertError = (data: any) =>
+    alert(
+      data.detail
+        ? `${data.message}\n${Object.values(data.detail).join('\n')}`
+        : data.message
+    )
 
   return {doFetchQuestion, doCreateQuestion, doUpdateQuestion, formatDate, formatTime}
 }
