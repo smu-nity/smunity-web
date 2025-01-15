@@ -29,7 +29,7 @@ const useCustomAccount = (): TCustomAccount => {
   const doLogin = async (loginParam: TLoginParam) => {
     const response = await login(loginParam)
     const success = response.status < 400
-    success ? saveAsCookie(response.data) : alert(response.data.message)
+    success ? saveAsCookie(response.data) : alertError(response.data)
     return success
   }
 
@@ -43,7 +43,7 @@ const useCustomAccount = (): TCustomAccount => {
       alert('회원가입이 완료되었습니다.')
       return true
     } else {
-      alert(response.data.message)
+      alertError(response.data)
     }
     return success
   }
@@ -75,16 +75,16 @@ const useCustomAccount = (): TCustomAccount => {
   const passwordReset = async (passwordParam: TPasswordParam, authToken?: string) => {
     const response = await resetPassword(passwordParam, authToken)
     const success = response.status < 400
-    !success && alert(response.data.message)
+    !success && alertError(response.data)
     return success
   }
 
-  const requestParam = (registerParam: TRegisterParam) => {
-    return {
-      username: registerParam.username,
-      password: registerParam.password
-    }
-  }
+  const alertError = (data: any) =>
+    alert(
+      data.detail
+        ? `${data.message}\n${Object.values(data.detail).join('\n')}`
+        : data.message
+    )
 
   return {
     loginState,

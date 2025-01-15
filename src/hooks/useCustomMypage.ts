@@ -35,23 +35,30 @@ const useCustomMypage = (): TCustomMypage => {
   const passwordChange = async (passwordParam: TPasswordParam) => {
     const response = await changePassword(passwordParam)
     const success = response.status < 400
-    !success && alert(response.data.message)
+    !success && alertError(response.data)
     return success
   }
 
   const departmentChange = async (departmentParam: TDepartmentParam) => {
     const response = await changeDepartment(departmentParam)
     const success = response.status < 400
-    !success && alert(response.data.message)
+    !success && alertError(response.data)
     return success
   }
 
   const memberDelete = async () => {
     const response = await deleteMember()
     const success = response.status < 400
-    !success && alert(response.data.message)
+    !success && alertError(response.data)
     return success
   }
+
+  const alertError = (data: any) =>
+    alert(
+      data.detail
+        ? `${data.message}\n${Object.values(data.detail).join('\n')}`
+        : data.message
+    )
 
   return {uploadCourse, memberUpdate, passwordChange, departmentChange, memberDelete}
 }

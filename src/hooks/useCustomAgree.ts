@@ -33,14 +33,14 @@ const useCustomAgree = (): TCustomAgree => {
   const doAuth = async (loginParam: TLoginParam) => {
     const response = await auth(loginParam)
     const success = response.status < 400
-    success ? saveAuth(response.data) : alert(response.data.message)
+    success ? saveAuth(response.data) : alertError(response.data)
     return success
   }
 
   const doPasswordAuth = async (loginParam: TLoginParam) => {
     const response = await authPassword(loginParam)
     const success = response.status < 400
-    success ? saveAuthPassword(response.data) : alert(response.data.message)
+    success ? saveAuthPassword(response.data) : alertError(response.data)
     return success
   }
 
@@ -69,6 +69,13 @@ const useCustomAgree = (): TCustomAgree => {
     setAgreeState(false)
     setAuthState({})
   }
+
+  const alertError = (data: any) =>
+    alert(
+      data.detail
+        ? `${data.message}\n${Object.values(data.detail).join('\n')}`
+        : data.message
+    )
 
   return {
     agreeState,

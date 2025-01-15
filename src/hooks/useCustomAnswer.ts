@@ -17,16 +17,23 @@ const useCustomAnswer = (): TCustomAnswer => {
   const doCreateAnswer = async (id: string, request: AnswerRequest) => {
     const response = await createAnswer(id, request)
     const success = response.status < 400
-    !success && alert(response.data.message)
+    !success && alertError(response.data)
     return success
   }
 
   const doUpdateAnswer = async (id: string, request: AnswerRequest) => {
     const response = await updateAnswer(id, request)
     const success = response.status < 400
-    !success && alert(response.data.message)
+    !success && alertError(response.data)
     return success
   }
+
+  const alertError = (data: any) =>
+    alert(
+      data.detail
+        ? `${data.message}\n${Object.values(data.detail).join('\n')}`
+        : data.message
+    )
 
   return {doFetchAnswer, doCreateAnswer, doUpdateAnswer}
 }
