@@ -31,18 +31,20 @@ const useCustomQuestion = (): TCustomQuestion => {
     return success
   }
 
+  const padZero = (value: number) => value.toString().padStart(2, '0')
+
   const formatDate = (createdAt: string) => {
     const date = new Date(createdAt)
     const year = date.getFullYear().toString().slice(-2)
-    const month = (date.getMonth() + 1).toString().padStart(2, '0')
-    const day = date.getDate().toString().padStart(2, '0')
+    const month = padZero(date.getMonth() + 1)
+    const day = padZero(date.getDate())
     return `${year}-${month}-${day}`
   }
 
   const formatTime = (createdAt: string) => {
     const date = new Date(createdAt)
-    const hours = date.getHours().toString().padStart(2, '0')
-    const minutes = date.getMinutes().toString().padStart(2, '0')
+    const hours = padZero(date.getHours())
+    const minutes = padZero(date.getMinutes())
     return `${formatDate(createdAt)} ${hours}:${minutes}`
   }
 
