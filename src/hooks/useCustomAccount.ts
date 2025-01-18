@@ -1,8 +1,8 @@
-import {login, register, TLoginParam, TRegisterParam} from '../api/accountApi'
+import {login, logout, register, TLoginParam, TRegisterParam} from '../api/accountApi'
 import {Member} from '../types/Member'
 import {useRecoilState, useResetRecoilState} from 'recoil'
 import signinState from '../atoms/accountState'
-import {removeCookie, setCookie} from '../util/cookieUtil'
+import {getCookie, removeCookie, setCookie} from '../util/cookieUtil'
 import useCustomAgree, {TCustomAgree} from './useCustomAgree'
 import useCustomMove, {TCustomMove} from './useCustomMove'
 import {resetPassword, TPasswordParam} from '../api/memberApi'
@@ -54,7 +54,9 @@ const useCustomAccount = (): TCustomAccount => {
   }
 
   //---------------로그아웃 함수
-  const doLogout = () => {
+  const doLogout = async () => {
+    const memberCookieValue = getCookie('member')
+    await logout(memberCookieValue.refreshToken)
     removeCookie('member')
     resetState()
     setLoginState({})
