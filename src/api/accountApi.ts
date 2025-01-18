@@ -1,5 +1,6 @@
 import {AxiosResponse} from 'axios'
 import api from './config'
+import jwtAxios from '../util/jwtUtil'
 
 export type TLoginParam = {
   username: string
@@ -26,3 +27,6 @@ export const register = async (
       Authorization: `Bearer ${authToken}`
     }
   })
+
+export const logout = async (refreshToken: string): Promise<AxiosResponse> =>
+  await jwtAxios.post('/api/v1/accounts/logout', {refreshToken: refreshToken})
