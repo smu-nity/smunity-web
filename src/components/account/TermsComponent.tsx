@@ -1,9 +1,18 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Modal from '../Modal'
 import TargetTable from './TargetTable'
+import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
 
 const TermsComponent = () => {
+  const {doFetchCurrentTerm}: TCustomAgree = useCustomAgree()
+  const [term, setTerm] = useState('')
   const [isOpenModal, setIsOpenModal] = useState(false)
+
+  useEffect(() => {
+    doFetchCurrentTerm().then((data: string) => {
+      setTerm(data)
+    })
+  }, [])
 
   return (
     <>
@@ -24,10 +33,10 @@ const TermsComponent = () => {
             기준이 따로 설정되지 않습니다.
           </p>
           <p>
-            3. 추천 과목 정보는 <b>2024학년도 2학기</b> 정보를 기준으로 합니다.
+            3. 추천 과목 정보는 <b>{term}</b> 정보를 기준으로 합니다.
           </p>
           <p>
-            4. 검사 기준은 <b>2024학년도 2학기</b> 교육과정으로 기준으로 합니다.
+            4. 검사 기준은 <b>{term}</b> 교육과정으로 기준으로 합니다.
           </p>
           <p style={{marginLeft: '1rem', fontSize: '0.85rem'}}>
             - 상명대학교 교육과정:
