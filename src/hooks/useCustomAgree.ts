@@ -6,6 +6,8 @@ import autheState from '../atoms/authState'
 import {auth, authPassword} from '../api/authApi'
 import {TLoginParam} from '../api/accountApi'
 import authePasswordState from '../atoms/authPasswordState'
+import {Term} from '../types/Term'
+import {fetchCurrentTerm} from '../api/termApi'
 
 export interface TCustomAgree {
   agreeState: boolean
@@ -14,6 +16,7 @@ export interface TCustomAgree {
   clickCheckBox: () => void
   doAuth: (loginParam: TLoginParam) => Promise<boolean>
   doPasswordAuth: (loginParam: TLoginParam) => Promise<boolean>
+  doFetchCurrentTerm: () => Promise<string>
   isAuth: () => boolean
   isAuthPassword: () => boolean
   removeAuth: () => void
@@ -42,6 +45,13 @@ const useCustomAgree = (): TCustomAgree => {
     const success = response.status < 400
     success ? saveAuthPassword(response.data) : alertError(response.data)
     return success
+  }
+
+  const doFetchCurrentTerm = async () => {
+    const response = await fetchCurrentTerm()
+    const success = response.status < 400
+    !success && alertError(response.data)
+    return success ? formatTerm(response.data) : ''
   }
 
   const saveAuth = (data: Auth) => {
@@ -77,6 +87,8 @@ const useCustomAgree = (): TCustomAgree => {
         : data.message
     )
 
+  const formatTerm = (term: Term): string => `${term.year}학년도 ${term.semester}`
+
   return {
     agreeState,
     authPasswordState,
@@ -84,6 +96,7 @@ const useCustomAgree = (): TCustomAgree => {
     clickCheckBox,
     doAuth,
     doPasswordAuth,
+    doFetchCurrentTerm,
     isAuth,
     isAuthPassword,
     removeAuth
