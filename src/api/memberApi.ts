@@ -4,6 +4,7 @@ import jwtAxios from '../util/jwtUtil'
 import {TLoginParam} from './accountApi'
 import api from './config'
 import {MemberCount} from '../types/MemberCount'
+import {ExemptionType} from '../types/Exemption'
 
 export type TPasswordParam = {
   password: string
@@ -11,6 +12,10 @@ export type TPasswordParam = {
 
 export type TDepartmentParam = {
   departmentId: number
+}
+
+export type TExemptionParam = {
+  exemption: ExemptionType | null
 }
 
 export const fetchMember = async (): Promise<MemberInfo> => {
@@ -31,6 +36,9 @@ export const changePassword = async (passwordParam: TPasswordParam) =>
 
 export const changeDepartment = async (departmentParam: TDepartmentParam) =>
   await jwtAxios.patch('/api/v1/members/me/department', departmentParam)
+
+export const changeExemption = async (exemptionParam: TExemptionParam) =>
+  await jwtAxios.patch('/api/v1/members/me/exemption', exemptionParam)
 
 export const deleteMember = async (): Promise<AxiosResponse> =>
   await jwtAxios.delete('/api/v1/members/me')
