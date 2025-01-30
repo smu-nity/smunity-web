@@ -37,7 +37,7 @@ const ChangeDepartment: React.FC<ChangeDepartmentProps> = ({department}) => {
 
   return (
     <td className="regi_box" style={{width: '90%', marginLeft: '0', marginRight: '1rem'}}>
-      <select id="major" value={selectedDepartmentId} onChange={handleSelectChange}>
+      <select value={selectedDepartmentId} onChange={handleSelectChange}>
         {departments?.map(department => (
           <option key={department.id} value={department.id}>
             {department.name}
