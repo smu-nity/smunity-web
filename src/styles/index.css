@@ -1761,7 +1761,7 @@ body:not(.device-touch) .suc_btn {
   overflow-y: auto;
 }
 .scroll {
-  height: 300px;
+  max-height: 350px;
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: 1rem;
