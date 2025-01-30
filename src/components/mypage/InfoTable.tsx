@@ -1,5 +1,6 @@
 import {MemberInfo} from '../../types/MemberInfo'
 import ChangeDepartment from './ChangeDepartment'
+import ChangeExemption from './ChangeExemption'
 
 interface InfoTableProps {
   member?: MemberInfo
@@ -31,6 +32,10 @@ const InfoTable: React.FC<InfoTableProps> = ({member}) => {
             </a>
           </td>
         )}
+      </tr>
+      <tr>
+        <td className="my_box_table_1st_td">이수 면제</td>
+        <ChangeExemption exemption={member?.exemption} />
       </tr>
     </table>
   )
