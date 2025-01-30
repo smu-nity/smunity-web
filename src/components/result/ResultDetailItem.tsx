@@ -25,7 +25,7 @@ const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}
 
   const categoryDetails = getDetail(category)
 
-  return courses ? (
+  return courses && courses.status.total !== 0 ? (
     <div className={`resultbox ${category === 'ALL' ? 'resultbox-mobile' : ''}`}>
       <div className="result_name">
         <i className={`fas fa-solid ${categoryDetails.icon}`} /> {categoryDetails.text}

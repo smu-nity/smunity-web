@@ -26,7 +26,7 @@ const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain, openModal}
 
   const labelType = domain === 'BASIC' ? '과목' : '영역'
 
-  return cultures ? (
+  return cultures && cultures.status.total !== 0 ? (
     <div className="resultbox">
       <div className="result_name">
         <i className={`fas fa-solid ${domainDetails.icon}`} /> {domainDetails.text}
