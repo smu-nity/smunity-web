@@ -22,17 +22,23 @@ export interface TCustomMypage {
 
 const useCustomMypage = (): TCustomMypage => {
   const uploadCourse = async (loginParam: TLoginParam) => {
-    const response = await courseUpload(loginParam)
-    const success = response.status < 400
-    !success && alert('샘물 포털 아이디 및 비밀번호가 일치하지 않습니다.')
-    return success
+    try {
+      await courseUpload(loginParam)
+      return true
+    } catch (err) {
+      authError(err)
+      return false
+    }
   }
 
   const memberUpdate = async (loginParam: TLoginParam) => {
-    const response = await updateMember(loginParam)
-    const success = response.status < 400
-    !success && alert('샘물 포털 아이디 및 비밀번호가 일치하지 않습니다.')
-    return success
+    try {
+      await updateMember(loginParam)
+      return true
+    } catch (err) {
+      authError(err)
+      return false
+    }
   }
 
   const passwordChange = async (passwordParam: TPasswordParam) => {
@@ -69,6 +75,9 @@ const useCustomMypage = (): TCustomMypage => {
         ? `${data.message}\n${Object.values(data.detail).join('\n')}`
         : data.message
     )
+
+  const authError = (err: any) =>
+    alert(err.response?.data?.message || '알 수 없는 오류가 발생했습니다.')
 
   return {
     uploadCourse,

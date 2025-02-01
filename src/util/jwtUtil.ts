@@ -62,13 +62,12 @@ const onRefreshed = (accessToken: string) => {
 
 const responseFail = async (err: AxiosError): Promise<Error> => {
   const originalRequest = err.config as AxiosRequestConfig
-
-  if (err.response?.status === 401) {
-    const responseData = err.response?.data as ErrorResponse
-    if (responseData.code && responseData.code.includes('AUTH')) {
-      return err
-    }
-
+  const responseData = err.response?.data as ErrorResponse
+  if (
+    err.response?.status === 401 &&
+    responseData.code &&
+    !responseData.code.includes('AUTH')
+  ) {
     if (isRefreshing) {
       // 이미 토큰 갱신 중이라면 대기
       return new Promise(resolve => {
