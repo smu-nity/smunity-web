@@ -6,15 +6,12 @@ import {Result} from '../../types/Result'
 import Modal from '../Modal'
 import CourseUpdateForm from './CourseUpdateForm'
 
-const CourseBox = () => {
-  const [courses, setCourses] = useState<Result<Course>>()
-  const [isOpenModal, setIsOpenModal] = useState(false)
+interface CourseBoxProps {
+  courses?: Result<Course>
+}
 
-  useEffect(() => {
-    fetchCourses().then((data: Result<Course>) => {
-      setCourses(data)
-    })
-  }, [])
+const CourseBox: React.FC<CourseBoxProps> = ({courses}) => {
+  const [isOpenModal, setIsOpenModal] = useState(false)
 
   return (
     <>

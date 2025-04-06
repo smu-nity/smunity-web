@@ -8,20 +8,15 @@ import CourseUpdateForm from './CourseUpdateForm'
 import {MemberInfo} from '../../types/MemberInfo'
 import {fetchMember} from '../../api/memberApi'
 
-const HeaderComponent = (props: {title: string}) => {
-  const [courses, setCourses] = useState<Result<Course>>()
-  const [member, setMember] = useState<MemberInfo>()
+interface HeaderComponentProps {
+  title: string
+  member?: MemberInfo
+  courses?: Result<Course>
+}
+
+const HeaderComponent: React.FC<HeaderComponentProps> = ({title, member, courses}) => {
   const [isOpenModal, setIsOpenModal] = useState(false)
   const {moveToPath}: TCustomMove = useCustomMove()
-
-  useEffect(() => {
-    fetchCourses().then((data: Result<Course>) => {
-      setCourses(data)
-    })
-    fetchMember().then((data: MemberInfo) => {
-      setMember(data)
-    })
-  }, [])
 
   const handleClick = () => {
     member?.yearId === 1
@@ -40,7 +35,7 @@ const HeaderComponent = (props: {title: string}) => {
           alt="네비게이션바 이미지"
         />
         <div className="navbar-img__text">
-          <span className="navbar-img__text--title">{props.title}</span>
+          <span className="navbar-img__text--title">{title}</span>
           <span className="navbar-img__text--subtitle">
             <button onClick={handleClick} className="go_result_btn">
               졸업요건 검사하기
