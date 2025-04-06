@@ -48,7 +48,7 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({
         title={'기이수과목 업데이트'}
         explanation={'샘물 통합로그인을 통해 재학생 인증을 진행합니다.'}
         link
-        children={<CourseUpdateForm />}
+        children={<CourseUpdateForm isGraduated={isGraduated} />}
       />
     </>
   )

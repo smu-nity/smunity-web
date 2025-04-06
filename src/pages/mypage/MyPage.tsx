@@ -32,7 +32,7 @@ const MyPage = () => {
       <div className="white_sec">
         <div className="my_box_wrap">
           <InfoBox member={member} />
-          <CourseBox courses={courses} />
+          <CourseBox courses={courses} isGraduated={member?.yearId === 1} />
         </div>
       </div>
     </>

@@ -4,10 +4,14 @@ import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
 import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
 import LoadingSpinner from '../LoadingSpinner'
 
-const CourseUpdateForm = () => {
+interface CourseUpdateFormProps {
+  isGraduated: boolean
+}
+
+const CourseUpdateForm: React.FC<CourseUpdateFormProps> = ({isGraduated}) => {
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const {moveToPath}: TCustomMove = useCustomMove()
+  const {reload, moveToPath}: TCustomMove = useCustomMove()
   const {getUsername}: TCustomAccount = useCustomAccount()
   const {uploadCourse}: TCustomMypage = useCustomMypage()
   const username = getUsername()
@@ -20,7 +24,7 @@ const CourseUpdateForm = () => {
         setIsLoading(false)
         if (success) {
           alert('기이수과목이 업데이트 되었습니다.')
-          moveToPath('/mypage/result')
+          isGraduated ? reload() : moveToPath('/mypage/result')
         }
       })
     } else {
