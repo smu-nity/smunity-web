@@ -6,5 +6,6 @@ export interface MemberInfo {
   department: string
   deptCode: string
   deptEditable: boolean
+  yearId: number
   exemption: ExemptionType
 }

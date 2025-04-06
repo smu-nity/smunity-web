@@ -5,9 +5,12 @@ import {Course} from '../../types/Course'
 import {fetchCourses} from '../../api/courseApi'
 import Modal from '../Modal'
 import CourseUpdateForm from './CourseUpdateForm'
+import {MemberInfo} from '../../types/MemberInfo'
+import {fetchMember} from '../../api/memberApi'
 
 const HeaderComponent = (props: {title: string}) => {
   const [courses, setCourses] = useState<Result<Course>>()
+  const [member, setMember] = useState<MemberInfo>()
   const [isOpenModal, setIsOpenModal] = useState(false)
   const {moveToPath}: TCustomMove = useCustomMove()
 
@@ -15,10 +18,17 @@ const HeaderComponent = (props: {title: string}) => {
     fetchCourses().then((data: Result<Course>) => {
       setCourses(data)
     })
+    fetchMember().then((data: MemberInfo) => {
+      setMember(data)
+    })
   }, [])
 
   const handleClick = () => {
-    courses?.count !== 0 ? moveToPath('/mypage/result') : setIsOpenModal(true)
+    member?.yearId === 1
+      ? alert('2017학번부터 검사가 가능합니다.')
+      : courses?.count !== 0
+      ? moveToPath('/mypage/result')
+      : setIsOpenModal(true)
   }
 
   return (
