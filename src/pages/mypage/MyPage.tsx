@@ -24,7 +24,11 @@ const MyPage = () => {
 
   return (
     <>
-      <HeaderComponent title="마이페이지" member={member} courses={courses} />
+      <HeaderComponent
+        title="마이페이지"
+        isGraduated={member?.yearId === 1}
+        hasNoCourses={courses?.count !== 0}
+      />
       <div className="white_sec">
         <div className="my_box_wrap">
           <InfoBox member={member} />

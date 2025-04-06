@@ -1,7 +1,6 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import CourseItem from './CourseItem'
 import {Course} from '../../types/Course'
-import {fetchCourses} from '../../api/courseApi'
 import {Result} from '../../types/Result'
 import Modal from '../Modal'
 import CourseUpdateForm from './CourseUpdateForm'

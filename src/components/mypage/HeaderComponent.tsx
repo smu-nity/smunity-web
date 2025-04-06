@@ -1,27 +1,26 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import {Result} from '../../types/Result'
-import {Course} from '../../types/Course'
-import {fetchCourses} from '../../api/courseApi'
 import Modal from '../Modal'
 import CourseUpdateForm from './CourseUpdateForm'
-import {MemberInfo} from '../../types/MemberInfo'
-import {fetchMember} from '../../api/memberApi'
 
 interface HeaderComponentProps {
   title: string
-  member?: MemberInfo
-  courses?: Result<Course>
+  isGraduated: boolean
+  hasNoCourses: boolean
 }
 
-const HeaderComponent: React.FC<HeaderComponentProps> = ({title, member, courses}) => {
+const HeaderComponent: React.FC<HeaderComponentProps> = ({
+  title,
+  isGraduated,
+  hasNoCourses
+}) => {
   const [isOpenModal, setIsOpenModal] = useState(false)
   const {moveToPath}: TCustomMove = useCustomMove()
 
   const handleClick = () => {
-    member?.yearId === 1
+    isGraduated
       ? alert('2017학번부터 검사가 가능합니다.')
-      : courses?.count !== 0
+      : hasNoCourses
       ? moveToPath('/mypage/result')
       : setIsOpenModal(true)
   }
