@@ -1,12 +1,15 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import {MemberInfo} from '../../types/MemberInfo'
-import {fetchMember} from '../../api/memberApi'
 import InfoTable from './InfoTable'
 import Modal from '../Modal'
 import Section from './Section'
 import InfoUpdateForm from './InfoUpdateForm'
 import ChangePasswordFrom from './ChangePasswordForm'
 import QuitForm from './QuitForm'
+
+interface InfoBoxProps {
+  member?: MemberInfo
+}
 
 const modals: any[] = [
   {
@@ -25,16 +28,8 @@ const modals: any[] = [
   }
 ]
 
-const InfoBox = () => {
-  const [member, setMember] = useState<MemberInfo>()
+const InfoBox: React.FC<InfoBoxProps> = ({member}) => {
   const [activeModal, setActiveModal] = useState<string | null>(null)
-
-  useEffect(() => {
-    fetchMember().then((data: MemberInfo) => {
-      setMember(data)
-    })
-  }, [])
-
   const handleOpenModal = (id: string) => setActiveModal(id)
   const handleCloseModal = () => setActiveModal(null)
 

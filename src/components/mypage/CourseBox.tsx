@@ -1,20 +1,17 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import CourseItem from './CourseItem'
 import {Course} from '../../types/Course'
-import {fetchCourses} from '../../api/courseApi'
 import {Result} from '../../types/Result'
 import Modal from '../Modal'
 import CourseUpdateForm from './CourseUpdateForm'
 
-const CourseBox = () => {
-  const [courses, setCourses] = useState<Result<Course>>()
-  const [isOpenModal, setIsOpenModal] = useState(false)
+interface CourseBoxProps {
+  courses?: Result<Course>
+  isGraduated: boolean
+}
 
-  useEffect(() => {
-    fetchCourses().then((data: Result<Course>) => {
-      setCourses(data)
-    })
-  }, [])
+const CourseBox: React.FC<CourseBoxProps> = ({courses, isGraduated}) => {
+  const [isOpenModal, setIsOpenModal] = useState(false)
 
   return (
     <>
@@ -86,7 +83,7 @@ const CourseBox = () => {
         title={'기이수과목 업데이트'}
         explanation={'샘물 통합로그인을 통해 재학생 인증을 진행합니다.'}
         link
-        children={<CourseUpdateForm />}
+        children={<CourseUpdateForm isGraduated={isGraduated} />}
       />
     </>
   )
