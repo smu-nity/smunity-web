@@ -1,6 +1,6 @@
 # 백엔드 서버 정의
 upstream backend {
-    server ${SERVER_HOST};
+    server ${BACKEND_HOST};
 }
 
 server {
