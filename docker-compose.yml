@@ -1,0 +1,7 @@
+services:
+  smunity:
+    build: .
+    container_name: smunity-web
+    ports:
+      - '80:80'
+  
