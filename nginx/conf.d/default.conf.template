@@ -1,6 +1,6 @@
 # 백엔드 서버 정의
 upstream backend {
-    server host.docker.internal:8080;
+    server ${SERVER_HOST};
 }
 
 server {
