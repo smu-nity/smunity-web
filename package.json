@@ -27,7 +27,7 @@
     "build": "npm run version && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "version": "echo REACT_APP_VERSION=$(git describe --tags --abbrev=0) > .env && echo REACT_APP_COMMIT_HASH=$(git rev-parse --short HEAD) >> .env"
+    "version": "./set-version.sh"
   },
   "eslintConfig": {
     "extends": [
