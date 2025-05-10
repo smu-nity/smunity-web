@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ENV_FILE=".env"
-VERSION_KEY="REACT_APP_VERSION"
-COMMIT_KEY="REACT_APP_COMMIT_HASH"
+VERSION_KEY="VITE_VERSION"
+COMMIT_KEY="VITE_COMMIT_HASH"
 
 VERSION_VALUE=$(git describe --tags --abbrev=0)
 COMMIT_VALUE=$(git rev-parse --short HEAD)
