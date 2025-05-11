@@ -31,19 +31,23 @@ const Footer = () => {
             SMUNITY
           </a>
           <a
-            href={`https://github.com/smu-nity/smunity-web/releases/tag/${process.env.REACT_APP_VERSION}`}
+            href={`https://github.com/smu-nity/smunity-web/releases/tag/${
+              import.meta.env.VITE_VERSION
+            }`}
             className="footer_link margin-3"
             target="_blank"
             rel="noreferrer">
-            {process.env.REACT_APP_VERSION}
+            {import.meta.env.VITE_VERSION}
           </a>
           (
           <a
-            href={`https://github.com/smu-nity/smunity-web/commit/${process.env.REACT_APP_COMMIT_HASH}`}
+            href={`https://github.com/smu-nity/smunity-web/commit/${
+              import.meta.env.VITE_COMMIT_HASH
+            }`}
             className="footer_link"
             target="_blank"
             rel="noreferrer">
-            {process.env.REACT_APP_COMMIT_HASH}
+            {import.meta.env.VITE_COMMIT_HASH}
           </a>
           )
         </h4>
