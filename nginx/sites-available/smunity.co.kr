@@ -15,7 +15,7 @@ server {
     listen 443 ssl;
     server_name smunity.co.kr www.smunity.co.kr;
 
-    root /home/ubuntu/smunity-web/build;
+    root /home/ubuntu/smunity-web/dist;
     index index.html;
 
     ssl_certificate     /etc/letsencrypt/live/smunity.co.kr/fullchain.pem;

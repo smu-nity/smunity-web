@@ -20,7 +20,7 @@ RUN export $(cat .env | xargs) && \
     sed "s|\${BACKEND_HOST}|${BACKEND_HOST}|g" /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf
 
 # 빌드된 정적 파일을 Nginx 기본 경로로 복사
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
