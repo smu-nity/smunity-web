@@ -21,6 +21,8 @@ const details: Record<Category | Domain, Detail> = {
   ALL: {text: '이수학점', icon: 'fa-user'},
   MAJOR_ADVANCED: {text: '전공심화', icon: 'fa-pen'},
   MAJOR_OPTIONAL: {text: '전공선택', icon: 'fa-pen-to-square'},
+  FIRST_MAJOR: {text: '1전공', icon: 'fa-pen'},
+  SECOND_MAJOR: {text: '다전공', icon: 'fa-pen-to-square'},
   CULTURE: {text: '교양', icon: 'fa-book'},
   BASIC: {text: '기초교양', icon: 'fa-book-open-reader'},
   CORE: {text: '상명핵심역량교양', icon: 'fa-book-open'},
@@ -36,6 +38,14 @@ const contents: Record<Category | Domain, Content> = {
   MAJOR_OPTIONAL: {
     title: '전공선택 추천과목',
     explanation: '전공선택 과목 중 미이수과목을 학년 순으로 추천합니다.'
+  },
+  FIRST_MAJOR: {
+    title: '1전공 추천과목',
+    explanation: '1전공 과목 중 미이수과목을 학년 순으로 추천합니다.'
+  },
+  SECOND_MAJOR: {
+    title: '다전공 추천과목',
+    explanation: '다전공 과목 중 미이수과목을 학년 순으로 추천합니다.'
   },
   CULTURE: {title: '', explanation: ''},
   BASIC: {
@@ -56,6 +66,8 @@ const explains: Record<Category | Domain, Explain> = {
   ALL: {completed: '', uncompleted: ''},
   MAJOR_ADVANCED: {completed: '기준 학점', uncompleted: '학점'},
   MAJOR_OPTIONAL: {completed: '기준 학점', uncompleted: '학점'},
+  FIRST_MAJOR: {completed: '기준 학점', uncompleted: '학점'},
+  SECOND_MAJOR: {completed: '기준 학점', uncompleted: '학점'},
   CULTURE: {completed: '', uncompleted: ''},
   BASIC: {completed: '필수과목 조건', uncompleted: '필수과목'},
   CORE: {completed: '선택영역 조건', uncompleted: '선택영역'},
@@ -66,6 +78,8 @@ const fields: Record<Category | Domain, keyof ResultData | null> = {
   ALL: null,
   MAJOR_ADVANCED: 'advanced',
   MAJOR_OPTIONAL: 'optional',
+  FIRST_MAJOR: 'first',
+  SECOND_MAJOR: 'second',
   CULTURE: null,
   BASIC: 'basic',
   CORE: 'core',

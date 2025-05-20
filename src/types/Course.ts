@@ -17,6 +17,12 @@ export interface CourseCulture {
   completed: boolean
 }
 
-export type Category = 'ALL' | 'MAJOR_ADVANCED' | 'MAJOR_OPTIONAL' | 'CULTURE'
+export type Category =
+  | 'ALL'
+  | 'FIRST_MAJOR'
+  | 'SECOND_MAJOR'
+  | 'MAJOR_ADVANCED'
+  | 'MAJOR_OPTIONAL'
+  | 'CULTURE'
 
 export type Domain = 'BASIC' | 'CORE' | 'BALANCE'

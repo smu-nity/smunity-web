@@ -24,6 +24,8 @@ const ResultContainer: React.FC<ResultContainerProps> = ({type}) => {
     ALL: null,
     MAJOR_ADVANCED: <MajorTable type={type} />,
     MAJOR_OPTIONAL: <MajorTable type={type} />,
+    FIRST_MAJOR: <MajorTable type={type} />,
+    SECOND_MAJOR: <MajorTable type={type} />,
     CULTURE: null,
     BASIC: <CultureBasicTable result={result as Result<CourseCulture>} />,
     CORE: <CultureTable result={result as Result<CourseCulture>} />,
