@@ -36,7 +36,7 @@ const InfoTable: React.FC<InfoTableProps> = ({member}) => {
         </tr>
         {member?.secondDepartment && member?.secondDeptCode && (
           <tr>
-            <td className="my_box_table_1st_td">2전공</td>
+            <td className="my_box_table_1st_td">다전공</td>
             <td>
               <a
                 className="link_site"

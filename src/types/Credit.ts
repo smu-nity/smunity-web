@@ -9,4 +9,5 @@ export type Credit = {
   etc: number
   required: number
   completion: number
+  isDoubleMajor: boolean
 }

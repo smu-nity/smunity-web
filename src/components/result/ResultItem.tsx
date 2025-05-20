@@ -18,9 +18,13 @@ const ResultItem: React.FC<ResultItemProps> = ({credit}) => {
       <div className="result_container">
         <CreditItem credit={credit.total} text="총 기준 학점" />
         <CreditItem credit={credit.completed} text="총 이수 학점" line animated />
-        <CreditItem credit={credit.major} text="전공" animated />
-        {credit.secondMajor && (
-          <CreditItem credit={credit.secondMajor} text="다전공" animated />
+        {credit.isDoubleMajor && credit.secondMajor != null ? (
+          <>
+            <CreditItem credit={credit.major} text="1전공" animated />
+            <CreditItem credit={credit.secondMajor} text="다전공" animated />
+          </>
+        ) : (
+          <CreditItem credit={credit.major} text="전공" animated />
         )}
         <CreditItem credit={credit.culture} text="교양" animated />
         <CreditItem credit={credit.etc} text="일반" line animated />
