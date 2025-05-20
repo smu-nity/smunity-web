@@ -8,6 +8,7 @@ interface RegisterCredentials {
   name: string
   username: string
   department: string
+  secondDepartment?: string
   email: string
   password1: string
   password2: string
@@ -21,6 +22,7 @@ const RegisterForm = () => {
     name: authState.name ?? '',
     username: authState.username ?? '',
     department: authState.department ?? '',
+    secondDepartment: authState.secondDepartment,
     email: authState.email ?? '',
     password1: '',
     password2: ''
@@ -33,8 +35,15 @@ const RegisterForm = () => {
   }
 
   const requestParam = () => {
-    const {name, username, department, email, password1: password} = registerParams
-    return {name, username, department, email, password}
+    const {
+      name,
+      username,
+      department,
+      secondDepartment,
+      email,
+      password1: password
+    } = registerParams
+    return {name, username, department, secondDepartment, email, password}
   }
 
   const handleClickRegister = () => {
@@ -97,6 +106,18 @@ const RegisterForm = () => {
           readOnly
         />
       </div>
+      {authState.secondDepartment && (
+        <div className="box-margin1">
+          <label>2전공</label>
+          <input
+            className="form-control form-readonly"
+            type="text"
+            name="department"
+            value={authState.secondDepartment}
+            readOnly
+          />
+        </div>
+      )}
       <div className="box-margin1">
         <label>이메일</label>
         <input
