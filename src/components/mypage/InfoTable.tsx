@@ -34,6 +34,20 @@ const InfoTable: React.FC<InfoTableProps> = ({member}) => {
             </td>
           )}
         </tr>
+        {member?.secondDepartment && member?.secondDeptCode && (
+          <tr>
+            <td className="my_box_table_1st_td">2전공</td>
+            <td>
+              <a
+                className="link_site"
+                href={`https://www.smu.ac.kr/_custom/smu/_app/curriculum.do?srSust=${member?.secondDeptCode}&srShyr=all`}
+                target="_blank"
+                rel="noopener noreferrer">
+                {member?.secondDepartment}
+              </a>
+            </td>
+          </tr>
+        )}
         <tr>
           <td className="my_box_table_1st_td">이수 면제</td>
           <ChangeExemption exemption={member?.exemption} />
