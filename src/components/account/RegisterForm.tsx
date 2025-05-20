@@ -108,7 +108,7 @@ const RegisterForm = () => {
       </div>
       {authState.secondDepartment && (
         <div className="box-margin1">
-          <label>2전공</label>
+          <label>다전공</label>
           <input
             className="form-control form-readonly"
             type="text"
