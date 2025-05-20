@@ -4,6 +4,7 @@ export type Credit = {
   total: number
   completed: number
   major: number
+  secondMajor?: number
   culture: number
   etc: number
   required: number
