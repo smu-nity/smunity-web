@@ -1,19 +1,13 @@
-import {useEffect, useState} from 'react'
 import CreditItem from './CreditItem'
 import PieChart from './PieChart'
 import {Credit} from '../../types/Credit'
-import {fetchCredit} from '../../api/courseApi'
 
-const ResultItem: React.FC = () => {
-  const [credit, setCredit] = useState<Credit>()
+interface ResultItemProps {
+  credit: Credit
+}
 
-  useEffect(() => {
-    fetchCredit().then((data: Credit) => {
-      setCredit(data)
-    })
-  }, [])
-
-  return credit ? (
+const ResultItem: React.FC<ResultItemProps> = ({credit}) => {
+  return (
     <div className="resultbox-main">
       <div className="result_name">
         <i className="fas fa-solid fa-user"></i> 이수학점
@@ -34,7 +28,7 @@ const ResultItem: React.FC = () => {
         <PieChart percent={credit.completion} />
       </div>
     </div>
-  ) : null
+  )
 }
 
 export default ResultItem
