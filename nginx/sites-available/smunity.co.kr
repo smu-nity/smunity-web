@@ -7,10 +7,6 @@ upstream grafana {
     server localhost:3000;
 }
 
-upstream umami {
-    server localhost:3200;
-}
-
 server {
     listen 443 ssl;
     server_name smunity.co.kr www.smunity.co.kr;
@@ -44,11 +40,6 @@ server {
 
     location /login {
         proxy_pass http://backend/login;
-    }
-
-    # Umami 요청 프록시 처리
-    location /umami/ {
-        proxy_pass http://umami;
     }
 
     # Grafana 요청은 별도 upstream 사용 및 URL 재작성
