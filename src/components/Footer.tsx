@@ -22,14 +22,15 @@ const Footer = () => {
           </Link>
         </h4>
         <h4>
-          Copyright ⓒ
+          © {import.meta.env.VITE_YEAR}
           <a
             href={`https://github.com/smu-nity`}
-            className="footer_link margin-l3"
+            className="footer_link margin-3"
             target="_blank"
             rel="noreferrer">
             SMUNITY
           </a>
+          ·
           <a
             href={`https://github.com/smu-nity/smunity-web/releases/tag/${
               import.meta.env.VITE_VERSION
