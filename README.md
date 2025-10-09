@@ -28,7 +28,7 @@
 
 - #### [SMUNITY Web](https://github.com/smu-nity/smunity-web)
 
-- #### [SMUNITY Infra](https://github.com/smu-nity/smunity-infra)
+- #### [SMUNITY Monitoring](https://github.com/smu-nity/smunity-monitoring)
 
 ## ⏳ Previous Version
 
@@ -38,18 +38,22 @@
 
 - #### Frontend
 
-  <img src="https://img.shields.io/badge/Node.js-v20.11.1-339933?style=round-square&logo=nodedotjs&logoColor=white"/>
-  <img src="https://img.shields.io/badge/React-v18.3.1-61DAFB?style=round-square&logo=react&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Node.js-20.11.1-339933?style=round-square&logo=nodedotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React-18.3.1-61DAFB?style=round-square&logo=react&logoColor=white"/>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=round-square&logo=typescript&logoColor=white"/>
 
-- #### CI/CD
+- #### Build Tool
+
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=round-square&logo=vite&logoColor=white"/>
+
+- #### DevOps
 
   <img src="https://img.shields.io/badge/Git-F05032?style=round-square&logo=Git&logoColor=white"/>
   <img src="https://img.shields.io/badge/GitHub-181717?style=round-square&logo=github&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Github Actions-2088FF?style=round-square&logo=githubactions&logoColor=white"/>
+  <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=round-square&logo=githubactions&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=round-square&logo=Docker&logoColor=white"/>
 
-- #### Deploy
+- #### Cloud
 
-  <img src="https://img.shields.io/badge/AWS-232F3E?style=round-square&logo=amazonwebservices&logoColor=white"/>
-  <img src="https://img.shields.io/badge/EC2-FF9900?style=round-square&logo=amazonec2&logoColor=white"/>
-  <img src="https://img.shields.io/badge/S3-569A31?style=round-square&logo=amazons3&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Route 53-8C4FFF?style=round-square&logo=amazonroute53&logoColor=white"/>
+  <img src="http://is.am/63dc"/>
+  <img src="http://is.am/63db"/>
