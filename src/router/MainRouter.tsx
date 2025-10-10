@@ -1,4 +1,4 @@
-import {BrowserRouter, Navigate, Outlet, Route, Routes} from 'react-router-dom'
+import {Navigate, Outlet, Route, Routes} from 'react-router-dom'
 import Layout from './Layout'
 import MainPage from '../pages/MainPage'
 import LoginPage from '../pages/account/LoginPage'
@@ -37,52 +37,50 @@ const ProtectedRoute = ({
 
 const MainRouter = (): JSX.Element => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<MainPage />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<MainPage />} />
+        <Route
+          path="/accounts"
+          element={
+            <ProtectedRoute requireLogin={false}>
+              <Outlet />
+            </ProtectedRoute>
+          }>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="agree" element={<AgreePage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="password/reset" element={<PasswordResetPage />} />
+        </Route>
+        <Route
+          path="/mypage"
+          element={
+            <ProtectedRoute requireLogin={true}>
+              <Outlet />
+            </ProtectedRoute>
+          }>
+          <Route index element={<MyPage />} />
+          <Route path="result" element={<ResultPage />} />
+        </Route>
+        <Route path="/qna" element={<Outlet />}>
+          <Route path="terms" element={<TermsPage />} />
+          <Route path="privacy" element={<PrivacyPage />} />
+          <Route path="questions" element={<QuestionPage />} />
+          <Route path="questions/:id" element={<QuestionDetailPage />} />
           <Route
-            path="/accounts"
-            element={
-              <ProtectedRoute requireLogin={false}>
-                <Outlet />
-              </ProtectedRoute>
-            }>
-            <Route path="login" element={<LoginPage />} />
-            <Route path="agree" element={<AgreePage />} />
-            <Route path="register" element={<RegisterPage />} />
-            <Route path="password/reset" element={<PasswordResetPage />} />
-          </Route>
-          <Route
-            path="/mypage"
             element={
               <ProtectedRoute requireLogin={true}>
                 <Outlet />
               </ProtectedRoute>
             }>
-            <Route index element={<MyPage />} />
-            <Route path="result" element={<ResultPage />} />
-          </Route>
-          <Route path="/qna" element={<Outlet />}>
-            <Route path="terms" element={<TermsPage />} />
-            <Route path="privacy" element={<PrivacyPage />} />
-            <Route path="questions" element={<QuestionPage />} />
-            <Route path="questions/:id" element={<QuestionDetailPage />} />
-            <Route
-              element={
-                <ProtectedRoute requireLogin={true}>
-                  <Outlet />
-                </ProtectedRoute>
-              }>
-              <Route path="questions/create" element={<QuestionCreatePage />} />
-              <Route path="questions/:id/modify" element={<QuestionModifyPage />} />
-              <Route path="questions/:id/answer" element={<AnswerCreatePage />} />
-              <Route path="questions/:id/answer/modify" element={<AnswerModifyPage />} />
-            </Route>
+            <Route path="questions/create" element={<QuestionCreatePage />} />
+            <Route path="questions/:id/modify" element={<QuestionModifyPage />} />
+            <Route path="questions/:id/answer" element={<AnswerCreatePage />} />
+            <Route path="questions/:id/answer/modify" element={<AnswerModifyPage />} />
           </Route>
         </Route>
-      </Routes>
-    </BrowserRouter>
+      </Route>
+    </Routes>
   )
 }
 
