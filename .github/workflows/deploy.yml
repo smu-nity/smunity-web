@@ -25,6 +25,8 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          VITE_GA_ID: ${{ secrets.VITE_GA_ID }}
         run: unset CI && npm run build
 
       - name: Create Deployment Package
