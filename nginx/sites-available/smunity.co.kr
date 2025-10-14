@@ -31,6 +31,10 @@ server {
         proxy_pass http://backend/api/;
     }
 
+    location /actuator/info {
+        proxy_pass http://backend/actuator/info;
+    }
+
     # Grafana 요청은 별도 upstream 사용 및 URL 재작성
     location /grafana/ {
         proxy_pass http://grafana/;
