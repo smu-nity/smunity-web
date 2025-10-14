@@ -15,7 +15,7 @@ server {
     proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
 
-    # 백엔드 API, Swagger, API Docs, 로그인 요청은 동일한 서버로 프록시 처리
+    # API, Swagger, API Docs, 로그인 요청을 백엔드 서버로 프록시 처리
     location /api/ {
         proxy_pass http://backend/api/;
     }
