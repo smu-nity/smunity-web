@@ -1,32 +1,16 @@
 {
   "routes": [
     {
-      "route": "/actuator/info",
-      "methods": ["GET"],
-      "rewrite": "https://smunity.co.kr/actuator/info",
-      "headers": {
-        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
-        "Pragma": "no-cache",
-        "Expires": "0"
-      }
+      "route": "/api/*",
+      "allowedRoles": ["anonymous"],
+      "rewrite": "https://smunity.co.kr/api/{*path}"
     }
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": [
-      "/assets/*",
-      "/*.css",
-      "/*.js",
-      "/*.png",
-      "/*.jpg",
-      "/*.svg",
-      "/*.ico",
-      "/actuator/*"
-    ]
+    "exclude": ["/assets/*", "/*.css", "/*.js", "/*.png", "/*.jpg", "/*.svg", "/*.ico"]
   },
   "globalHeaders": {
-    "X-Content-Type-Options": "nosniff",
-    "X-Frame-Options": "SAMEORIGIN",
-    "Referrer-Policy": "strict-origin-when-cross-origin"
+    "X-Content-Type-Options": "nosniff"
   }
 }
