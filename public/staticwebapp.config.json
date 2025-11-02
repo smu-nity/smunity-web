@@ -1,0 +1,33 @@
+{
+  "routes": [
+    {
+      "route": "/api/*",
+      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+      "rewrite": "https://smunity.co.kr/api/{*rest}"
+    },
+    {
+      "route": "/grafana/*",
+      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+      "rewrite": "https://smunity.co.kr/grafana/{*rest}"
+    },
+    {
+      "route": "/actuator/info",
+      "methods": ["GET"],
+      "rewrite": "https://smunity.co.kr/actuator/info"
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/assets/*", "/*.css", "/*.js", "/*.png", "/*.jpg", "/*.svg", "/*.ico"]
+  },
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/index.html",
+      "statusCode": 200
+    }
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY"
+  }
+}
