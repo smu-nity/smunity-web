@@ -2,34 +2,20 @@
   "routes": [
     {
       "route": "/api/*",
-      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
       "rewrite": "https://smunity.co.kr/api/{*rest}"
     },
     {
-      "route": "/grafana/*",
-      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-      "rewrite": "https://smunity.co.kr/grafana/{*rest}"
+      "route": "/actuator/info",
+      "rewrite": "https://smunity.co.kr/actuator/info"
     },
     {
-      "route": "/actuator/info",
-      "methods": ["GET"],
-      "rewrite": "https://smunity.co.kr/actuator/info"
+      "route": "/grafana/*",
+      "rewrite": "https://smunity.co.kr/grafana/{*rest}"
     }
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": [
-      "/assets/*",
-      "/*.css",
-      "/*.js",
-      "/*.png",
-      "/*.jpg",
-      "/*.svg",
-      "/*.ico",
-      "/api/*",
-      "/grafana/*",
-      "/actuator/info"
-    ]
+    "exclude": ["/assets/*", "/*.css", "/*.js", "/*.png", "/*.jpg", "/*.svg", "/*.ico"]
   },
   "responseOverrides": {
     "404": {
@@ -39,6 +25,7 @@
   },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
-    "X-Frame-Options": "DENY"
+    "X-Frame-Options": "SAMEORIGIN",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
   }
 }
