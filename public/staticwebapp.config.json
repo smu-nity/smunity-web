@@ -1,16 +1,8 @@
 {
   "routes": [
     {
-      "route": "/api/*",
-      "rewrite": "https://smunity.co.kr/api/{*rest}"
-    },
-    {
       "route": "/actuator/info",
       "rewrite": "https://smunity.co.kr/actuator/info"
-    },
-    {
-      "route": "/grafana/*",
-      "rewrite": "https://smunity.co.kr/grafana/{*rest}"
     }
   ],
   "navigationFallback": {
