@@ -4,6 +4,8 @@ services:
       context: .
       args:
         BACKEND_HOST: host.docker.internal:8080
+    container_name: smunity-web
+    restart: always
     ports:
       - "80:80"
     extra_hosts:
