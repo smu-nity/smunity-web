@@ -1,6 +1,8 @@
 services:
   smunity:
-    build: .
-    container_name: smunity-web
+    build:
+      context: .
+      args:
+        BACKEND_HOST: host.docker.internal:8080
     ports:
-      - 80:80
+      - "80:80"
