@@ -1,12 +1,13 @@
 services:
   smunity:
+    container_name: smunity-web
+    image: smunity/web:latest
     build:
       context: .
       args:
         BACKEND_HOST: host.docker.internal:8080
-    container_name: smunity-web
-    restart: always
     ports:
       - "80:80"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    restart: always
