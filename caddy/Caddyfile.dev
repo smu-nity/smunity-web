@@ -3,7 +3,8 @@
 	root * /srv
 
 	route {
-		handle /api/* {
+		@api path /api/* /swagger-ui/* /v3/*
+		handle @api {
 			reverse_proxy {$BACKEND_HOST}
 		}
 
