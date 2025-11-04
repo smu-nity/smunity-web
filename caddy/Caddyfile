@@ -1,0 +1,25 @@
+{
+	email {env.CADDY_EMAIL}
+}
+
+smunity.co.kr {
+	encode zstd gzip
+	root * /srv
+
+	route {
+		handle /api/* {
+			reverse_proxy {env.BACKEND_HOST}
+		}
+
+		handle {
+			try_files {path} {path}/ /index.html
+			file_server
+		}
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+}

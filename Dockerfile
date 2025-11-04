@@ -1,27 +1,24 @@
-# 1단계: 빌드 단계 (Node.js 사용)
+# 1단계: 빌드
 FROM node:20 AS builder
-
 WORKDIR /app
 
+# 캐시 효율을 위해 의존성 먼저
+COPY package*.json ./
+RUN npm ci
+
+# 나머지 소스
 COPY . .
+RUN npm run build
 
-RUN npm install && npm run build
+# 2단계: Caddy로 정적 서빙
+FROM caddy:2
+WORKDIR /srv
 
-# 2단계: 실제 배포용 (Nginx 사용)
-FROM nginx:latest
+# Caddy 유저가 읽을 수 있게 권한 지정
+COPY --from=builder --chown=caddy:caddy /app/dist /srv
 
-# Nginx 설정 복사
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-COPY ./nginx/conf.d /etc/nginx/conf.d
+# 운영용 Caddyfile (개발은 compose에서 dev 파일 마운트 권장)
+COPY ./caddy/Caddyfile /etc/caddy/Caddyfile
 
-# 환경 변수를 로드하여 Nginx 설정에 적용
-ARG BACKEND_HOST
-ENV BACKEND_HOST=${BACKEND_HOST}
-RUN sed "s|\${BACKEND_HOST}|${BACKEND_HOST}|g" /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf
-
-# 빌드된 정적 파일을 Nginx 기본 경로로 복사
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# 문서화용
+EXPOSE 80 443
