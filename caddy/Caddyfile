@@ -1,5 +1,5 @@
 {
-	email {env.CADDY_EMAIL}
+	email {$CADDY_EMAIL}
 }
 
 test.smunity.co.kr {
@@ -9,13 +9,13 @@ test.smunity.co.kr {
 	route {
 		@api path /api/* /actuator/info
 		handle @api {
-			reverse_proxy {env.BACKEND_HOST}
+			reverse_proxy {$BACKEND_HOST}
 		}
 
         @grafana path /grafana*
 		handle @grafana {
 			uri strip_prefix /grafana
-			reverse_proxy {env.GRAFANA_HOST}
+			reverse_proxy {$GRAFANA_HOST}
 		}
 
 		handle {
