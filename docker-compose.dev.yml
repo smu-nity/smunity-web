@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: smunity-web-dev
+    image: smunity/web:latest
+    build:
+      context: .
+    environment:
+      BACKEND_HOST: host.docker.internal:8080
+    volumes:
+      - ./caddy/Caddyfile.dev:/etc/caddy/Caddyfile:ro
+    ports:
+      - "80:80"
+    restart: always

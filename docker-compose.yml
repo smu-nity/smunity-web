@@ -1,12 +1,21 @@
 services:
-  smunity:
+  app:
+    container_name: smunity-web
+    image: smunity/web:latest
     build:
       context: .
-      args:
-        BACKEND_HOST: host.docker.internal:8080
-    container_name: smunity-web
-    restart: always
+    environment:
+      CADDY_EMAIL: ${CADDY_EMAIL}
+      BACKEND_HOST: ${BACKEND_HOST}
+      GRAFANA_HOST: ${GRAFANA_HOST}
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
     ports:
       - "80:80"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - "443:443"
+    restart: always
+
+volumes:
+  caddy_data:
+  caddy_config:
