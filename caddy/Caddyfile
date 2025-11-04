@@ -2,7 +2,7 @@
 	email {env.CADDY_EMAIL}
 }
 
-smunity.co.kr {
+test.smunity.co.kr {
 	encode zstd gzip
 	root * /srv
 
