@@ -1,0 +1,20 @@
+services:
+  app:
+    container_name: smunity-web
+    image: smunity/web:latest
+    build:
+      context: .
+    environment:
+      BACKEND_HOST: ${BACKEND_HOST}
+      CADDY_EMAIL: ${CADDY_EMAIL}
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+
+volumes:
+  caddy_data:
+  caddy_config:
