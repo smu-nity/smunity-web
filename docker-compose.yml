@@ -5,8 +5,9 @@ services:
     build:
       context: .
     environment:
-      BACKEND_HOST: ${BACKEND_HOST}
       CADDY_EMAIL: ${CADDY_EMAIL}
+      BACKEND_HOST: ${BACKEND_HOST}
+      GRAFANA_HOST: ${GRAFANA_HOST}
     volumes:
       - caddy_data:/data
       - caddy_config:/config

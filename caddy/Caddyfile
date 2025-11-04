@@ -7,8 +7,15 @@ smunity.co.kr {
 	root * /srv
 
 	route {
-		handle /api/* {
+		@api path /api/* /actuator/info
+		handle @api {
 			reverse_proxy {env.BACKEND_HOST}
+		}
+
+        @grafana path /grafana*
+		handle @grafana {
+			uri strip_prefix /grafana
+			reverse_proxy {env.GRAFANA_HOST}
 		}
 
 		handle {
