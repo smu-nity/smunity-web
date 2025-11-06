@@ -1,6 +1,6 @@
 services:
-  app:
-    container_name: smunity-web
+  web:
+    container_name: web
     image: smunity/web:latest
     build:
       context: .
@@ -14,8 +14,13 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    networks: [ smunity ]
     restart: always
 
 volumes:
   caddy_data:
   caddy_config:
+
+networks:
+  smunity:
+    external: true
