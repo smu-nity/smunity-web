@@ -5,7 +5,7 @@ services:
     build:
       context: .
     environment:
-      BACKEND_HOST: host.docker.internal:8080
+      BACKEND_HOST: ${BACKEND_HOST:-host.docker.internal:8080}
     volumes:
       - ./caddy/Caddyfile.dev:/etc/caddy/Caddyfile:ro
     ports:
