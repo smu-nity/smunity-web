@@ -1,6 +1,6 @@
 services:
   web:
-    container_name: web
+    container_name: smunity-web
     image: smunity/web:latest
     build:
       context: .

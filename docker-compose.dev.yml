@@ -1,5 +1,5 @@
 services:
-  app:
+  web:
     container_name: smunity-web-dev
     image: smunity/web:latest
     build:
