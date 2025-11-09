@@ -3,7 +3,7 @@ name: SMUNITY Web CI/CD Pipeline
 on:
   push:
     branches:
-      - feature/142
+      - main
   workflow_dispatch:
 
 permissions:
