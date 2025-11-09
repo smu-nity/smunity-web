@@ -83,6 +83,6 @@ jobs:
             cd "${{ secrets.REMOTE_APP_DIR }}"
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ${{ env.REGISTRY }} -u "${{ github.actor }}" --password-stdin
             export IMAGE="${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}"
-            docker compose pull web
+            docker compose pull
             docker compose up -d --remove-orphans --pull always
             docker image prune -f
