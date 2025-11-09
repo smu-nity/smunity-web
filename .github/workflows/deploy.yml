@@ -70,12 +70,13 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script_stop: true
           script: |
-            set -e
+            set -Eeuo pipefail
             cd "${{ secrets.REMOTE_APP_DIR }}"
-            git pull
-            git checkout feature/142
-            docker login ${{ env.REGISTRY }} -u ${{ github.actor }} -p "${{ secrets.GHCR_TOKEN }}"
+            git fetch origin feature/142
+            git checkout -f feature/142
+            git reset --hard origin/feature/142
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ${{ env.REGISTRY }} -u "${{ github.actor }}" --password-stdin
             export IMAGE="${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}"
             docker compose pull web
-            docker compose up -d --remove-orphans
+            docker compose up -d --remove-orphans --pull always
             docker image prune -f
