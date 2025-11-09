@@ -2,6 +2,13 @@
 FROM node:20 AS builder
 WORKDIR /app
 
+# 빌드 타임 인자
+ARG VITE_VERSION VITE_COMMIT_HASH VITE_YEAR VITE_GA_ID
+ENV VITE_VERSION=$VITE_VERSION \
+    VITE_COMMIT_HASH=$VITE_COMMIT_HASH \
+    VITE_YEAR=$VITE_YEAR \
+    VITE_GA_ID=$VITE_GA_ID
+
 # 캐시 효율을 위해 의존성 먼저
 COPY package*.json ./
 RUN npm ci

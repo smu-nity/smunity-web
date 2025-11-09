@@ -28,10 +28,9 @@
     "vite": "^5.1.4"
   },
   "scripts": {
-    "dev": "npm run version && vite",
-    "build": "npm run version && tsc && vite build",
-    "preview": "vite preview",
-    "version": "./set-version.sh"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [

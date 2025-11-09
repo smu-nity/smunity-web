@@ -1,9 +1,7 @@
 services:
   web:
     container_name: smunity-web
-    image: smunity/web:latest
-    build:
-      context: .
+    image: ${IMAGE}
     environment:
       CADDY_EMAIL: ${CADDY_EMAIL}
       BACKEND_HOST: ${BACKEND_HOST}
