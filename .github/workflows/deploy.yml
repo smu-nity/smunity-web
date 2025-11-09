@@ -36,6 +36,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
 
+      - name: Get Git tag or commit
+        id: vars
+        run: |
+          TAG=$(git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)
+          echo "TAG=$TAG" >> $GITHUB_ENV
+
       - name: Build and Push Docker image
         uses: docker/build-push-action@v6
         with:
@@ -43,6 +49,7 @@ jobs:
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.TAG }}
           platforms: linux/amd64
           build-args: |
             VITE_GA_ID=${{ secrets.VITE_GA_ID }}
