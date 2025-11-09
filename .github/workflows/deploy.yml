@@ -36,14 +36,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
 
-      - name: Get Git tag or commit
+      - name: Resolve build version
         id: vars
         run: |
-          TAG=$(git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)
-          echo "TAG=$TAG" >> $GITHUB_ENV
+          echo "tag=$(git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "year=$(date +%Y)" >> $GITHUB_OUTPUT
 
       - name: Build and Push Docker image
         uses: docker/build-push-action@v6
+        env:
+          TAG: ${{ steps.vars.outputs.tag }}
+          YEAR: ${{ steps.vars.outputs.year }}
         with:
           context: .
           push: true
@@ -53,6 +56,9 @@ jobs:
           platforms: linux/amd64
           build-args: |
             VITE_GA_ID=${{ secrets.VITE_GA_ID }}
+            VITE_COMMIT_HASH=${{ github.sha }}
+            VITE_VERSION=${{ env.TAG }}
+            VITE_YEAR=${{ env.YEAR }}
 
       - name: Deploy to Server via SSH
         uses: appleboy/ssh-action@v1.2.0
