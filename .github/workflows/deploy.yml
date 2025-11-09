@@ -55,10 +55,10 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.TAG }}
           platforms: linux/amd64
           build-args: |
-            VITE_GA_ID=${{ secrets.VITE_GA_ID }}
-            VITE_COMMIT_HASH=${{ github.sha }}
             VITE_VERSION=${{ env.TAG }}
+            VITE_COMMIT_HASH=${{ github.sha }}
             VITE_YEAR=${{ env.YEAR }}
+            VITE_GA_ID=${{ secrets.VITE_GA_ID }}
 
       - name: Deploy to Server via SSH
         uses: appleboy/ssh-action@v1.2.0
