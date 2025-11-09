@@ -53,8 +53,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
             ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.TAG }}
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
           platforms: linux/amd64
           build-args: |
             VITE_VERSION=${{ env.TAG }}
