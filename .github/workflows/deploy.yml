@@ -40,12 +40,14 @@ jobs:
         id: vars
         run: |
           echo "tag=$(git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "commit_hash=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
           echo "year=$(date +%Y)" >> $GITHUB_OUTPUT
 
       - name: Build and Push Docker image
         uses: docker/build-push-action@v6
         env:
           TAG: ${{ steps.vars.outputs.tag }}
+          COMMIT_HASH: ${{ steps.vars.outputs.commit_hash }}
           YEAR: ${{ steps.vars.outputs.year }}
         with:
           context: .
@@ -56,7 +58,7 @@ jobs:
           platforms: linux/amd64
           build-args: |
             VITE_VERSION=${{ env.TAG }}
-            VITE_COMMIT_HASH=${{ github.sha }}
+            VITE_COMMIT_HASH=${{ env.COMMIT_HASH }}
             VITE_YEAR=${{ env.YEAR }}
             VITE_GA_ID=${{ secrets.VITE_GA_ID }}
 
