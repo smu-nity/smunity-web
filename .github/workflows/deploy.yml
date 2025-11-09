@@ -1,54 +1,66 @@
-name: Release CI/CD
+name: SMUNITY Web CI/CD Pipeline
 
 on:
   push:
     branches:
-      - main
+      - feature/142
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
+    env:
+      REGISTRY: ghcr.io
+      REPOSITORY: ${{ github.repository }}
+      IMAGE_TAG: latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           fetch-tags: true
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
         with:
-          node-version: '20.11.1'
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }}
 
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Build
-        env:
-          VITE_GA_ID: ${{ secrets.VITE_GA_ID }}
-        run: unset CI && npm run build
-
-      - name: Create Deployment Package
-        run: zip -qq -r ./build.zip .
-        shell: bash
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Build and Push Docker image
+        uses: docker/build-push-action@v6
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          context: .
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
+          platforms: linux/amd64
+          build-args: |
+            VITE_GA_ID=${{ secrets.VITE_GA_ID }}
 
-      - name: Upload to S3
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: aws s3 cp --region ap-northeast-2 ./build.zip s3://smunity/build.zip
-
-      - name: Deploy
-        run: aws deploy create-deployment
-          --application-name smunity
-          --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name smunity-web
-          --s3-location bucket=smunity,key=build.zip,bundleType=zip
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script_stop: true
+          script: |
+            set -e
+            cd "${{ secrets.REMOTE_APP_DIR }}"
+            git pull
+            git checkout feature/142
+            docker login ${{ env.REGISTRY }} -u ${{ github.actor }} -p "${{ secrets.GHCR_TOKEN }}"
+            export IMAGE="${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}"
+            docker compose pull web
+            docker compose up -d --remove-orphans
+            docker image prune -f

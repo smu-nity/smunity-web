@@ -2,6 +2,10 @@
 FROM node:20 AS builder
 WORKDIR /app
 
+# 빌드 타임 인자
+ARG VITE_GA_ID
+ENV VITE_GA_ID=${VITE_GA_ID}
+
 # 캐시 효율을 위해 의존성 먼저
 COPY package*.json ./
 RUN npm ci
