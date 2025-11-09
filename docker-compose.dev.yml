@@ -1,7 +1,7 @@
 services:
   web:
     container_name: smunity-web-dev
-    image: smunity/web:latest
+    image: ghcr.io/smu-nity/smunity-web:latest
     build:
       context: .
     environment:
