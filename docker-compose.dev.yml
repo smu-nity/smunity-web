@@ -3,6 +3,7 @@ services:
     container_name: smunity-web-dev
     image: ghcr.io/smu-nity/smunity-web:latest
     build: .
+    platform: linux/amd64
     environment:
       BACKEND_HOST: ${BACKEND_HOST:-host.docker.internal:8080}
     volumes:
