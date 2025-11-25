@@ -17,15 +17,14 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# 2단계: Caddy로 정적 서빙
-FROM caddy:2
-WORKDIR /srv
+# 2단계: nginx로 정적 파일 서빙
+FROM nginx:stable-alpine
 
-# Caddy 유저가 읽을 수 있게 권한 지정
-COPY --from=builder --chown=caddy:caddy /app/dist /srv
+# dist 결과물 복사
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# 운영용 Caddyfile (개발은 compose에서 dev 파일 마운트 권장)
-COPY ./caddy/Caddyfile /etc/caddy/Caddyfile
+# nginx 설정 복사
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
-# 문서화용
-EXPOSE 80 443
+# HTTP만 사용 (Cloudflare가 HTTPS 처리)
+EXPOSE 80
