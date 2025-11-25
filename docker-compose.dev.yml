@@ -6,8 +6,7 @@ services:
     platform: linux/amd64
     environment:
       BACKEND_HOST: ${BACKEND_HOST:-host.docker.internal:8080}
-    volumes:
-      - ./caddy/Caddyfile.dev:/etc/caddy/Caddyfile:ro
+      GRAFANA_HOST: ${GRAFANA_HOST:-host.docker.internal:3000}
     ports:
       - "80:80"
     restart: always
