@@ -12,16 +12,16 @@ http {
         index index.html;
 
         location /api/ {
-            proxy_pass http://${BACKEND_HOST};
+            proxy_pass http://$BACKEND_HOST;
         }
 
         location /actuator/info {
-            proxy_pass http://${BACKEND_HOST};
+            proxy_pass http://$BACKEND_HOST;
         }
 
         location /grafana/ {
             rewrite ^/grafana/(.*)$ /$1 break;
-            proxy_pass http://${GRAFANA_HOST};
+            proxy_pass http://$GRAFANA_HOST;
         }
 
         location / {
