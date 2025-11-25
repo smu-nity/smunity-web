@@ -11,19 +11,23 @@ http {
         root /usr/share/nginx/html;
         index index.html;
 
+        # API
         location /api/ {
             proxy_pass http://$BACKEND_HOST;
         }
 
+        # Actuator
         location /actuator/info {
             proxy_pass http://$BACKEND_HOST;
         }
 
+        # Grafana
         location /grafana/ {
             rewrite ^/grafana/(.*)$ /$1 break;
             proxy_pass http://$GRAFANA_HOST;
         }
 
+        # SPA fallback
         location / {
             try_files $uri $uri/ /index.html;
         }
