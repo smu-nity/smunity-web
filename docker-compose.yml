@@ -3,6 +3,7 @@ services:
     container_name: smunity-web
     image: ${IMAGE}
     environment:
+      TZ: Asia/Seoul
       BACKEND_HOST: ${BACKEND_HOST}
       GRAFANA_HOST: ${GRAFANA_HOST}
     ports:
