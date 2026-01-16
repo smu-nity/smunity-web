@@ -5,6 +5,7 @@ services:
     build: .
     platform: linux/amd64
     environment:
+      TZ: Asia/Seoul
       BACKEND_HOST: ${BACKEND_HOST:-host.docker.internal:8080}
       GRAFANA_HOST: ${GRAFANA_HOST:-host.docker.internal:3000}
     ports:
