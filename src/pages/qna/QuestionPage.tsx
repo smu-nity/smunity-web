@@ -1,6 +1,6 @@
-import Header from '../../components/Header'
-import QuestionContainer from '../../components/qna/QuestionContainer'
-import TabComponent from '../../components/qna/TabComponent'
+import Header from '@/components/Header'
+import QuestionContainer from '@/components/qna/QuestionContainer'
+import TabComponent from '@/components/qna/TabComponent'
 
 const QuestionPage = () => {
   return (

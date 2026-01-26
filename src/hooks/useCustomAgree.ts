@@ -1,13 +1,13 @@
 import {useRecoilState, useResetRecoilState} from 'recoil'
-import checkState from '../atoms/agreeState'
-import {removeCookie, setCookie} from '../util/cookieUtil'
-import {Auth} from '../types/Auth'
-import autheState from '../atoms/authState'
-import {auth, authPassword} from '../api/authApi'
-import {TLoginParam} from '../api/accountApi'
-import authePasswordState from '../atoms/authPasswordState'
-import {Term} from '../types/Term'
-import {fetchCurrentTerm} from '../api/termApi'
+import checkState from '@/atoms/agreeState'
+import {removeCookie, setCookie} from '@/util/cookieUtil'
+import {Auth} from '@/types/Auth'
+import autheState from '@/atoms/authState'
+import {auth, authPassword} from '@/api/authApi'
+import {TLoginParam} from '@/api/accountApi'
+import authePasswordState from '@/atoms/authPasswordState'
+import {Term} from '@/types/Term'
+import {fetchCurrentTerm} from '@/api/termApi'
 
 export interface TCustomAgree {
   agreeState: boolean
@@ -80,7 +80,7 @@ const useCustomAgree = (): TCustomAgree => {
     setAuthState({})
   }
 
-  const alertError = (data: any) =>
+  const alertError = (data: {message: string; detail?: Record<string, string>}) =>
     alert(
       data.detail
         ? `${data.message}\n${Object.values(data.detail).join('\n')}`

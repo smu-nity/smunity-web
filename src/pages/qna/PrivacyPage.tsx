@@ -1,6 +1,6 @@
-import Header from '../../components/Header'
-import PrivacyComponent from '../../components/qna/PrivacyComponent'
-import TabComponent from '../../components/qna/TabComponent'
+import Header from '@/components/Header'
+import PrivacyComponent from '@/components/qna/PrivacyComponent'
+import TabComponent from '@/components/qna/TabComponent'
 
 const PrivacyPage = () => {
   return (

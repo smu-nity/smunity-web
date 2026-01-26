@@ -1,5 +1,5 @@
-import {Course, CourseCulture} from './Course'
-import {Result} from './Result'
+import {Course, CourseCulture} from '@/types/Course'
+import {Result} from '@/types/Result'
 
 export interface ResultData {
   advanced: Result<Course>

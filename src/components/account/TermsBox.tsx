@@ -1,5 +1,5 @@
-import TermsComponent from './TermsComponent'
-import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
+import TermsComponent from '@/components/account/TermsComponent'
+import useCustomAgree, {TCustomAgree} from '@/hooks/useCustomAgree'
 
 const TermsBox = () => {
   const {agreeState, clickCheckBox}: TCustomAgree = useCustomAgree()

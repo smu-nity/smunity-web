@@ -1,6 +1,6 @@
-import {CourseCulture} from '../../types/Course'
-import {Result} from '../../types/Result'
-import CultureBasicItem from './CultureBasicItem'
+import {CourseCulture} from '@/types/Course'
+import {Result} from '@/types/Result'
+import CultureBasicItem from '@/components/result/CultureBasicItem'
 
 interface CultureBasicTableProps {
   result: Result<CourseCulture>

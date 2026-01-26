@@ -1,14 +1,14 @@
 import {useEffect, useState} from 'react'
-import QuestionTitle from './QuestionTitle'
-import QuestionButtonContainer from './QuestionButtonContainer'
-import QuestionDetail from './QuestionDetail'
-import {Question} from '../../types/Question'
-import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
-import {Answer} from '../../types/Answer'
-import AnswerButtonContainer from './AnswerButtonContainer'
-import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
-import useCustomAnswer, {TCustomAnswer} from '../../hooks/useCustomAnswer'
-import AnswerDetail from './AnswerDetail'
+import QuestionTitle from '@/components/qna/QuestionTitle'
+import QuestionButtonContainer from '@/components/qna/QuestionButtonContainer'
+import QuestionDetail from '@/components/qna/QuestionDetail'
+import {Question} from '@/types/Question'
+import useCustomAccount, {TCustomAccount} from '@/hooks/useCustomAccount'
+import {Answer} from '@/types/Answer'
+import AnswerButtonContainer from '@/components/qna/AnswerButtonContainer'
+import useCustomQuestion, {TCustomQuestion} from '@/hooks/useCustomQuestion'
+import useCustomAnswer, {TCustomAnswer} from '@/hooks/useCustomAnswer'
+import AnswerDetail from '@/components/qna/AnswerDetail'
 
 interface QuestionDetailContainerProps {
   id: string
@@ -28,7 +28,7 @@ const QuestionDetailContainer: React.FC<QuestionDetailContainerProps> = ({id}) =
     doFetchAnswer(id).then((data: Answer) => {
       setAnswer(data)
     })
-  }, [id])
+  }, [id, doFetchAnswer, doFetchQuestion])
 
   return question ? (
     <>

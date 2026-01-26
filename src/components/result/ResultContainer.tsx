@@ -1,11 +1,11 @@
 import React from 'react'
-import {Category, CourseCulture, Domain} from '../../types/Course'
-import MajorTable from './MajorTable'
-import CultureBasicTable from './CultureBasicTable'
-import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
-import {Result} from '../../types/Result'
-import CultureTable from './CultureTable'
-import CultureResultTable from './CultureResultTable'
+import {Category, CourseCulture, Domain} from '@/types/Course'
+import MajorTable from '@/components/result/MajorTable'
+import CultureBasicTable from '@/components/result/CultureBasicTable'
+import useCustomResult, {TCustomResult} from '@/hooks/useCustomResult'
+import {Result} from '@/types/Result'
+import CultureTable from '@/components/result/CultureTable'
+import CultureResultTable from '@/components/result/CultureResultTable'
 
 interface ResultContainerProps {
   type: Category | Domain

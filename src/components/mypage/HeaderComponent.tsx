@@ -1,7 +1,7 @@
 import {useState} from 'react'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import Modal from '../Modal'
-import CourseUpdateForm from './CourseUpdateForm'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import Modal from '@/components/Modal'
+import CourseUpdateForm from '@/components/mypage/CourseUpdateForm'
 
 interface HeaderComponentProps {
   title: string

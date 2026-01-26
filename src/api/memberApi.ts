@@ -1,10 +1,10 @@
 import {AxiosResponse} from 'axios'
-import {MemberInfo} from '../types/MemberInfo'
-import jwtAxios from '../util/jwtUtil'
-import {TLoginParam} from './accountApi'
-import api from './config'
-import {MemberCount} from '../types/MemberCount'
-import {ExemptionType} from '../types/Exemption'
+import {MemberInfo} from '@/types/MemberInfo'
+import jwtAxios from '@/util/jwtUtil'
+import {TLoginParam} from '@/api/accountApi'
+import api from '@/api/config'
+import {MemberCount} from '@/types/MemberCount'
+import {ExemptionType} from '@/types/Exemption'
 
 export type TPasswordParam = {
   password: string

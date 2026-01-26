@@ -1,5 +1,5 @@
-import {TLoginParam} from '../api/accountApi'
-import {courseUpload} from '../api/courseApi'
+import {TLoginParam} from '@/api/accountApi'
+import {courseUpload} from '@/api/courseApi'
 import {
   changeDepartment,
   changeExemption,
@@ -9,7 +9,8 @@ import {
   TExemptionParam,
   TPasswordParam,
   updateMember
-} from '../api/memberApi'
+} from '@/api/memberApi'
+import {AxiosError} from 'axios'
 
 export interface TCustomMypage {
   uploadCourse: (loginParam: TLoginParam) => Promise<boolean>
@@ -69,15 +70,17 @@ const useCustomMypage = (): TCustomMypage => {
     return success
   }
 
-  const alertError = (data: any) =>
+  const alertError = (data: {message: string; detail?: Record<string, string>}) =>
     alert(
       data.detail
         ? `${data.message}\n${Object.values(data.detail).join('\n')}`
         : data.message
     )
 
-  const authError = (err: any) =>
-    alert(err.response?.data?.message || '알 수 없는 오류가 발생했습니다.')
+  const authError = (err: unknown) => {
+    const error = err as AxiosError<{message: string}>
+    alert(error.response?.data?.message || '알 수 없는 오류가 발생했습니다.')
+  }
 
   return {
     uploadCourse,

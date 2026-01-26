@@ -1,6 +1,6 @@
 import {useParams} from 'react-router-dom'
-import Header from '../../components/Header'
-import QuestionDetailContainer from '../../components/qna/QuestionDetailContainer'
+import Header from '@/components/Header'
+import QuestionDetailContainer from '@/components/qna/QuestionDetailContainer'
 
 const QuestionDetailPage = () => {
   const {id} = useParams<{id: string}>()

@@ -1,12 +1,12 @@
 import {useEffect, useState} from 'react'
-import ResultCultureItem from '../../components/result/ResultCultureItem'
-import ResultDetailItem from '../../components/result/ResultDetailItem'
-import ResultItem from '../../components/result/ResultItem'
-import {Category, Domain} from '../../types/Course'
-import ModalContainer from '../../components/result/ModalContainer'
-import ResultContainer from '../../components/result/ResultContainer'
+import ResultCultureItem from '@/components/result/ResultCultureItem'
+import ResultDetailItem from '@/components/result/ResultDetailItem'
+import ResultItem from '@/components/result/ResultItem'
+import {Category, Domain} from '@/types/Course'
+import ModalContainer from '@/components/result/ModalContainer'
+import ResultContainer from '@/components/result/ResultContainer'
 import {Credit} from '@/types/Credit'
-import {fetchCredit} from '../../api/courseApi'
+import {fetchCredit} from '@/api/courseApi'
 
 const ResultPage = () => {
   const [credit, setCredit] = useState<Credit>()

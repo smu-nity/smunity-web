@@ -1,4 +1,4 @@
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
 
 const HeadComponent = () => {
   const {moveToPath}: TCustomMove = useCustomMove()

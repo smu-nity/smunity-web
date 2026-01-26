@@ -1,6 +1,6 @@
 import {AxiosResponse} from 'axios'
-import jwtAxios from '../util/jwtUtil'
-import {AnswerRequest} from '../types/Answer'
+import jwtAxios from '@/util/jwtUtil'
+import {AnswerRequest} from '@/types/Answer'
 
 export const fetchAnswer = async (id: string): Promise<AxiosResponse> =>
   await jwtAxios.get(`/api/v1/questions/${id}/answer`)

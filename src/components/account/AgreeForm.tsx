@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import LoadingSpinner from '../LoadingSpinner'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import useCustomAgree, {TCustomAgree} from '@/hooks/useCustomAgree'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 interface AuthCredentials {
   username: string
@@ -48,7 +48,7 @@ const AgreeForm = () => {
     if (isAuth()) {
       moveToPath('/accounts/register')
     }
-  }, [isAuth])
+  }, [isAuth, moveToPath])
 
   return (
     <>

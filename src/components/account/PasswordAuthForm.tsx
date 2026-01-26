@@ -1,8 +1,8 @@
 import {useState} from 'react'
-import {LoginCredentials} from '../../types/LoginCredentials'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
-import LoadingSpinner from '../LoadingSpinner'
+import {LoginCredentials} from '@/types/LoginCredentials'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import useCustomAgree, {TCustomAgree} from '@/hooks/useCustomAgree'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 const PasswordAuthForm = () => {
   const {moveToPath}: TCustomMove = useCustomMove()

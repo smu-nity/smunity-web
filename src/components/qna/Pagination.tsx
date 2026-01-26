@@ -1,6 +1,6 @@
 import {useNavigate} from 'react-router-dom'
-import {Page} from '../../types/Page'
-import {Question} from '../../types/Question'
+import {Page} from '@/types/Page'
+import {Question} from '@/types/Question'
 
 interface PaginationProps {
   page: Page<Question>

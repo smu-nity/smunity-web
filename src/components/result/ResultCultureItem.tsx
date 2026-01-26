@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react'
-import CreditItem from './CreditItem'
-import PieChart from './PieChart'
-import {Result} from '../../types/Result'
-import {fetchCulture} from '../../api/courseApi'
-import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
-import {CourseCulture, Domain} from '../../types/Course'
+import CreditItem from '@/components/result/CreditItem'
+import PieChart from '@/components/result/PieChart'
+import {Result} from '@/types/Result'
+import {fetchCulture} from '@/api/courseApi'
+import useCustomResult, {TCustomResult} from '@/hooks/useCustomResult'
+import {CourseCulture, Domain} from '@/types/Course'
 
 interface ResultCultureItemProps {
   domain: Domain
@@ -20,7 +20,7 @@ const ResultCultureItem: React.FC<ResultCultureItemProps> = ({domain, openModal}
       setCultures(data)
       saveResult(domain, data)
     })
-  }, [domain])
+  }, [domain, saveResult])
 
   const domainDetails = getDetail(domain)
 

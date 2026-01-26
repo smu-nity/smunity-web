@@ -1,5 +1,5 @@
-import RegisterForm from '../../components/account/RegisterForm'
-import Header from '../../components/Header'
+import RegisterForm from '@/components/account/RegisterForm'
+import Header from '@/components/Header'
 
 const RegisterPage = () => {
   return (

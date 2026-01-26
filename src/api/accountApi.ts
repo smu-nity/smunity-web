@@ -1,6 +1,6 @@
 import {AxiosResponse} from 'axios'
-import api from './config'
-import jwtAxios from '../util/jwtUtil'
+import api from '@/api/config'
+import jwtAxios from '@/util/jwtUtil'
 
 export type TLoginParam = {
   username: string

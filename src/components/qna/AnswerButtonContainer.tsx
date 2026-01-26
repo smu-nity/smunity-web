@@ -1,6 +1,5 @@
 import {Link} from 'react-router-dom'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import {deleteAnswer} from '../../api/answerApi'
+import {deleteAnswer} from '@/api/answerApi'
 
 interface QuestionButtonContainerProps {
   isSuperuser: boolean
@@ -11,12 +10,10 @@ const QuestionButtonContainer: React.FC<QuestionButtonContainerProps> = ({
   isSuperuser,
   questionId
 }) => {
-  const {moveToPath}: TCustomMove = useCustomMove()
-
   const handleDelete = async () => {
     if (window.confirm('선택한 답변을 정말 삭제하시겠습니까?')) {
       await deleteAnswer(questionId)
-      moveToPath(`/qna/questions/${questionId}`)
+      window.location.reload()
     }
   }
 

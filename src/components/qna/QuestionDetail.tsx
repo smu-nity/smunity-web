@@ -1,6 +1,6 @@
-import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
-import {Question} from '../../types/Question'
-import MarkdownViewer from './MarkdownViewer'
+import useCustomQuestion, {TCustomQuestion} from '@/hooks/useCustomQuestion'
+import {Question} from '@/types/Question'
+import MarkdownViewer from '@/components/qna/MarkdownViewer'
 
 interface QuestionDetailProps {
   question: Question

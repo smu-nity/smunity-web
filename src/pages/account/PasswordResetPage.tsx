@@ -1,5 +1,5 @@
-import PasswordResetForm from '../../components/account/PasswordResetForm'
-import Header from '../../components/Header'
+import PasswordResetForm from '@/components/account/PasswordResetForm'
+import Header from '@/components/Header'
 
 const PasswordResetPage = () => {
   return (

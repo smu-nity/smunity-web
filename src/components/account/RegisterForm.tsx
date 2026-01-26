@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react'
-import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
-import LoadingSpinner from '../LoadingSpinner'
+import useCustomAgree, {TCustomAgree} from '@/hooks/useCustomAgree'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import useCustomAccount, {TCustomAccount} from '@/hooks/useCustomAccount'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 interface RegisterCredentials {
   name: string
@@ -72,7 +72,7 @@ const RegisterForm = () => {
     if (!isAuth()) {
       moveToPath('/accounts/agree')
     }
-  }, [isAuth])
+  }, [isAuth, moveToPath])
 
   return (
     <div onKeyDown={handleKeyDown}>

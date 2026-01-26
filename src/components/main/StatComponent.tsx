@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react'
-import {fetchMembersCount} from '../../api/memberApi'
-import {MemberCount} from '../../types/MemberCount'
-import {Department} from '../../types/Department'
-import {fetchDepartments} from '../../api/departmentApi'
-import {Base} from '../../types/Result'
+import {fetchMembersCount} from '@/api/memberApi'
+import {MemberCount} from '@/types/MemberCount'
+import {Department} from '@/types/Department'
+import {fetchDepartments} from '@/api/departmentApi'
+import {Base} from '@/types/Result'
 
 const StatComponent = () => {
   const [count, setCount] = useState<number>(0)

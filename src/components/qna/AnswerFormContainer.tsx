@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import QuestionDetail from './QuestionDetail'
-import {Question} from '../../types/Question'
-import {Answer} from '../../types/Answer'
-import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
-import useCustomAnswer, {TCustomAnswer} from '../../hooks/useCustomAnswer'
-import AnswerForm from './AnswerForm'
+import QuestionDetail from '@/components/qna/QuestionDetail'
+import {Question} from '@/types/Question'
+import {Answer} from '@/types/Answer'
+import useCustomQuestion, {TCustomQuestion} from '@/hooks/useCustomQuestion'
+import useCustomAnswer, {TCustomAnswer} from '@/hooks/useCustomAnswer'
+import AnswerForm from '@/components/qna/AnswerForm'
 
 interface AnswerFormContainerProps {
   isEditMode: boolean
@@ -25,7 +25,7 @@ const AnswerFormContainer: React.FC<AnswerFormContainerProps> = ({isEditMode, id
       doFetchAnswer(id).then((data: Answer) => {
         setAnswer(data)
       })
-  }, [id])
+  }, [id, doFetchAnswer, doFetchQuestion, isEditMode])
 
   return (
     <div

@@ -1,7 +1,7 @@
 import {useState} from 'react'
-import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
-import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
-import LoadingSpinner from '../LoadingSpinner'
+import useCustomMypage, {TCustomMypage} from '@/hooks/useCustomMypage'
+import useCustomAccount, {TCustomAccount} from '@/hooks/useCustomAccount'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 interface PasswordCredentials {
   password1: string

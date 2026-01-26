@@ -1,14 +1,19 @@
 import {useEffect, useState} from 'react'
-import {Page} from '../../types/Page'
-import {Question} from '../../types/Question'
-import {fetchQuestions} from '../../api/questionApi'
+import {Page} from '@/types/Page'
+import {Question} from '@/types/Question'
+import {fetchQuestions} from '@/api/questionApi'
 import {Link, useLocation} from 'react-router-dom'
-import QuestionList from './QuestionList'
-import Pagination from './Pagination'
+import QuestionList from '@/components/qna/QuestionList'
+import Pagination from '@/components/qna/Pagination'
+
+import {useMemo} from 'react'
 
 const useQuery = (): Record<string, string> => {
-  const searchParams = new URLSearchParams(useLocation().search)
-  return Object.fromEntries(searchParams.entries())
+  const {search} = useLocation()
+  return useMemo(() => {
+    const searchParams = new URLSearchParams(search)
+    return Object.fromEntries(searchParams.entries())
+  }, [search])
 }
 
 const QuestionContainer = () => {
@@ -19,7 +24,7 @@ const QuestionContainer = () => {
     fetchQuestions(params).then((data: Page<Question>) => {
       setPage(data)
     })
-  }, [JSON.stringify(params)])
+  }, [params])
 
   return (
     <div className="cs_area">

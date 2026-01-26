@@ -6,8 +6,8 @@ import axios, {
   AxiosRequestConfig
 } from 'axios'
 
-import {getCookie, removeCookie, setCookie} from './cookieUtil'
-import {ErrorResponse} from '../types/ErrorResponse'
+import {getCookie, removeCookie, setCookie} from '@/util/cookieUtil'
+import {ErrorResponse} from '@/types/ErrorResponse'
 
 const config: AxiosRequestConfig = {
   validateStatus: function (status: number) {
@@ -28,8 +28,8 @@ const refreshJWT = async (refreshToken: string) => {
 
 // before request
 const beforeReq = async (
-  config: InternalAxiosRequestConfig<any>
-): Promise<InternalAxiosRequestConfig<any>> => {
+  config: InternalAxiosRequestConfig
+): Promise<InternalAxiosRequestConfig> => {
   const memberInfo = getCookie('member')
   if (!memberInfo) {
     return config
@@ -47,13 +47,14 @@ const requestFail = (err: AxiosError | Error): Promise<AxiosError> => {
 }
 
 // before return response
-const beforeRes = async (res: AxiosResponse): Promise<any> => {
+const beforeRes = async (res: AxiosResponse): Promise<AxiosResponse> => {
   return res
 }
 
 // fail response
 let isRefreshing = false // 토큰 갱신 중인지 여부
-let pendingRequests: any[] = [] // 대기 중인 요청 배열
+type PendingRequestCallback = (accessToken: string | null) => void
+let pendingRequests: PendingRequestCallback[] = [] // 대기 중인 요청 배열
 
 const onRefreshed = (accessToken: string) => {
   pendingRequests.forEach(callback => callback(accessToken))
@@ -71,8 +72,8 @@ const responseFail = async (err: AxiosError): Promise<Error> => {
     if (isRefreshing) {
       // 이미 토큰 갱신 중이라면 대기
       return new Promise(resolve => {
-        pendingRequests.push((accessToken: string) => {
-          if (originalRequest.headers) {
+        pendingRequests.push((accessToken: string | null) => {
+          if (accessToken && originalRequest.headers) {
             originalRequest.headers.Authorization = `Bearer ${accessToken}`
           }
           resolve(axios(originalRequest))
@@ -88,7 +89,7 @@ const responseFail = async (err: AxiosError): Promise<Error> => {
       memberCookieValue.refreshToken = result.refreshToken
       setCookie('member', JSON.stringify(memberCookieValue), 1)
       onRefreshed(result.accessToken)
-    } catch (error) {
+    } catch {
       // 갱신 실패 시, 대기 요청을 모두 거부
       pendingRequests.forEach(callback => callback(null))
       pendingRequests = []

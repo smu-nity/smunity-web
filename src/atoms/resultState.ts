@@ -1,7 +1,7 @@
 import {atom, RecoilState} from 'recoil'
-import {ResultData} from '../types/ResultData'
-import {Result} from '../types/Result'
-import {Course, CourseCulture} from '../types/Course'
+import {ResultData} from '@/types/ResultData'
+import {Result} from '@/types/Result'
+import {Course, CourseCulture} from '@/types/Course'
 
 const initState: ResultData = {
   advanced: {} as Result<Course>,

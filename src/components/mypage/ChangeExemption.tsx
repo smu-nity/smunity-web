@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import {ExemptionType} from '../../types/Exemption'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
+import {ExemptionType} from '@/types/Exemption'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import useCustomMypage, {TCustomMypage} from '@/hooks/useCustomMypage'
 
 interface ChangeExemptionProps {
   exemption?: ExemptionType

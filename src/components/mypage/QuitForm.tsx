@@ -1,7 +1,7 @@
 import {useState} from 'react'
-import QuitComponent from './QuitComponent'
-import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
-import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
+import QuitComponent from '@/components/mypage/QuitComponent'
+import useCustomMypage, {TCustomMypage} from '@/hooks/useCustomMypage'
+import useCustomAccount, {TCustomAccount} from '@/hooks/useCustomAccount'
 
 const QuitForm = () => {
   const {memberDelete}: TCustomMypage = useCustomMypage()

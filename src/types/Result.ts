@@ -1,4 +1,4 @@
-import {Status} from './Status'
+import {Status} from '@/types/Status'
 
 export interface Base<T> {
   count: number

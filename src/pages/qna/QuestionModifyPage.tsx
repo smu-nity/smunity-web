@@ -1,11 +1,11 @@
 import {useParams} from 'react-router-dom'
-import Header from '../../components/Header'
+import Header from '@/components/Header'
 import {useEffect, useState} from 'react'
-import {Question} from '../../types/Question'
-import QuestionForm from '../../components/qna/QuestionForm'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
-import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
+import {Question} from '@/types/Question'
+import QuestionForm from '@/components/qna/QuestionForm'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import useCustomQuestion, {TCustomQuestion} from '@/hooks/useCustomQuestion'
+import useCustomAccount, {TCustomAccount} from '@/hooks/useCustomAccount'
 
 const convertToRequest = (question: Question) => {
   return {
@@ -27,13 +27,13 @@ const QuestionModifyPage = () => {
       doFetchQuestion(id).then((data: Question) => {
         setQuestion(data)
       })
-  }, [id])
+  }, [id, doFetchQuestion])
 
   useEffect(() => {
     if (question && !question.isAuthor && !isAdmin()) {
       moveToPath('/qna/questions')
     }
-  }, [question, isAdmin])
+  }, [question, isAdmin, moveToPath])
 
   if (question && !question.isAuthor && !isAdmin()) {
     return null

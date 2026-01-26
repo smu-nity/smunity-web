@@ -1,6 +1,6 @@
-import CreditItem from './CreditItem'
-import PieChart from './PieChart'
-import {Credit} from '../../types/Credit'
+import CreditItem from '@/components/result/CreditItem'
+import PieChart from '@/components/result/PieChart'
+import {Credit} from '@/types/Credit'
 
 interface ResultItemProps {
   credit: Credit

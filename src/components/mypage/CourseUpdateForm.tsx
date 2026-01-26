@@ -1,8 +1,8 @@
 import {useState} from 'react'
-import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
-import LoadingSpinner from '../LoadingSpinner'
+import useCustomAccount, {TCustomAccount} from '@/hooks/useCustomAccount'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import useCustomMypage, {TCustomMypage} from '@/hooks/useCustomMypage'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 interface CourseUpdateFormProps {
   isGraduated: boolean

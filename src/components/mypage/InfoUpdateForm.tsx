@@ -1,8 +1,8 @@
 import {useState} from 'react'
-import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
-import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import LoadingSpinner from '../LoadingSpinner'
+import useCustomAccount, {TCustomAccount} from '@/hooks/useCustomAccount'
+import useCustomMypage, {TCustomMypage} from '@/hooks/useCustomMypage'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 const InfoUpdateForm = () => {
   const [password, setPassword] = useState('')

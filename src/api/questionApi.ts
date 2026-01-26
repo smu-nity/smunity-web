@@ -1,7 +1,7 @@
 import {AxiosResponse} from 'axios'
-import {Page} from '../types/Page'
-import {Question, QuestionRequest} from '../types/Question'
-import jwtAxios from '../util/jwtUtil'
+import {Page} from '@/types/Page'
+import {Question, QuestionRequest} from '@/types/Question'
+import jwtAxios from '@/util/jwtUtil'
 
 export const fetchQuestions = async (
   params: Record<string, string>

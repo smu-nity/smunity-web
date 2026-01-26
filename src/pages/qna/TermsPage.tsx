@@ -1,6 +1,6 @@
-import TermsComponent from '../../components/account/TermsComponent'
-import Header from '../../components/Header'
-import TabComponent from '../../components/qna/TabComponent'
+import TermsComponent from '@/components/account/TermsComponent'
+import Header from '@/components/Header'
+import TabComponent from '@/components/qna/TabComponent'
 
 const TermsPage = () => {
   return (

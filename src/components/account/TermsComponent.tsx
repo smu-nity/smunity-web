@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import Modal from '../Modal'
-import TargetTable from './TargetTable'
-import useCustomAgree, {TCustomAgree} from '../../hooks/useCustomAgree'
+import Modal from '@/components/Modal'
+import TargetTable from '@/components/account/TargetTable'
+import useCustomAgree, {TCustomAgree} from '@/hooks/useCustomAgree'
 
 const TermsComponent = () => {
   const {doFetchCurrentTerm}: TCustomAgree = useCustomAgree()
@@ -12,7 +12,7 @@ const TermsComponent = () => {
     doFetchCurrentTerm().then((data: string) => {
       setTerm(data)
     })
-  }, [])
+  }, [doFetchCurrentTerm])
 
   return (
     <>

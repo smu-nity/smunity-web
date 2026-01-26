@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import useCustomAnswer, {TCustomAnswer} from '../../hooks/useCustomAnswer'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import {AnswerRequest} from '../../types/Answer'
+import useCustomAnswer, {TCustomAnswer} from '@/hooks/useCustomAnswer'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import {AnswerRequest} from '@/types/Answer'
 
 interface AnswerFormProps {
   isEditMode: boolean

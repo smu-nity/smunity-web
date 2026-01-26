@@ -1,5 +1,5 @@
-import '../../styles/board.css'
-import '../../styles/animate.min.css'
+import '@/styles/board.css'
+import '@/styles/animate.min.css'
 import {Link, useLocation} from 'react-router-dom'
 
 const TabComponent = () => {

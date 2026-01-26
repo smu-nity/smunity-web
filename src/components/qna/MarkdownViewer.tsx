@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import '../../styles/markdown.css'
+import '@/styles/markdown.css'
 import remarkBreaks from 'remark-breaks'
 
 interface MarkdownViewerProps {
