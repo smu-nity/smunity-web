@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react'
-import {fetchEditableDepartments} from '../../api/departmentApi'
-import {Base} from '../../types/Result'
-import {DepartmentEditable} from '../../types/DepartmentEditable'
-import useCustomMypage, {TCustomMypage} from '../../hooks/useCustomMypage'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
+import {fetchEditableDepartments} from '@/api/departmentApi'
+import {Base} from '@/types/Result'
+import {DepartmentEditable} from '@/types/DepartmentEditable'
+import useCustomMypage, {TCustomMypage} from '@/hooks/useCustomMypage'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
 
 interface ChangeDepartmentProps {
   department: string

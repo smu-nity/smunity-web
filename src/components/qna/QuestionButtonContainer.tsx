@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
-import {Question} from '../../types/Question'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import {deleteQuestion} from '../../api/questionApi'
+import {Question} from '@/types/Question'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import {deleteQuestion} from '@/api/questionApi'
 
 interface QuestionButtonContainerProps {
   isSuperuser: boolean

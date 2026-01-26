@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import {fetchCourses} from '../../api/courseApi'
-import {Result} from '../../types/Result'
-import {Category, Course} from '../../types/Course'
-import CreditItem from './CreditItem'
-import PieChart from './PieChart'
-import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
+import {fetchCourses} from '@/api/courseApi'
+import {Result} from '@/types/Result'
+import {Category, Course} from '@/types/Course'
+import CreditItem from '@/components/result/CreditItem'
+import PieChart from '@/components/result/PieChart'
+import useCustomResult, {TCustomResult} from '@/hooks/useCustomResult'
 
 interface ResultDetailItemProps {
   category: Category
@@ -21,7 +21,7 @@ const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}
       setCourses(data)
       saveResult(category, data)
     })
-  }, [category])
+  }, [category, saveResult])
 
   const categoryDetails = getDetail(category)
 

@@ -1,4 +1,4 @@
-import {Course} from '../../types/Course'
+import {Course} from '@/types/Course'
 
 interface CourseItemProps {
   course: Course

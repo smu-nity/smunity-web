@@ -1,9 +1,9 @@
 import {useState} from 'react'
-import CourseItem from './CourseItem'
-import {Course} from '../../types/Course'
-import {Result} from '../../types/Result'
-import Modal from '../Modal'
-import CourseUpdateForm from './CourseUpdateForm'
+import CourseItem from '@/components/mypage/CourseItem'
+import {Course} from '@/types/Course'
+import {Result} from '@/types/Result'
+import Modal from '@/components/Modal'
+import CourseUpdateForm from '@/components/mypage/CourseUpdateForm'
 
 interface CourseBoxProps {
   courses?: Result<Course>

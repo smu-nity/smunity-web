@@ -1,5 +1,5 @@
-import Header from '../../components/Header'
-import QuestionForm from '../../components/qna/QuestionForm'
+import Header from '@/components/Header'
+import QuestionForm from '@/components/qna/QuestionForm'
 
 const QuestionCreatePage = () => {
   return (

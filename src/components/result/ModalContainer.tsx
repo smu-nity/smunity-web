@@ -1,6 +1,6 @@
-import useCustomResult, {TCustomResult} from '../../hooks/useCustomResult'
-import {Category, Domain} from '../../types/Course'
-import Modal from '../Modal'
+import useCustomResult, {TCustomResult} from '@/hooks/useCustomResult'
+import {Category, Domain} from '@/types/Course'
+import Modal from '@/components/Modal'
 
 interface ModalContainerProps {
   isOpen: boolean

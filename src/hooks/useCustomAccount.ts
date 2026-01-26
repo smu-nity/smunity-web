@@ -1,11 +1,11 @@
-import {login, logout, register, TLoginParam, TRegisterParam} from '../api/accountApi'
-import {Member} from '../types/Member'
+import {login, logout, register, TLoginParam, TRegisterParam} from '@/api/accountApi'
+import {Member} from '@/types/Member'
 import {useRecoilState, useResetRecoilState} from 'recoil'
-import signinState from '../atoms/accountState'
-import {getCookie, removeCookie, setCookie} from '../util/cookieUtil'
-import useCustomAgree, {TCustomAgree} from './useCustomAgree'
-import useCustomMove, {TCustomMove} from './useCustomMove'
-import {resetPassword, TPasswordParam} from '../api/memberApi'
+import signinState from '@/atoms/accountState'
+import {getCookie, removeCookie, setCookie} from '@/util/cookieUtil'
+import useCustomAgree, {TCustomAgree} from '@/hooks/useCustomAgree'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import {resetPassword, TPasswordParam} from '@/api/memberApi'
 
 export interface TCustomAccount {
   loginState: Member
@@ -81,7 +81,7 @@ const useCustomAccount = (): TCustomAccount => {
     return success
   }
 
-  const alertError = (data: any) =>
+  const alertError = (data: {message: string; detail?: Record<string, string>}) =>
     alert(
       data.detail
         ? `${data.message}\n${Object.values(data.detail).join('\n')}`

@@ -1,6 +1,6 @@
-import QuestionItem from './QuestionItem'
-import {Page} from '../../types/Page'
-import {Question} from '../../types/Question'
+import QuestionItem from '@/components/qna/QuestionItem'
+import {Page} from '@/types/Page'
+import {Question} from '@/types/Question'
 
 interface QuestionListProps {
   page: Page<Question>

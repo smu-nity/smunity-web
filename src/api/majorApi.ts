@@ -1,6 +1,6 @@
-import {Major} from '../types/Major'
-import {Base} from '../types/Result'
-import jwtAxios from '../util/jwtUtil'
+import {Major} from '@/types/Major'
+import {Base} from '@/types/Result'
+import jwtAxios from '@/util/jwtUtil'
 
 export const fetchMajors = async (
   params?: Record<string, string>

@@ -1,9 +1,10 @@
-import {Category, Course, CourseCulture, Domain} from '../types/Course'
-import {Content, Detail, Explain} from '../types/Modal'
-import {Result} from '../types/Result'
-import {ResultData} from '../types/ResultData'
-import resultState from '../atoms/resultState'
+import {Category, Course, CourseCulture, Domain} from '@/types/Course'
+import {Content, Detail, Explain} from '@/types/Modal'
+import {Result} from '@/types/Result'
+import {ResultData} from '@/types/ResultData'
+import resultState from '@/atoms/resultState'
 import {useRecoilState} from 'recoil'
+import {useCallback} from 'react'
 
 export interface TCustomResult {
   resultDataState: ResultData
@@ -89,42 +90,51 @@ const fields: Record<Category | Domain, keyof ResultData | null> = {
 const useCustomResult = (): TCustomResult => {
   const [resultDataState, setResultDataState] = useRecoilState(resultState)
 
-  const getDetail = (type: Category | Domain) => {
+  const getDetail = useCallback((type: Category | Domain) => {
     return details[type]
-  }
+  }, [])
 
-  const getContent = (type: Category | Domain) => {
+  const getContent = useCallback((type: Category | Domain) => {
     return contents[type]
-  }
+  }, [])
 
-  const saveResult = (
-    type: Category | Domain,
-    result: Result<Course> | Result<CourseCulture>
-  ) => {
-    const field = fields[type]
-    if (field) {
-      setResultDataState(prevResult => ({
-        ...prevResult,
-        [field]: result
-      }))
-    }
-  }
+  const saveResult = useCallback(
+    (
+      type: Category | Domain,
+      result: Result<Course> | Result<CourseCulture>
+    ) => {
+      const field = fields[type]
+      if (field) {
+        setResultDataState(prevResult => ({
+          ...prevResult,
+          [field]: result
+        }))
+      }
+    },
+    [setResultDataState]
+  )
 
-  const getResult = (type: Category | Domain) => {
-    const field = fields[type]
-    return field && resultDataState[field]
-  }
+  const getResult = useCallback(
+    (type: Category | Domain) => {
+      const field = fields[type]
+      return field && resultDataState[field]
+    },
+    [resultDataState]
+  )
 
-  const getExplain = (
-    type: Category | Domain,
-    completed?: boolean,
-    required?: string
-  ) => {
-    const explain = explains[type]
-    return completed ?? false
-      ? `${explain.completed}을 만족했습니다.`
-      : `${required || ''} ${explain.uncompleted}이 부족합니다.`
-  }
+  const getExplain = useCallback(
+    (
+      type: Category | Domain,
+      completed?: boolean,
+      required?: string
+    ) => {
+      const explain = explains[type]
+      return completed ?? false
+        ? `${explain.completed}을 만족했습니다.`
+        : `${required || ''} ${explain.uncompleted}이 부족합니다.`
+    },
+    []
+  )
 
   return {
     resultDataState,

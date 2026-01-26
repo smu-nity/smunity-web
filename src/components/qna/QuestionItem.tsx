@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
-import {Question} from '../../types/Question'
-import useCustomQuestion, {TCustomQuestion} from '../../hooks/useCustomQuestion'
+import {Question} from '@/types/Question'
+import useCustomQuestion, {TCustomQuestion} from '@/hooks/useCustomQuestion'
 
 interface QuestionItemProps {
   question: Question

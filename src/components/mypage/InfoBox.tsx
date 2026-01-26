@@ -1,17 +1,25 @@
 import {useState} from 'react'
-import {MemberInfo} from '../../types/MemberInfo'
-import InfoTable from './InfoTable'
-import Modal from '../Modal'
-import Section from './Section'
-import InfoUpdateForm from './InfoUpdateForm'
-import ChangePasswordFrom from './ChangePasswordForm'
-import QuitForm from './QuitForm'
+import {MemberInfo} from '@/types/MemberInfo'
+import InfoTable from '@/components/mypage/InfoTable'
+import Modal from '@/components/Modal'
+import Section from '@/components/mypage/Section'
+import InfoUpdateForm from '@/components/mypage/InfoUpdateForm'
+import ChangePasswordFrom from '@/components/mypage/ChangePasswordForm'
+import QuitForm from '@/components/mypage/QuitForm'
 
 interface InfoBoxProps {
   member?: MemberInfo
 }
 
-const modals: any[] = [
+interface ModalConfig {
+  id: string
+  title: string
+  explanation?: string
+  link?: boolean
+  children: React.ReactNode
+}
+
+const modals: ModalConfig[] = [
   {
     id: 'info',
     title: '내 정보 업데이트',

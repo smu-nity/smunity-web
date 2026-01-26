@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
-import useCustomAccount, {TCustomAccount} from '../hooks/useCustomAccount'
-import useCustomMove, {TCustomMove} from '../hooks/useCustomMove'
+import useCustomAccount, {TCustomAccount} from '@/hooks/useCustomAccount'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
 
 const Navbar = () => {
   const {doLogout, isLogin}: TCustomAccount = useCustomAccount()

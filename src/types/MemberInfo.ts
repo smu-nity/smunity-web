@@ -1,4 +1,4 @@
-import {ExemptionType} from './Exemption'
+import {ExemptionType} from '@/types/Exemption'
 
 export interface MemberInfo {
   username: string

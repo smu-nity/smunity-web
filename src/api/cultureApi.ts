@@ -1,6 +1,6 @@
-import {Culture} from '../types/Culture'
-import {Base} from '../types/Result'
-import jwtAxios from '../util/jwtUtil'
+import {Culture} from '@/types/Culture'
+import {Base} from '@/types/Result'
+import jwtAxios from '@/util/jwtUtil'
 
 export const fetchCultures = async (
   params?: Record<string, string>

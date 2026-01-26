@@ -1,6 +1,6 @@
-import Header from '../../components/Header'
-import TermsBox from '../../components/account/TermsBox'
-import AgreeForm from '../../components/account/AgreeForm'
+import Header from '@/components/Header'
+import TermsBox from '@/components/account/TermsBox'
+import AgreeForm from '@/components/account/AgreeForm'
 
 const AgreePage = () => {
   return (

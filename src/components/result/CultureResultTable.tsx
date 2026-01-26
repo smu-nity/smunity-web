@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import {Base} from '../../types/Result'
-import {Culture} from '../../types/Culture'
-import {fetchCultures} from '../../api/cultureApi'
+import {Base} from '@/types/Result'
+import {Culture} from '@/types/Culture'
+import {fetchCultures} from '@/api/cultureApi'
 
 interface CultureResultTableProps {
   subDomain: string

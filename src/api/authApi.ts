@@ -1,6 +1,6 @@
 import {AxiosResponse} from 'axios'
-import api from './config'
-import {TLoginParam} from './accountApi'
+import api from '@/api/config'
+import {TLoginParam} from '@/api/accountApi'
 
 export const auth = async (loginParam: TLoginParam): Promise<AxiosResponse> =>
   await api.post('/api/v1/auth/register', loginParam)

@@ -1,6 +1,6 @@
 import {RecoilState, atom} from 'recoil'
-import {Member} from '../types/Member'
-import {getCookie} from '../util/cookieUtil'
+import {Member} from '@/types/Member'
+import {getCookie} from '@/util/cookieUtil'
 
 const initState: Member = {}
 

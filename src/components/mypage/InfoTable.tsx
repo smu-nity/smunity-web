@@ -1,6 +1,6 @@
-import {MemberInfo} from '../../types/MemberInfo'
-import ChangeDepartment from './ChangeDepartment'
-import ChangeExemption from './ChangeExemption'
+import {MemberInfo} from '@/types/MemberInfo'
+import ChangeDepartment from '@/components/mypage/ChangeDepartment'
+import ChangeExemption from '@/components/mypage/ChangeExemption'
 
 interface InfoTableProps {
   member?: MemberInfo

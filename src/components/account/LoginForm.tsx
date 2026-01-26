@@ -1,10 +1,10 @@
 import {useState} from 'react'
-import useCustomAccount, {TCustomAccount} from '../../hooks/useCustomAccount'
-import useCustomMove, {TCustomMove} from '../../hooks/useCustomMove'
-import Modal from '../Modal'
-import PasswordAuthForm from './PasswordAuthForm'
-import {LoginCredentials} from '../../types/LoginCredentials'
-import LoadingSpinner from '../LoadingSpinner'
+import useCustomAccount, {TCustomAccount} from '@/hooks/useCustomAccount'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
+import Modal from '@/components/Modal'
+import PasswordAuthForm from '@/components/account/PasswordAuthForm'
+import {LoginCredentials} from '@/types/LoginCredentials'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 const LoginForm = () => {
   const [loginParams, setLoginParams] = useState<LoginCredentials>({

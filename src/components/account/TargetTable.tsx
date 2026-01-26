@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import {Base} from '../../types/Result'
-import {Department} from '../../types/Department'
-import {fetchDepartments} from '../../api/departmentApi'
+import {Base} from '@/types/Result'
+import {Department} from '@/types/Department'
+import {fetchDepartments} from '@/api/departmentApi'
 
 const TargetTable = () => {
   const [departments, setDepartments] = useState<Base<Department>>()

@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react'
-import {Category, Domain} from '../../types/Course'
-import {fetchMajors} from '../../api/majorApi'
-import {Base} from '../../types/Result'
-import {Major} from '../../types/Major'
+import {Category, Domain} from '@/types/Course'
+import {fetchMajors} from '@/api/majorApi'
+import {Base} from '@/types/Result'
+import {Major} from '@/types/Major'
 
 interface MajorTableProps {
   type: Category | Domain

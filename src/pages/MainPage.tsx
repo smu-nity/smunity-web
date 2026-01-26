@@ -1,5 +1,5 @@
-import HeadComponent from '../components/main/HeadComponent'
-import StatComponent from '../components/main/StatComponent'
+import HeadComponent from '@/components/main/HeadComponent'
+import StatComponent from '@/components/main/StatComponent'
 
 const MainPage = () => {
   return (
