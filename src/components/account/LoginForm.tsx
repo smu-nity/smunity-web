@@ -11,6 +11,7 @@ const LoginForm = () => {
     username: '',
     password: ''
   })
+  const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isOpenModal, setIsOpenModal] = useState(false)
   const {doLogin}: TCustomAccount = useCustomAccount()
@@ -58,13 +59,19 @@ const LoginForm = () => {
           </div>
           <div className="input-group flex-nowrap" style={{marginTop: '1rem'}}>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               className="form-control"
               name="password"
               placeholder="비밀번호"
               value={loginParams.password}
               onChange={handleChange}
             />
+            <span
+              className="input-group-text"
+              onClick={() => setShowPassword(!showPassword)}
+              style={{cursor: 'pointer'}}>
+              <i className={`fa ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+            </span>
           </div>
           <a className="link" onClick={() => setIsOpenModal(true)}>
             비밀번호를 잊어버리셨나요?

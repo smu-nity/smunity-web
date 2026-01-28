@@ -10,6 +10,7 @@ interface CourseUpdateFormProps {
 
 const CourseUpdateForm: React.FC<CourseUpdateFormProps> = ({isGraduated}) => {
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const {reload, moveToPath}: TCustomMove = useCustomMove()
   const {getUsername}: TCustomAccount = useCustomAccount()
@@ -53,11 +54,17 @@ const CourseUpdateForm: React.FC<CourseUpdateFormProps> = ({isGraduated}) => {
         <div className="input-group flex-nowrap" style={{marginTop: '1rem'}}>
           <input
             className="form-control"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             placeholder="샘물 비밀번호"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
+          <span
+            className="input-group-text"
+            onClick={() => setShowPassword(!showPassword)}
+            style={{cursor: 'pointer'}}>
+            <i className={`fa ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+          </span>
         </div>
       </div>
       <input
