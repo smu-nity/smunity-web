@@ -14,6 +14,8 @@ const ChangePasswordFrom = () => {
     password2: ''
   })
   const [isLoading, setIsLoading] = useState(false)
+  const [showPassword1, setShowPassword1] = useState(false)
+  const [showPassword2, setShowPassword2] = useState(false)
   const {passwordChange}: TCustomMypage = useCustomMypage()
   const {doLogout}: TCustomAccount = useCustomAccount()
 
@@ -58,20 +60,32 @@ const ChangePasswordFrom = () => {
         <div className="input-group flex-nowrap">
           <input
             className="form-control"
-            type="password"
+            type={showPassword1 ? 'text' : 'password'}
             name="password1"
             placeholder="새 비밀번호"
             onChange={handleChange}
           />
+          <span
+            className="input-group-text"
+            onClick={() => setShowPassword1(!showPassword1)}
+            style={{cursor: 'pointer'}}>
+            <i className={`fa ${showPassword1 ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+          </span>
         </div>
         <div className="input-group flex-nowrap" style={{marginTop: '1rem'}}>
           <input
             className="form-control"
-            type="password"
+            type={showPassword2 ? 'text' : 'password'}
             name="password2"
             placeholder="비밀번호 재확인"
             onChange={handleChange}
           />
+          <span
+            className="input-group-text"
+            onClick={() => setShowPassword2(!showPassword2)}
+            style={{cursor: 'pointer'}}>
+            <i className={`fa ${showPassword2 ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+          </span>
         </div>
       </div>
       <input

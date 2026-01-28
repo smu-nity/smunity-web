@@ -20,6 +20,8 @@ const PasswordResetForm = () => {
     password2: ''
   })
   const [isLoading, setIsLoading] = useState(false)
+  const [showPassword1, setShowPassword1] = useState(false)
+  const [showPassword2, setShowPassword2] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target
@@ -76,21 +78,37 @@ const PasswordResetForm = () => {
       </div>
       <div className="box-margin1">
         <label>비밀번호</label>
-        <input
-          className="form-control"
-          type="password"
-          name="password1"
-          onChange={handleChange}
-        />
+        <div className="input-group">
+          <input
+            className="form-control"
+            type={showPassword1 ? 'text' : 'password'}
+            name="password1"
+            onChange={handleChange}
+          />
+          <span
+            className="input-group-text"
+            onClick={() => setShowPassword1(!showPassword1)}
+            style={{cursor: 'pointer'}}>
+            <i className={`fa ${showPassword1 ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+          </span>
+        </div>
       </div>
       <div className="box-margin1">
         <label>비밀번호 재확인</label>
-        <input
-          className="form-control"
-          type="password"
-          name="password2"
-          onChange={handleChange}
-        />
+        <div className="input-group">
+          <input
+            className="form-control"
+            type={showPassword2 ? 'text' : 'password'}
+            name="password2"
+            onChange={handleChange}
+          />
+          <span
+            className="input-group-text"
+            onClick={() => setShowPassword2(!showPassword2)}
+            style={{cursor: 'pointer'}}>
+            <i className={`fa ${showPassword2 ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+          </span>
+        </div>
       </div>
       <div style={{textAlign: 'center'}}>
         <button
