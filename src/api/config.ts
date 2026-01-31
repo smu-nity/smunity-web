@@ -2,7 +2,7 @@ import axios, {AxiosRequestConfig} from 'axios'
 
 const config: AxiosRequestConfig = {
   validateStatus: function (status: number) {
-    return status < 500
+    return status < 400
   },
   timeout: 10000,
   withCredentials: true

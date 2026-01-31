@@ -9,6 +9,7 @@ import AnswerButtonContainer from '@/components/qna/AnswerButtonContainer'
 import useCustomQuestion, {TCustomQuestion} from '@/hooks/useCustomQuestion'
 import useCustomAnswer, {TCustomAnswer} from '@/hooks/useCustomAnswer'
 import AnswerDetail from '@/components/qna/AnswerDetail'
+import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
 
 interface QuestionDetailContainerProps {
   id: string
@@ -21,14 +22,21 @@ const QuestionDetailContainer: React.FC<QuestionDetailContainerProps> = ({id}) =
   const {doFetchAnswer}: TCustomAnswer = useCustomAnswer()
   const {isAdmin}: TCustomAccount = useCustomAccount()
 
+  const {moveToPath}: TCustomMove = useCustomMove()
+
   useEffect(() => {
-    doFetchQuestion(id).then((data: Question) => {
+    doFetchQuestion(id).then((data: Question | null) => {
+      if (!data) {
+        alert('해당 질문을 찾을 수 없습니다.')
+        moveToPath('/qna/questions')
+        return
+      }
       setQuestion(data)
     })
     doFetchAnswer(id).then((data: Answer) => {
       setAnswer(data)
     })
-  }, [id, doFetchAnswer, doFetchQuestion])
+  }, [id, doFetchAnswer, doFetchQuestion, moveToPath])
 
   return question ? (
     <>

@@ -43,31 +43,55 @@ const useCustomMypage = (): TCustomMypage => {
   }
 
   const passwordChange = async (passwordParam: TPasswordParam) => {
-    const response = await changePassword(passwordParam)
-    const success = response.status < 400
-    !success && alertError(response.data)
-    return success
+    try {
+      await changePassword(passwordParam)
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }
 
   const departmentChange = async (departmentParam: TDepartmentParam) => {
-    const response = await changeDepartment(departmentParam)
-    const success = response.status < 400
-    !success && alertError(response.data)
-    return success
+    try {
+      await changeDepartment(departmentParam)
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }
 
   const exemptionChange = async (exemptionParam: TExemptionParam) => {
-    const response = await changeExemption(exemptionParam)
-    const success = response.status < 400
-    !success && alertError(response.data)
-    return success
+    try {
+      await changeExemption(exemptionParam)
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }
 
   const memberDelete = async () => {
-    const response = await deleteMember()
-    const success = response.status < 400
-    !success && alertError(response.data)
-    return success
+    try {
+      await deleteMember()
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }
 
   const alertError = (data: {message: string; detail?: Record<string, string>}) =>

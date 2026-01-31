@@ -1,4 +1,5 @@
 import {useNavigate} from 'react-router-dom'
+import {useCallback} from 'react'
 
 export interface TCustomMove {
   moveToPath: (path: string) => void
@@ -9,13 +10,16 @@ const useCustomMove = (): TCustomMove => {
   const navigate = useNavigate()
 
   //----------------페이지 이동
-  const moveToPath = (path: string) => {
-    navigate({pathname: path}, {replace: true})
-  }
+  const moveToPath = useCallback(
+    (path: string) => {
+      navigate({pathname: path}, {replace: true})
+    },
+    [navigate]
+  )
 
-  const reload = () => {
+  const reload = useCallback(() => {
     navigate(0)
-  }
+  }, [navigate])
 
   return {moveToPath, reload}
 }

@@ -11,7 +11,7 @@ import {ErrorResponse} from '@/types/ErrorResponse'
 
 const config: AxiosRequestConfig = {
   validateStatus: function (status: number) {
-    return status < 500 && status !== 401
+    return status < 400
   },
   timeout: 10000,
   withCredentials: true
