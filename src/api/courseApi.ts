@@ -23,4 +23,4 @@ export const fetchCulture = async (domain: Domain): Promise<Result<CourseCulture
 }
 
 export const courseUpload = async (loginParam: TLoginParam): Promise<AxiosResponse> =>
-  await jwtAxios.post('/api/v1/courses/upload', loginParam, {timeout: 30000})
+  await jwtAxios.post('/api/v1/courses/upload', loginParam, {timeout: 30_000})
