@@ -29,7 +29,7 @@ export const fetchMembersCount = async (): Promise<MemberCount> => {
 }
 
 export const updateMember = async (loginParam: TLoginParam): Promise<AxiosResponse> =>
-  await jwtAxios.put('/api/v1/members/me', loginParam)
+  await jwtAxios.put('/api/v1/members/me', loginParam, {timeout: 30000})
 
 export const changePassword = async (passwordParam: TPasswordParam) =>
   await jwtAxios.patch('/api/v1/members/me/password', passwordParam)
