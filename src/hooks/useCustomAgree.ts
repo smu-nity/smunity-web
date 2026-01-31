@@ -8,6 +8,7 @@ import {TLoginParam} from '@/api/accountApi'
 import authePasswordState from '@/atoms/authPasswordState'
 import {Term} from '@/types/Term'
 import {fetchCurrentTerm} from '@/api/termApi'
+import {AxiosError} from 'axios'
 
 export interface TCustomAgree {
   agreeState: boolean
@@ -34,24 +35,44 @@ const useCustomAgree = (): TCustomAgree => {
   }
 
   const doAuth = async (loginParam: TLoginParam) => {
-    const response = await auth(loginParam)
-    const success = response.status < 400
-    success ? saveAuth(response.data) : alertError(response.data)
-    return success
+    try {
+      const response = await auth(loginParam)
+      saveAuth(response.data)
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }
 
   const doPasswordAuth = async (loginParam: TLoginParam) => {
-    const response = await authPassword(loginParam)
-    const success = response.status < 400
-    success ? saveAuthPassword(response.data) : alertError(response.data)
-    return success
+    try {
+      const response = await authPassword(loginParam)
+      saveAuthPassword(response.data)
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }
 
   const doFetchCurrentTerm = async () => {
-    const response = await fetchCurrentTerm()
-    const success = response.status < 400
-    !success && alertError(response.data)
-    return success ? formatTerm(response.data) : ''
+    try {
+      const response = await fetchCurrentTerm()
+      return formatTerm(response.data)
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return ''
+    }
   }
 
   const saveAuth = (data: Auth) => {

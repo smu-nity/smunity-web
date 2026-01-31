@@ -6,6 +6,7 @@ import {getCookie, removeCookie, setCookie} from '@/util/cookieUtil'
 import useCustomAgree, {TCustomAgree} from '@/hooks/useCustomAgree'
 import useCustomMove, {TCustomMove} from '@/hooks/useCustomMove'
 import {resetPassword, TPasswordParam} from '@/api/memberApi'
+import {AxiosError} from 'axios'
 
 export interface TCustomAccount {
   loginState: Member
@@ -27,25 +28,34 @@ const useCustomAccount = (): TCustomAccount => {
 
   //----------로그인 함수
   const doLogin = async (loginParam: TLoginParam) => {
-    const response = await login(loginParam)
-    const success = response.status < 400
-    success ? saveAsCookie(response.data) : alertError(response.data)
-    return success
+    try {
+      const response = await login(loginParam)
+      saveAsCookie(response.data)
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }
 
   //----------회원가입 함수
   const doRegister = async (registerParam: TRegisterParam, authToken?: string) => {
-    const response = await register(registerParam, authToken)
-    const success = response.status < 400
-    if (success) {
+    try {
+      await register(registerParam, authToken)
       moveToPath('/accounts/login')
       removeAuth()
       alert('회원가입이 완료되었습니다.')
       return true
-    } else {
-      alertError(response.data)
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
     }
-    return success
   }
 
   const saveAsCookie = (data: Member) => {
@@ -75,10 +85,16 @@ const useCustomAccount = (): TCustomAccount => {
   }
 
   const passwordReset = async (passwordParam: TPasswordParam, authToken?: string) => {
-    const response = await resetPassword(passwordParam, authToken)
-    const success = response.status < 400
-    !success && alertError(response.data)
-    return success
+    try {
+      await resetPassword(passwordParam, authToken)
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }
 
   const alertError = (data: {message: string; detail?: Record<string, string>}) =>

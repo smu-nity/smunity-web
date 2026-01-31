@@ -1,6 +1,7 @@
 import {createQuestion, fetchQuestion, updateQuestion} from '@/api/questionApi'
 import {Question, QuestionRequest} from '@/types/Question'
 import {useCallback} from 'react'
+import {AxiosError} from 'axios'
 
 const padZero = (value: number) => value.toString().padStart(2, '0')
 export interface TCustomQuestion {
@@ -13,27 +14,43 @@ export interface TCustomQuestion {
 
 const useCustomQuestion = (): TCustomQuestion => {
   const doFetchQuestion = useCallback(async (id: string) => {
-    const response = await fetchQuestion(id)
-    const success = response.status < 400
-    !success && alertError(response.data)
-    return success ? response.data : null
+    try {
+      const response = await fetchQuestion(id)
+      return response.data
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return null
+    }
   }, [])
 
   const doCreateQuestion = useCallback(async (request: QuestionRequest) => {
-    const response = await createQuestion(request)
-    const success = response.status < 400
-    !success && alertError(response.data)
-    return success
+    try {
+      await createQuestion(request)
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }, [])
 
   const doUpdateQuestion = useCallback(async (id: string, request: QuestionRequest) => {
-    const response = await updateQuestion(id, request)
-    const success = response.status < 400
-    !success && alertError(response.data)
-    return success
+    try {
+      await updateQuestion(id, request)
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }, [])
-
-
 
   const formatDate = useCallback((createdAt: string) => {
     const date = new Date(createdAt)

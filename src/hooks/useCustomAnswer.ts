@@ -1,6 +1,7 @@
 import {fetchAnswer, createAnswer, updateAnswer} from '@/api/answerApi'
 import {Answer, AnswerRequest} from '@/types/Answer'
 import {useCallback} from 'react'
+import {AxiosError} from 'axios'
 export interface TCustomAnswer {
   doFetchAnswer: (id: string) => Promise<Answer>
   doCreateAnswer: (id: string, request: AnswerRequest) => Promise<boolean>
@@ -9,23 +10,38 @@ export interface TCustomAnswer {
 
 const useCustomAnswer = (): TCustomAnswer => {
   const doFetchAnswer = useCallback(async (id: string) => {
-    const response = await fetchAnswer(id)
-    const success = response.status < 400
-    return success ? response.data : null
+    try {
+      const response = await fetchAnswer(id)
+      return response.data
+    } catch {
+      return null
+    }
   }, [])
 
   const doCreateAnswer = useCallback(async (id: string, request: AnswerRequest) => {
-    const response = await createAnswer(id, request)
-    const success = response.status < 400
-    !success && alertError(response.data)
-    return success
+    try {
+      await createAnswer(id, request)
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }, [])
 
   const doUpdateAnswer = useCallback(async (id: string, request: AnswerRequest) => {
-    const response = await updateAnswer(id, request)
-    const success = response.status < 400
-    !success && alertError(response.data)
-    return success
+    try {
+      await updateAnswer(id, request)
+      return true
+    } catch (err) {
+      const error = err as AxiosError<{message: string; detail?: Record<string, string>}>
+      if (error.response?.data) {
+        alertError(error.response.data)
+      }
+      return false
+    }
   }, [])
 
   const alertError = (data: {message: string; detail?: Record<string, string>}) =>
