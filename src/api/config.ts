@@ -4,7 +4,7 @@ const config: AxiosRequestConfig = {
   validateStatus: function (status: number) {
     return status < 400
   },
-  timeout: 10000,
+  timeout: 10_000,
   withCredentials: true
 }
 
