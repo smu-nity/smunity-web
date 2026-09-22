@@ -10,4 +10,5 @@ export type Credit = {
   required: number
   completion: number
   isDoubleMajor: boolean
+  isTransfer: boolean
 }
