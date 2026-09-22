@@ -15,7 +15,7 @@ const ResultContainer: React.FC<ResultContainerProps> = ({type}) => {
   const {getResult, getExplain}: TCustomResult = useCustomResult()
   const result = getResult(type)
   const required =
-    type === 'MAJOR_ADVANCED' || type === 'MAJOR_OPTIONAL'
+    type === 'MAJOR_ADVANCED' || type === 'MAJOR'
       ? result?.status.required.toString()
       : undefined
   const explain = getExplain(type, result?.completed, required)
@@ -23,7 +23,7 @@ const ResultContainer: React.FC<ResultContainerProps> = ({type}) => {
   const table = {
     ALL: null,
     MAJOR_ADVANCED: <MajorTable type={type} />,
-    MAJOR_OPTIONAL: <MajorTable type={type} />,
+    MAJOR: <MajorTable type={type} />,
     FIRST_MAJOR: <MajorTable type={type} />,
     SECOND_MAJOR: <MajorTable type={type} />,
     CULTURE: null,
