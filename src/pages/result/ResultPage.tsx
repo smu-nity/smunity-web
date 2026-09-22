@@ -10,12 +10,14 @@ import {fetchCredit} from '@/api/courseApi'
 
 const ResultPage = () => {
   const [credit, setCredit] = useState<Credit>()
-  const categorys: Category[] = !credit?.isDoubleMajor
-    ? ['ALL', 'MAJOR_ADVANCED', 'MAJOR_OPTIONAL', 'CULTURE']
-    : ['ALL', 'FIRST_MAJOR', 'SECOND_MAJOR', 'CULTURE']
-  const modals: (Category | Domain)[] = !credit?.isDoubleMajor
-    ? ['MAJOR_ADVANCED', 'MAJOR_OPTIONAL', 'BASIC', 'CORE', 'BALANCE']
-    : ['FIRST_MAJOR', 'SECOND_MAJOR', 'BASIC', 'CORE', 'BALANCE']
+  const categorys: Category[] = credit?.isDoubleMajor
+    ? ['ALL', 'FIRST_MAJOR', 'SECOND_MAJOR', 'CULTURE']
+    : credit?.isTransfer
+      ? ['ALL', 'MAJOR_OPTIONAL', 'CULTURE']
+      : ['ALL', 'MAJOR_ADVANCED', 'MAJOR_OPTIONAL', 'CULTURE']
+  const modals: (Category | Domain)[] = credit?.isDoubleMajor
+    ? ['FIRST_MAJOR', 'SECOND_MAJOR', 'BASIC', 'CORE', 'BALANCE']
+    : ['MAJOR_OPTIONAL', 'BASIC', 'CORE', 'BALANCE']
   const domains: Domain[] = ['BASIC', 'CORE', 'BALANCE']
   const [activeModal, setActiveModal] = useState<string | null>(null)
 

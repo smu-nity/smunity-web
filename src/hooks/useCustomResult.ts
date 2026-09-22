@@ -21,7 +21,7 @@ export interface TCustomResult {
 const details: Record<Category | Domain, Detail> = {
   ALL: {text: '이수학점', icon: 'fa-user'},
   MAJOR_ADVANCED: {text: '전공심화', icon: 'fa-pen'},
-  MAJOR_OPTIONAL: {text: '전공선택', icon: 'fa-pen-to-square'},
+  MAJOR_OPTIONAL: {text: '전공', icon: 'fa-pen-to-square'},
   FIRST_MAJOR: {text: '1전공', icon: 'fa-pen'},
   SECOND_MAJOR: {text: '다전공', icon: 'fa-pen-to-square'},
   CULTURE: {text: '교양', icon: 'fa-book'},
@@ -37,8 +37,8 @@ const contents: Record<Category | Domain, Content> = {
     explanation: '전공심화 과목 중 미이수과목을 학년 순으로 추천합니다.'
   },
   MAJOR_OPTIONAL: {
-    title: '전공선택 추천과목',
-    explanation: '전공선택 과목 중 미이수과목을 학년 순으로 추천합니다.'
+    title: '전공 추천과목',
+    explanation: '전공 과목 중 미이수과목을 학년 순으로 추천합니다.'
   },
   FIRST_MAJOR: {
     title: '1전공 추천과목',

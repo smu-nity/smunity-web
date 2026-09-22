@@ -16,7 +16,12 @@ const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}
   const {getDetail, saveResult}: TCustomResult = useCustomResult()
 
   useEffect(() => {
-    const param = category !== 'ALL' ? {category} : undefined
+    const param =
+      category === 'MAJOR_OPTIONAL'
+        ? {category: ['MAJOR_ADVANCED', 'MAJOR_OPTIONAL'] as Category[]}
+        : category !== 'ALL'
+          ? {category}
+          : undefined
     fetchCourses(param).then((data: Result<Course>) => {
       setCourses(data)
       saveResult(category, data)
@@ -29,8 +34,7 @@ const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}
     <div className={`resultbox ${category === 'ALL' ? 'resultbox-mobile' : ''}`}>
       <div className="result_name">
         <i className={`fas fa-solid ${categoryDetails.icon}`} /> {categoryDetails.text}
-        {(category === 'MAJOR_ADVANCED' ||
-          category === 'MAJOR_OPTIONAL' ||
+        {(category === 'MAJOR_OPTIONAL' ||
           category === 'FIRST_MAJOR' ||
           category === 'SECOND_MAJOR') && (
           <div className="recommend" onClick={() => openModal()}>

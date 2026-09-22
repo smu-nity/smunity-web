@@ -1,14 +1,17 @@
 import {AxiosResponse} from 'axios'
-import {Course, CourseCulture, Domain} from '@/types/Course'
+import {Category, Course, CourseCulture, Domain} from '@/types/Course'
 import {Credit} from '@/types/Credit'
 import {Result} from '@/types/Result'
 import jwtAxios from '@/util/jwtUtil'
 import {TLoginParam} from '@/api/accountApi'
 
 export const fetchCourses = async (
-  params?: Record<string, string>
+  params?: {category?: Category | Category[]}
 ): Promise<Result<Course>> => {
-  const res = await jwtAxios.get('/api/v1/courses', {params})
+  const res = await jwtAxios.get('/api/v1/courses', {
+    params,
+    paramsSerializer: {indexes: null}
+  })
   return res.data
 }
 
