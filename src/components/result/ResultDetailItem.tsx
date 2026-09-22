@@ -34,7 +34,8 @@ const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}
     <div className={`resultbox ${category === 'ALL' ? 'resultbox-mobile' : ''}`}>
       <div className="result_name">
         <i className={`fas fa-solid ${categoryDetails.icon}`} /> {categoryDetails.text}
-        {(category === 'MAJOR_OPTIONAL' ||
+        {(category === 'MAJOR_ADVANCED' ||
+          category === 'MAJOR_OPTIONAL' ||
           category === 'FIRST_MAJOR' ||
           category === 'SECOND_MAJOR') && (
           <div className="recommend" onClick={() => openModal()}>

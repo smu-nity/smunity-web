@@ -12,10 +12,7 @@ const MajorTable: React.FC<MajorTableProps> = ({type}) => {
   const [majors, setMajors] = useState<Base<Major>>()
 
   useEffect(() => {
-    const param =
-      type === 'MAJOR_ADVANCED' || type === 'MAJOR_OPTIONAL'
-        ? undefined
-        : {category: type}
+    const param = type === 'MAJOR_OPTIONAL' ? undefined : {category: type}
     fetchMajors(param).then((data: Base<Major>) => {
       setMajors(data)
     })
