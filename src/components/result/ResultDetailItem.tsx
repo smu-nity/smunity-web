@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {fetchCourses} from '@/api/courseApi'
 import {Result} from '@/types/Result'
-import {Category, Course} from '@/types/Course'
+import {Category, Course, CourseCategory} from '@/types/Course'
 import CreditItem from '@/components/result/CreditItem'
 import PieChart from '@/components/result/PieChart'
 import useCustomResult, {TCustomResult} from '@/hooks/useCustomResult'
@@ -16,9 +16,9 @@ const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}
   const {getDetail, saveResult}: TCustomResult = useCustomResult()
 
   useEffect(() => {
-    const param =
-      category === 'MAJOR_OPTIONAL'
-        ? {category: ['MAJOR_ADVANCED', 'MAJOR_OPTIONAL'] as Category[]}
+    const param: {category?: CourseCategory | CourseCategory[]} | undefined =
+      category === 'MAJOR'
+        ? {category: ['MAJOR_ADVANCED', 'MAJOR_OPTIONAL']}
         : category !== 'ALL'
           ? {category}
           : undefined
@@ -35,7 +35,7 @@ const ResultDetailItem: React.FC<ResultDetailItemProps> = ({category, openModal}
       <div className="result_name">
         <i className={`fas fa-solid ${categoryDetails.icon}`} /> {categoryDetails.text}
         {(category === 'MAJOR_ADVANCED' ||
-          category === 'MAJOR_OPTIONAL' ||
+          category === 'MAJOR' ||
           category === 'FIRST_MAJOR' ||
           category === 'SECOND_MAJOR') && (
           <div className="recommend" onClick={() => openModal()}>

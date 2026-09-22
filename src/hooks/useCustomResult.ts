@@ -21,7 +21,7 @@ export interface TCustomResult {
 const details: Record<Category | Domain, Detail> = {
   ALL: {text: '이수학점', icon: 'fa-user'},
   MAJOR_ADVANCED: {text: '전공심화', icon: 'fa-pen'},
-  MAJOR_OPTIONAL: {text: '전공', icon: 'fa-pen-to-square'},
+  MAJOR: {text: '전공', icon: 'fa-pen-to-square'},
   FIRST_MAJOR: {text: '1전공', icon: 'fa-pen'},
   SECOND_MAJOR: {text: '다전공', icon: 'fa-pen-to-square'},
   CULTURE: {text: '교양', icon: 'fa-book'},
@@ -36,7 +36,7 @@ const contents: Record<Category | Domain, Content> = {
     title: '전공심화 추천과목',
     explanation: '전공심화 과목 중 미이수과목을 학년 순으로 추천합니다.'
   },
-  MAJOR_OPTIONAL: {
+  MAJOR: {
     title: '전공 추천과목',
     explanation: '전공 과목 중 미이수과목을 학년 순으로 추천합니다.'
   },
@@ -66,7 +66,7 @@ const contents: Record<Category | Domain, Content> = {
 const explains: Record<Category | Domain, Explain> = {
   ALL: {completed: '', uncompleted: ''},
   MAJOR_ADVANCED: {completed: '기준 학점', uncompleted: '학점'},
-  MAJOR_OPTIONAL: {completed: '기준 학점', uncompleted: '학점'},
+  MAJOR: {completed: '기준 학점', uncompleted: '학점'},
   FIRST_MAJOR: {completed: '기준 학점', uncompleted: '학점'},
   SECOND_MAJOR: {completed: '기준 학점', uncompleted: '학점'},
   CULTURE: {completed: '', uncompleted: ''},
@@ -78,7 +78,7 @@ const explains: Record<Category | Domain, Explain> = {
 const fields: Record<Category | Domain, keyof ResultData | null> = {
   ALL: null,
   MAJOR_ADVANCED: 'advanced',
-  MAJOR_OPTIONAL: 'optional',
+  MAJOR: 'major',
   FIRST_MAJOR: 'first',
   SECOND_MAJOR: 'second',
   CULTURE: null,
