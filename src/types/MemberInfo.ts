@@ -8,6 +8,7 @@ export interface MemberInfo {
   deptEditable: boolean
   secondDepartment?: string
   secondDeptCode?: string
+  teachingTrack?: boolean
   yearId: number
   exemption: ExemptionType
 }

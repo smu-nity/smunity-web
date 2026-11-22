@@ -8,11 +8,7 @@ export type TLoginParam = {
 }
 
 export type TRegisterParam = {
-  username: string
   password: string
-  email: string
-  name: string
-  department: string
 }
 
 export const login = async (loginParam: TLoginParam): Promise<AxiosResponse> =>
