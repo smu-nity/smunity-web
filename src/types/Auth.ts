@@ -4,5 +4,6 @@ export interface Auth {
   email?: string
   department?: string
   secondDepartment?: string
+  teachingTrack?: boolean
   authToken?: string
 }
